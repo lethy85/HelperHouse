@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container">
+        <section id="projeto">
+            <section id="projeto">
+                <div class="projeto cont">
+                    <div class="projeto-header">
+                        <h1 class="section-title">Login</h1>
+                    </div>
+                    <div class="flex-container" >
+                    <form action="/action_page.php">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" size="40" placeholder="E-mail" name="email">
+                        </div><p>
+                        <div class="form-group">
+                            <label for="senha">Senha:</label>
+                            <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha">
+                        </div><p>
+                            <div class="checkbox">
+                                <label><input type="checkbox" width="100px" name="lembrar">&nbsp;&nbsp;Lembrar-me</label>
+                            </div><p>
+                        <div>
+                        <section id="botao">
+                            <button class="b-login" type="submit" id="enviar">Enviar</button>
+                        </section>
+                        </div>
+        
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <%- include('./partials/footer') %>
+  </body>
+</html>
