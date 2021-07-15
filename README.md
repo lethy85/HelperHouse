@@ -18,11 +18,11 @@ Dando tudo certo, o acesso será em http://localhost:3000/
 <p>Exemplo:</p>
 <pre>
 router.get('/para-profissional', function(req, res, next) {
-  res.render('para-profissional', { title: 'Prestar Serviço', logged: false });
+  res.render('para-profissional', { title: 'Prestar Serviço', logged: false, style: false });
 });
 </pre>
 <p><b>/para-profissional</b> é a url de acesso no GET.</p>
 <p><b>render('para-profissional')</b> é a view renderizada que está criada na pasta views.</p>
-<p><b>{ title: 'Prestar Serviço', logged: false }</b> é a informação repassada para a view. Veja que temos  a title que seria o título da página e a informação logged, no momento ela está sendo setada individualmente em cada rota, mas futuramente implementaremos algo para identificar se está logado ou não. Então se fizerem uma página interna que o usuário já está logado, basta alterar a propriedade para <b>true</b> e assim no header vai trocar para <b>Minha Conta</b></p>
+<p><b>{ title: 'Prestar Serviço', logged: false, style: false }</b> é a informação repassada para a view. Veja que temos  a title que seria o título da página, a informação logged, no momento ela está sendo setada individualmente em cada rota, mas futuramente implementaremos algo para identificar se está logado ou não. Então se fizerem uma página interna que o usuário já está logado, basta alterar a propriedade para <b>true</b> e assim no header vai trocar para <b>Minha Conta</b>. Por último, style vai ser falso se não for criar nenhum arquivo css para aquela rota, se tiver, basta colocar o nome do arquivo.</p>
 
 
