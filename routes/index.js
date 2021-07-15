@@ -3,15 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home', logged: false });
+  res.render('index', { title: 'Home', logged: false, style: 'home' });
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Entrar', logged: false });
+  res.render('login', { title: 'Entrar', logged: false, style: 'home' });
 });
 
 router.get('/como-funciona', function(req, res, next) {
-  res.render('como-funciona', { title: 'Como Funciona', logged: false });
+  res.render('como-funciona', { title: 'Como Funciona', logged: false, style: 'como-funciona' });
 });
 
 router.get('/para-quem-contrata', function(req, res, next) {
@@ -20,6 +20,10 @@ router.get('/para-quem-contrata', function(req, res, next) {
 
 router.get('/para-profissional', function(req, res, next) {
   res.render('para-profissional', { title: 'Prestar Serviço', logged: false });
+});
+
+router.get('/dashboard-prestador', function(req, res, next) {
+  res.render('dashboard-prestador', { title: 'Dashboard Prestador', logged: true });
 });
 // rotas adicionais para cada página deve ser criada aqui
 //router.get('/nome-da-pagina', function(req, res, next) {
