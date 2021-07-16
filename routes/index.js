@@ -15,11 +15,11 @@ router.get('/como-funciona', function(req, res, next) {
 });
 
 router.get('/para-quem-contrata', function(req, res, next) {
-  res.render('para-quem-contrata', { title: 'Contratar Serviço', logged: false, style: false });
+  res.render('para-quem-contrata', { title: 'Contratar Serviço', logged: false, style: 'para-quem-contrata' });
 });
 
 router.get('/para-profissional', function(req, res, next) {
-  res.render('para-profissional', { title: 'Prestar Serviço', logged: false, style: false });
+  res.render('para-profissional', { title: 'Prestar Serviço', logged: false, style: 'para-profissional' });
 });
 
 router.get('/dashboard-prestador', function(req, res, next) {

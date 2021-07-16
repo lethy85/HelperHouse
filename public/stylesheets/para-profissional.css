@@ -1,0 +1,63 @@
+body {
+  overflow-x: hidden;
+}
+.container {
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+}
+
+#title, #information, #information-plus {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.list-of-advantages {
+  width: 100%;
+}
+.advantages-sales {
+  list-style: none;
+}
+.advantages-sales li {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  flex-direction: column-reverse;
+}
+
+.advantages-sales li .icon {
+  padding: 10px;
+  justify-content: center;
+  display: flex;
+  border: 1px solid
+}
+
+.advantages-sales li .text {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.advantages-sales li .text span {
+  font-size: 1.3rem;
+}
+
+@media(min-width: 769px) {
+  .advantages-sales li {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 15px;
+  }
+  .advantages-sales li .icon {
+    min-width: 250px;
+  }
+  .advantages-sales li .icon h3 {
+    line-height: 2;
+  }
+  .advantages-sales li .text {
+    margin-right: 120px;
+}
+}
