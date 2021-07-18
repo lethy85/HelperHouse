@@ -22,8 +22,8 @@ router.get('/para-profissional', function(req, res, next) {
   res.render('para-profissional', { title: 'Prestar Serviço', logged: false });
 });
 
-router.get('/dashboard-prestador', function(req, res, next) {
-  res.render('dashboard-prestador', { title: 'Dashboard Prestador', logged: true });
+router.get('/dashboard-pedidos-prestador', function(req, res, next) {
+  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true });
 });
 // rotas adicionais para cada página deve ser criada aqui
 //router.get('/nome-da-pagina', function(req, res, next) {
