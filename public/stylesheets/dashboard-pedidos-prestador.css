@@ -3,166 +3,60 @@
     margin: 0;
     box-sizing: border-box;
   }
-  header .navbar {
-    background-color: #feea00;
-  }
-  header {
-    position: sticky;
-    top: 0;
-  }
-  
-  body {
-    background-image: url(../images/tijolinhoBranco.jpg);
-  }
-  
-  .cont {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .brand a {
-    text-decoration: none;
-  }
-  
-  #menu-mobile {
-    font-size: 25px;
-  }
-  
-  label {
-    color: black;
-    font-size: 1.4rem;
-    margin-top: 5px;
-    line-height: 2.5rem;
-    font-weight: 300;
-    letter-spacing: 0.05rem;
-  }
-  
-  input,
-  select,
-  button {
-    padding: 3px;
-  }
-  
-  .b-login {
-    border: #ed9121;
-    background: #ed9121;
-    color: white;
-    font-family: monospace;
-    font-size: 18px;
-    width: 100%;
-    border-radius: 30px;
-    font-weight: bold;
-  }
-  
-  .projeto {
-    flex-direction: column;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 0;
-  }
-  
-  .projeto-header h1 {
-    margin-bottom: 50px;
-  }
-  
-  .servicos-descricao {
-    margin-top: 5%;
-  }
-  .servicos-descricao p {
-    text-align: center;
-    font-size: 1.5rem;
-  }
-  
-  .tipo-servicos {
+
+  #title {
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
   }
+
+  .container {
+
+    display: flex;
+
+  }
+ 
+  .section-title {
+    text-align:initial ;
+  }
+
+  .display-pedidos {
+    list-style: none;
+  }
+  .display-pedidos lo{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    flex-direction:row;
+  }
   
-  .servico {
+  .display-pedidos lo .container {
+    padding: 50px;
+    display: flex;
+    border: 1px solid
+  }
+  
+  .display-pedidos lo .h3 {
+    display: flex;
     padding: 10px;
-    border: 1px solid #bbb;
-    background: #ed9121;
-    color: #fff;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
-    font-size: 1.3rem;
+    font-size: 100px;
   }
-  
-  .servico:hover {
-    background: #b86b0c;
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.5rem;
-    transition: font-size 2s;
+
+  @media(min-width: 769px) {
+
+    .display-pedidos {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: row;
+      padding: 15px;
+    }
+    .display-pedidos lo .container {
+      min-width: 250px;
+    }
+    .display-pedidos lo .container h3 {
+      line-height: 2;
+    }
+    .display-pedidos lo .text {
+      margin-left: 120px;
   }
-  .consumidor {
-    margin-right: 2rem;
-  }
-  .prestador {
-    margin-left: 2rem;
-  }
-  
-  .servicos-img {
-    display: flex;
-    justify-content: center;
-    padding-top: 5%;
-  }
-  
-  /* Rodapé */
-  
-  .footer {
-    min-height: 20px;
-    flex-direction: column;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    text-align: center;
-  }
-  
-  #footer h1 {
-    font-size: 20px;
-  }
-  
-  #footer h2 {
-    color: black;
-    font-size: 15px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-  
-  .social {
-    display: flex;
-    text-align: center;
-  }
-  
-  ul.social-item li a {
-    text-align: center;
-  }
-  
-  .social-item img {
-    list-style-type: none;
-    height: 30px;
-    width: 30px;
-    margin: 0 5px;
-    text-align: center;
-  }
-  
-  ul.social-item li {
-    display: inline-block;
-    padding: 0 10px;
-    text-align: center;
-  }
-  .vantagens span:before {
-    content: '';
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
-    border: 4px solid #b86b0c;
-    background: #b86b0c;
-    position: absolute;
-    transition: all 200ms ease-in;
   }
