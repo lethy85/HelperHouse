@@ -3,23 +3,23 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home', logged: false });
+  res.render('index', { title: 'Home', logged: false, style: 'home' });
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Entrar', logged: false });
+  res.render('login', { title: 'Entrar', logged: false, style: 'home' });
 });
 
 router.get('/como-funciona', function(req, res, next) {
-  res.render('como-funciona', { title: 'Como Funciona', logged: false });
+  res.render('como-funciona', { title: 'Como Funciona', logged: false, style: 'como-funciona' });
 });
 
 router.get('/para-quem-contrata', function(req, res, next) {
-  res.render('para-quem-contrata', { title: 'Contratar Serviço', logged: false });
+  res.render('para-quem-contrata', { title: 'Contratar Serviço', logged: false, style: 'para-quem-contrata' });
 });
 
 router.get('/para-profissional', function(req, res, next) {
-  res.render('para-profissional', { title: 'Prestar Serviço', logged: false });
+  res.render('para-profissional', { title: 'Prestar Serviço', logged: false, style: 'para-profissional' });
 });
 
 router.get('/dashboard-pedidos-prestador', function(req, res, next) {

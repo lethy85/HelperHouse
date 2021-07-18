@@ -1,0 +1,79 @@
+body {
+  background-image: url(../images/tijolinhoBranco.jpg);
+}
+.container {
+  margin: 0 auto;
+}
+
+#title, #information {
+    margin-top: 3rem;
+}
+
+
+.servicos-descricao {
+  margin-top: 5%;
+}
+.servicos-descricao p {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.tipo-servicos {
+  display: flex;
+  justify-content: center;
+}
+
+.servico {
+  padding: 10px;
+  border: 1px solid #bbb;
+  background: #ed9121;
+  color: #fff;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  font-size: 1.3rem;
+}
+
+.servico:hover {
+  background: #b86b0c;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: font-size 2s;
+}
+.consumidor {
+  margin-right: 2rem;
+}
+.prestador {
+  margin-left: 2rem;
+}
+
+.servicos-img {
+  display: flex;
+  justify-content: center;
+  padding: 5% 0;
+  max-width: 100%;
+}
+
+.section-title {
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .tipo-servicos a {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .servicos-img img {
+    width: 60%;
+  }
+  .tipo-servicos {
+    flex-direction: column;
+  }
+  .prestador {
+    margin-left: 0;
+  }
+  .consumidor {
+    margin-right: 0;
+  }
+}
