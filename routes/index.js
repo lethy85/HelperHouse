@@ -23,7 +23,7 @@ router.get('/para-profissional', function(req, res, next) {
 });
 
 router.get('/dashboard-pedidos-prestador', function(req, res, next) {
-  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true, style: "dashboard.prestador-servicos" });
+  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true, style: "dashboard-pedidos-prestador" });
 });
 // rotas adicionais para cada página deve ser criada aqui
 //router.get('/nome-da-pagina', function(req, res, next) {
