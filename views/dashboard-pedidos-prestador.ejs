@@ -7,33 +7,44 @@
     <%- include('./partials/header') %>
     <main class="container" id="dashboard-pedidos-prestador">
       <section id="title">
+        <div>
             <h2 class="section-title">
                 Confira abaixo seus pedidos:
             </h2>
-          </div>
-          <div class="flex-container">
-            
-            <h3>Pedidos próximos ao CEP:  22795090  Editar</h3>
-          </div>
         </div>
+        </section>
+        <section class="subtitle">
+        <div>
+            <h5>Pedidos próximos ao CEP:  22795090 </h5>
+        </div>
+      </section>
+      <section id= "display">
+        </div>
+        <div class="display-pedidos">
         <ul>
           <lo>
-            <div class="container">
+            <div class="container-secundario">
               <h3>
                 Pedido 1
               </h3>
+              <div class ="button">
+                <a href="javascript:void(0)">Detalhes Pedido</a>
+              </div>
             </div>
-            
-          </lo>
+            </lo>
           <lo>
-            <div class="container">
+            <div class="container-secundario">
               <h3>
                 Pedido 2
               </h3>
+              <div class ="button">
+                <a href="javascript:void(0)">Detalhes Pedido</a>
+              </div>
             </div>
             </lo>
                  
         </ul>
+        </div>
       </section>
     </main>
     <%- include('./partials/footer') %>
