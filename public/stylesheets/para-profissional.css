@@ -61,3 +61,13 @@ body {
     margin-right: 120px;
 }
 }
+#action{
+  display: flex;
+  justify-content: center;
+}
+#cadastro-prestador {
+  padding: 10px;
+  color: #fff;
+  background-color: #ed9121;
+  margin-bottom: 2rem;
+}
