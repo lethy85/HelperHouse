@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+    <link rel="stylesheet" href="/stylesheets/novaSolicitaçãoTomadorServico.css">
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container1">
+      <section >
+        <h2 class="section-title">
+          Serviços de encanador
+        </h2>
+      </section>
+          </div>
+        </div>
+            <div class="flex-container">
+              <h4>
+                <ul>                      
+                    <div class="servicos-eletricista">
+                      <div>
+                        <img  src="images/encanador.png" alt="servicos-eletricista">
+                          <ul>
+                            <p>
+                              Preencha: <br>
+                            </p>
+                            <li>
+                              A modalidade da sua residência (Casa ou apartamento);<br>
+                            </li>
+                            <li>
+                              O tipo de demanda/serviço que deseja contratar; <br>
+                            </li>
+                            <li>
+                              Uma breve descrição do serviço a qual deseja atendimento; <br>
+                            </li>
+                            <li>
+                              Fique a vontade para incluir imagens se achar necessário  
+                            </li>
+                          </ul>
+                        </div> 
+                      </div>
+                        <div class="formulario-solicitacao">
+                          <section >
+                            <div>
+                              <label for="">TIPO DE RESIDÊNCIA</label><br>
+                                <div>
+                                  <input type="radio" name="tipo-residencia" id="casa">
+                                  <label for="casa">Casa</label><br>
+                                  <input type="radio" name="tipo-residencia" id="apartamento">
+                                  <label for="apartamento">Apartamento</label> <br>
+                                </div>
+                                <label for="">TIPO DE DEMANDA</label>
+                                <div>
+                                  <input type="radio" name="tipo-demanda" id="manutencao">
+                                  <label for="manutencao">Manutenção</label><br>
+                                  <input type="radio" name="tipo-demanda" id="reforma">
+                                  <label for="reforma">Reforma</label> <br>             
+                                </div>
+                            </div>
+                          </section>                 
+                          <section class ="caixa-dialogo">
+                            <label for="caixa-dialogo">Descrição da Solicitação</label>
+                            <textarea id="caixa-dialogo" name="caixa-dialogo" rows="10" cols="100%">Detalhe sua solicitação aqui</textarea> 
+                            <div>
+                              <button name="botao">Anexar Imagens</button>
+                            </div>
+                            <div class="botaoServico">
+                              <a href="/cadastro-tomador-servico">
+                                Prosseguir
+                            </div>
+                          </section > 
+                        </div>
+                      </div>  
+                  </ul>
+              </h4>
+            </div>
+      </section>
+    </main>
+    <%- include('./partials/footer') %>
+  </body>
+</html>
