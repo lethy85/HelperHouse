@@ -21,6 +21,7 @@
       <!--LIsta navegação-->
       <div id="menu-mobile" class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
+          <% if(!logged) { %> 
           <li class="nav-item">
             <a class="nav-link" href="/">Início</a>
           </li>
@@ -34,12 +35,16 @@
             <a class="nav-link" href="/para-profissional">Para Profissional</a>
           </li>
           <li>
-            <% if(!logged) { %>
-              <a class="nav-link active" href="/login">Login</a>
-            <% } else { %>
-              <a class="nav-link active" href="/">Minha Conta</a>
-            <% } %>
+            <a class="nav-link active" href="/login">Login</a>
           </li>
+          <% } else { %>
+            <li>
+              <a class="nav-link active" href="/">Solicitações</a>
+            </li>
+          <li>
+            <a class="nav-link active" href="/">Minha Conta</a>
+          </li>
+          <% } %>
         </ul>
       </div>
     </nav>
