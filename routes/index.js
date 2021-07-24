@@ -25,6 +25,27 @@ router.get('/para-profissional', function(req, res, next) {
 router.get('/dashboard-pedidos-prestador', function(req, res, next) {
   res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true, style: "dashboard-pedidos-prestador" });
 });
+
+router.get('/solicitar-servico', function(req, res, next) {
+  res.render('solicitar-servico', { title: 'Solicitar serviço', logged: true, style: 'solicitar-servico' });
+});
+
+router.get('/solicitar-servico-eletricista', function(req, res, next) {
+  res.render('solicitar-servico-eletricista', { title: 'Solicitar serviço eletricista', logged: true, style: 'solicitar-servico-eletricista' });
+});
+
+router.get('/solicitar-servico-encanador', function(req, res, next) {
+  res.render('solicitar-servico-encanador', { title: 'solicitar-servico-encanador', logged: true, style: 'solicitar-servico-encanador' });
+});
+
+
+router.get('/solicitar-servico-pintor', function(req, res, next) {
+  res.render('solicitar-servico-pintor', { title: 'solicitar-servico-pintor', logged: true, style: 'solicitar-servico-pintor' });
+});
+
+router.get('/cadastro-tomador-servico', function(req, res, next) {
+  res.render('cadastro-tomador-servico', { title: 'cadastro-tomador-servico', logged: true, style: 'cadastro-tomador-servico' });
+});
 // rotas adicionais para cada página deve ser criada aqui
 //router.get('/nome-da-pagina', function(req, res, next) {
 //  res.render('nome-da-view', { title: 'Titulo da pagina' });

@@ -1,0 +1,197 @@
+.section-title {
+ padding: 20px;
+ text-align: center;
+}
+
+.flex-container ul{
+    flex-wrap: wrap;
+}
+
+.container1 {
+    margin: 0 auto;
+  }
+
+.container1 h3{
+
+    padding: 15px;
+    text-align: center;
+  }
+
+body {
+    background-image: url(../images/tijolinhoBranco.jpg);
+}
+
+.Imagens-servicos  {
+    display: flex;
+
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.Imagens-servicos div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Imagens-servicos img{
+    border: 200px;
+    width: 200px; 
+    padding: 30px;  
+
+}
+
+
+.Imagens-servicos a{
+    padding: 10px;
+    border: 1px solid #bbb;
+    background: #ed9121;
+    color: #fff;
+    width: 200px;
+    justify-content: center;
+    margin-top: 5%;
+    font-size: 1.5rem;
+    transition: font-size 2s;
+    text-align: center;
+    display: block;
+    border-radius: 30px;
+}
+
+.servicos-eletricista img{
+    border: 250px;
+    width: 250px; 
+    padding: 30px;
+}
+
+.servicos-eletricista div{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    padding-right: 10%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.servicos-eletricista ul{
+   padding: 5px;
+   padding-left: 20px;
+   text-align: left;
+   
+}
+
+.formulario-solicitacao {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap; 
+    justify-content: center;
+    
+     
+     
+    } 
+    
+    .formulario-solicitacao section{
+    
+    max-width: 90%;
+    margin: 15px;
+    padding: 10px 10px;
+    border: 1px ;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #feea00;   
+    border-radius: 30px;
+    text-align: left; 
+    
+
+} 
+    
+    .formulario-solicitacao div{
+    max-width: 90%;
+    margin: 15px;
+    /* padding: 10px 10px; */
+    border: 1px ;
+    /* display: flex; */
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+
+    align-items: flex-end;    
+} 
+.formulario-solicitacao label{
+
+    flex-wrap: wrap;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0d1321;
+    justify-content: left;
+
+}
+.formulario-solicitacao input{
+
+    width: 30px;
+    height: 20px; 
+    align-items: center;
+
+
+}
+
+textarea {
+    font-size: .9rem;
+    letter-spacing: 1px;
+    padding: 5px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
+.caixa-dialogo button {
+    /* padding: 10px; */
+    margin: 10px;
+    width: 100%;
+    background-color: #ed9121;
+    border-radius: 10px;   
+    justify-content: center;
+    display: flex;
+    color: #0d1321;
+}
+.caixa-dialogo div {
+
+    border-radius: 10px;   
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    
+}
+
+.botaoServico a{
+    border-radius: 10px ;   
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: #ed9121;
+    color: #0D1321;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #0D1321;
+    justify-content: center;
+}
+
+
+.formulario-cadastro form{
+    
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    max-width: 100%;
+    /* width: 100%; */
+    /* justify-content: center; */
+    align-items: center;
+}
+

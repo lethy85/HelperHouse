@@ -1,0 +1,53 @@
+.section-title {
+ padding: 20px;
+ text-align: center;
+}
+
+.flex-container ul{
+    flex-wrap: wrap;
+}
+
+.container1 {
+    margin: 0 auto;
+  }
+
+.container1 h3{
+
+    padding: 15px;
+    text-align: center;
+}
+
+body {
+    background-image: url(../images/tijolinhoBranco.jpg);
+}
+
+
+.formulario-cadastro {
+    width: 90%;
+    display: flex;
+    flex-direction: column;  
+    padding: 10px;
+    max-width: 100%;
+    justify-content: center;
+    margin: 10px;
+}
+
+.formulario-cadastro label, input {
+    width: 100%;
+    padding: 0;
+    margin: 5px;
+    margin-bottom: 5px;
+    display: block;
+    border-radius: 10px;
+    font-weight: bold;
+}   
+
+.button button{
+    margin: 20px 0 5px 5px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 10px;
+    text-align: center;
+}
