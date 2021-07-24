@@ -61,3 +61,17 @@ body {
     margin-left: 120px;
 }
 }
+#action{
+  display: flex;
+  justify-content: center;
+}
+#solicitar-servico {
+  padding: 10px;
+  color: #fff;
+  background-color: #ed9121;
+  margin-bottom: 2rem;
+}
+#solicitar-servico:hover {
+  text-decoration: none;
+  background-color: #d37a0e;
+}

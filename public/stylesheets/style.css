@@ -116,3 +116,6 @@ footer .col-md-6 {
     justify-content: center;
   }
 }
+main {
+  min-height: calc(100vh - 210px - 50px);
+}
