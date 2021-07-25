@@ -46,6 +46,11 @@ router.get('/solicitar-servico-pintor', function(req, res, next) {
 router.get('/cadastro-tomador-servico', function(req, res, next) {
   res.render('cadastro-tomador-servico', { title: 'cadastro-tomador-servico', logged: true, style: 'cadastro-solicitante' });
 });
+
+router.get('/dashboard-pedidos-tomador', function(req, res, next) {
+  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged: true, style: "dashboard-pedidos-tomador" });
+});
+
 // rotas adicionais para cada página deve ser criada aqui
 //router.get('/nome-da-pagina', function(req, res, next) {
 //  res.render('nome-da-view', { title: 'Titulo da pagina' });
