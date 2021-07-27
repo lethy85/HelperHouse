@@ -31,20 +31,20 @@ router.get('/solicitar-servico', function(req, res, next) {
 });
 
 router.get('/solicitar-servico-eletricista', function(req, res, next) {
-  res.render('solicitar-servico-eletricista', { title: 'Solicitar serviço eletricista', logged: true, style: 'novaSolicitaçãoTomadorServico' });
+  res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged: true, style: 'novaSolicitaçãoTomadorServico' });
 });
 
 router.get('/solicitar-servico-encanador', function(req, res, next) {
-  res.render('solicitar-servico-encanador', { title: 'solicitar-servico-encanador', logged: true, style: 'novaSolicitaçãoTomadorServico' });
+  res.render('solicitar-servico-encanador', { title: 'Solicitar Encanador', logged: true, style: 'novaSolicitaçãoTomadorServico' });
 });
 
 
 router.get('/solicitar-servico-pintor', function(req, res, next) {
-  res.render('solicitar-servico-pintor', { title: 'solicitar-servico-pintor', logged: true, style: 'novaSolicitaçãoTomadorServico' });
+  res.render('solicitar-servico-pintor', { title: 'Solicitar Pintor', logged: true, style: 'novaSolicitaçãoTomadorServico' });
 });
 
 router.get('/cadastro-tomador-servico', function(req, res, next) {
-  res.render('cadastro-tomador-servico', { title: 'cadastro-tomador-servico', logged: true, style: 'cadastro-solicitante' });
+  res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: true, style: 'cadastro-solicitante' });
 });
 
 router.get('/dashboard-pedidos-tomador', function(req, res, next) {
