@@ -49,19 +49,14 @@
   font-size: 100px;
 }
 
-.button {
+.display-pedidos lo .button a {
   border-radius: 20px ;  
-  align-items: center; 
-  justify-content: center;
-  display: flex;
   width: 150px;
   background-color: #ed9121;
   color: #0D1321;
-  text-align: center;
-  padding: 5px;
+  padding: 3px;
   border: 1px solid #0D1321;
-  justify-content: center;
-  }
+   }
 
 @media (min-width: 769px) {
   .display-pedidos {
