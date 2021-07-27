@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Entrar', logged: false, style: 'home' });
+  res.render('login', { title: 'Entrar', logged: false, style: 'login' });
 });
 
 router.get('/como-funciona', function(req, res, next) {

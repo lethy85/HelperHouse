@@ -1,6 +1,205 @@
-body {
-    background-image: url(../images/tijolinhoBranco.jpg);
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-.container {
+
+body {
+    background-image: url(../imagens/tijolinhoBranco.jpg);
+}
+
+.nav_tabs{
+    width: 404px;
+    height: 500px;
+    margin: 50px auto;
+    border: 2px solid #ed9121;
+    position: relative;
+    border-radius: 10px;
+}
+
+.nav_tabs ul{
+    list-style: none;
+}
+.nav_tabs ul li{
+    float: left;
+}
+.nav_tabs label{
+    width: 200px;
+    margin: auto;
+    padding: 20px;
+    display: block;
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+}
+
+.rd_tabs:checked ~ label{
+    background-color: #ed9121;
+}
+.rd_tabs{
+    display: none;
+}
+.content{
+    display: none;
+    position: absolute;
+    height: 320px;
+    width: 398px;
+    left: 0;
+}
+
+.rd_tabs:checked ~ .content{
+    display: block;
+}
+
+.form-group input{
+    text-align: center;
     margin: 0 auto;
+    width: 300px;
+    border: 2px solid #ed9121;
+    border-radius: 20px;
+}
+
+.form-group label {
+    font-weight: 500;
+    text-align: left;
+    font-size: 18px;
+    margin-top: 30px;
+    padding: 0;
+}
+
+.checkbox input{
+    padding: 0;
+    margin: 0;
+}
+
+select,
+button {
+    padding: 5px;
+}
+
+
+.b-login{
+border: #ed9121;
+background: #ed9121;
+color: white;
+font-family: monospace;
+font-size: 18px;
+width: 60%;
+border-radius: 30px;
+font-weight: bold;
+text-align: center;
+}
+
+#botao{
+    text-align: center;
+}
+
+.article{
+    margin: 0;
+    padding: 0;
+}
+
+.projeto {
+    flex-direction: column;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px ;
+    
+}
+
+.projeto-header h1 {
+    margin: 0;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  max-width: 40%;
+  margin: 0 auto;
+  padding: 50px;
+
+}
+
+.tab button {
+  background-color: inherit;
+  float:inline-start;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+
+.tabcontent {
+  display: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+/* Rodapé */
+
+.footer {
+    min-height: 20px;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-bottom: 0;
+    text-align: center;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width:100%;
+}
+
+#footer h1{
+    font-size: 20px;
+}
+
+#footer h2 {
+    color: black;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.social {
+    display: inline-flex;
+}
+
+ul.social-item li a{
+    text-align: center;
+}
+
+.social-item img {
+    list-style-type: none;
+    height: 30px;
+    width: 30px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+ul.social-item li{
+    display: inline-block;
+    padding: 0 10px;
+    text-align: center;
 }
