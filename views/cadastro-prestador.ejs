@@ -5,20 +5,54 @@
   </head>
   <body>
     <%- include('./partials/header') %>
-    <main class="container" id="page-como">
-      <section id="projeto">
-        <div class="projeto cont">
-          <div class="projeto-header">
-            <h2 class="section-title">
-                <!--Coloque aqui frase principal da página-->
-            </h2>
+    <main>
+      <section id="cadastro">
+          <div class="cadastro cont">
+              <div class="cadastro-header">
+                  <h1 class="section-title">Parceiros</span></h1>
+              </div>
+              <section class="info">
+                  <h3><strong>Profissional</strong></h3>
+                  <p>Você vai oferecer um serviço profissional.</p>
+                  Informe seus dados para gerar novas oportunidades de negócio.
+              </section>
+              
+                  <form class="cadform" action="/action.php" target="_self" method="post">
+                      <div class="cadastro">
+                          <input type="text" id="nome" name="nome" placeholder="Nome"  required><br><br>
+
+                          <input type="text" id="sobrenome" name="Sobrenome" placeholder="Sobrenome"  required><br><br>
+
+                          <input type="email" id="email" placeholder="E-mail" nome="email"  required><br><br>
+
+                          <input type="password" id="senha" placeholder="Senha" nome="senha"  required><br><br>
+                          
+                          <input type="password" id="confsenha" placeholder="Confirme sua senha" nome="confsenha"  required><br><br>
+
+                          <input type="text" id="endereco"  placeholder="Endereço" name="endereco" ><br><br>
+
+                          <input type="text" id="CEP"  placeholder="CEP" name="cep" ><br><br>
+
+                          <input type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required><br><br>
+                          
+                          <input type="text" id="registro"  placeholder="CPF/CNPJ" name="registro" ><br><br>
+                      </div>
+                      
+                      <div class="arquivos">
+                          <label for="foto">Anexe uma foto para o seu perfil:</label><br> 
+                          <input type="file" id="foto" name="foto" ><br><br>
+
+                          <label for="ident">Anexe uma foto com seu documento para comprovar a sua identidade:</label><br> 
+                          <input type="file" id="identidade" name="ident" ><br><br>
+                      </div>        
+              </div>
+              <center>
+                  <button type="button" class="b-enviar" onclick="alert('Enviado com Sucesso!')">Enviar</button>
+              </center>
+              </form>
           </div>
-          <div class="flex-container">
-            <!--Coloque aqui o conteúdo da página-->
-          </div>
-        </div>
       </section>
-    </main>
-    <%- include('./partials/footer') %>
+  </main>
+  <%- include('./partials/footer') %>
   </body>
 </html>

@@ -1,0 +1,189 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+body {
+    background-image: url(../imagens/tijolinhoBranco.jpg);
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+
+.info{
+    text-align: center;
+    margin-top: 70px;
+}
+
+.cadform{
+    margin: 0 auto;
+    padding: auto;
+    text-align: center;
+
+}
+
+.cadastro input{
+    border: 2px solid #ed9121;
+    border-radius: 20px;
+    width: 500px;
+    padding: 0 10px;
+}
+
+.b-enviar{
+border: #ed9121;
+background: #ed9121;
+color: white;
+font-family: monospace;
+font-size: 18px;
+margin-bottom: 100px;
+width: 100px;
+height: 50px;
+border-radius: 10px;
+font-weight: bold;
+text-align: center;
+margin-top: 20px;
+}
+
+.count-title{
+    margin: 120px auto;
+    padding: 10px auto;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.count-title h2{
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.bttn-newcount{
+    text-align: center;
+}
+
+.bttn-newcount button{
+    border: #ed9121;
+    background: #ed9121;
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    width: 30px;
+    height: 70px;
+    font-weight: bold;
+    text-align: center;
+}
+
+form, #flex-container {
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-right: 40px;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: left;
+}
+
+label{
+    margin-top: 20px;
+}
+
+select {
+    width: 280px;
+    padding: 0px 20px;
+    border: 2px solid #ed9121;
+    border-radius: 10px;
+  }
+
+option {
+  padding: 5px 3px;
+  text-decoration-color: #FEEA00;
+  margin: 4px 2px;
+}
+
+.lbl_service {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 300px;    
+    margin: 30px;
+}
+
+#flex-container {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.b-plano {
+    border: #ed9121;
+    background: #ed9121;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    width: 180px;
+    height: 100px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Rodapé */
+
+.footer {
+    min-height: 20px;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    bottom:0;
+    width:100%;
+}
+
+#footer h1{
+    font-size: 20px;
+}
+
+#footer h2 {
+    color: black;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.social {
+    display: inline-flex;
+}
+
+ul.social-item li a{
+    text-align: center;
+}
+
+.social-item img {
+    list-style-type: none;
+    height: 30px;
+    width: 30px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+ul.social-item li{
+    display: inline-block;
+    padding: 0 10px;
+    text-align: center;
+}
