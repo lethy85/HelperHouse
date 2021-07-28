@@ -52,7 +52,7 @@ router.get('/dashboard-pedidos-tomador', function(req, res, next) {
 });
 
 router.get('/cadastro-prestador', function(req, res, next) {
-  res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: true, style: 'cadastro-parceiro' });
+  res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: true, style: 'cadastro-prestador' });
 });
 
 router.get('/criar-conta', function(req, res, next) {

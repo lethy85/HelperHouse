@@ -5,54 +5,68 @@
   </head>
   <body>
     <%- include('./partials/header') %>
-    <main>
-      <section id="cadastro">
-          <div class="cadastro cont">
-              <div class="cadastro-header">
-                  <h1 class="section-title">Parceiros</span></h1>
+    <main class="container">
+        <section id="title">
+          <h2 class="section-title">
+            Parceiros
+          </h2>
+        </section>
+        <section id="information">
+            <div class="servicos">
+              <div class="servicos-descricao">
+                <h3><strong>Profissional</strong></h3>
+                <p>Você vai oferecer um serviço profissional.</p>
+                <span>Informe seus dados para gerar novas oportunidades de negócio.</span> 
               </div>
-              <section class="info">
-                  <h3><strong>Profissional</strong></h3>
-                  <p>Você vai oferecer um serviço profissional.</p>
-                  Informe seus dados para gerar novas oportunidades de negócio.
-              </section>
-              
-                  <form class="cadform" action="/action.php" target="_self" method="post">
-                      <div class="cadastro">
-                          <input type="text" id="nome" name="nome" placeholder="Nome"  required><br><br>
+            </div>
+        </section>
+        <section id="formulario">
+            <form class="cadform" action="/action.php" target="_self" method="post">
+                <div class="cadastro">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome"  required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="sobrenome" name="Sobrenome" placeholder="Sobrenome"  required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="email" id="email" placeholder="E-mail" nome="email"  required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" id="senha" placeholder="Senha" nome="senha"  required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" id="confsenha" placeholder="Confirme sua senha" nome="confsenha"  required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="endereco"  placeholder="Endereço" name="endereco" >
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="CEP"  placeholder="CEP" name="cep" >
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="registro"  placeholder="CPF/CNPJ" name="registro" >
+                    </div>    
+                </div>
+                
+                <div class="arquivos">
+                    <div class="form-group">
+                        <label for="foto">Anexe uma foto para o seu perfil:</label> 
+                        <input class="form-control-file" type="file" id="foto" name="foto" >
+                    </div>
+                    <div class="form-group">
+                        <label for="ident">Anexe uma foto com seu documento para comprovar a sua identidade:</label>
+                        <input class="form-control-file" type="file" id="identidade" name="ident" >
+                    </div>
+                </div>        
+            <button type="button" class="btn btn-enviar" onclick="window.alert('Dados Salvos com Sucesso, agora escolha seu plano');window.location = '/escolha-de-plano'">Enviar</button>
+        </form>
 
-                          <input type="text" id="sobrenome" name="Sobrenome" placeholder="Sobrenome"  required><br><br>
-
-                          <input type="email" id="email" placeholder="E-mail" nome="email"  required><br><br>
-
-                          <input type="password" id="senha" placeholder="Senha" nome="senha"  required><br><br>
-                          
-                          <input type="password" id="confsenha" placeholder="Confirme sua senha" nome="confsenha"  required><br><br>
-
-                          <input type="text" id="endereco"  placeholder="Endereço" name="endereco" ><br><br>
-
-                          <input type="text" id="CEP"  placeholder="CEP" name="cep" ><br><br>
-
-                          <input type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required><br><br>
-                          
-                          <input type="text" id="registro"  placeholder="CPF/CNPJ" name="registro" ><br><br>
-                      </div>
-                      
-                      <div class="arquivos">
-                          <label for="foto">Anexe uma foto para o seu perfil:</label><br> 
-                          <input type="file" id="foto" name="foto" ><br><br>
-
-                          <label for="ident">Anexe uma foto com seu documento para comprovar a sua identidade:</label><br> 
-                          <input type="file" id="identidade" name="ident" ><br><br>
-                      </div>        
-              </div>
-              <center>
-                  <button type="button" class="b-enviar" onclick="window.alert('Dados Salvos com Sucesso, agora escolha seu plano');window.location = '/escolha-de-plano'">Enviar</button>
-              </center>
-              </form>
-          </div>
-      </section>
-  </main>
+        </section>
+    </main>
   <%- include('./partials/footer') %>
   </body>
 </html>

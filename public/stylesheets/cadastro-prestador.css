@@ -1,0 +1,51 @@
+body {
+  background-image: url(../images/tijolinhoBranco.jpg);
+}
+.container {
+  margin: 0 auto;
+}
+
+#title,
+#information {
+  margin-top: 3rem;
+}
+
+.servicos-descricao {
+  margin-top: 5%;
+}
+.servicos-descricao p {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.servicos-descricao h3, .servicos-descricao span {
+  display: flex;
+  justify-content: center;
+}
+
+.servico {
+  padding: 10px;
+  border: 1px solid #bbb;
+  background: #ed9121;
+  color: #fff;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  font-size: 1.3rem;
+}
+
+.section-title {
+  text-align: center;
+}
+
+.btn-enviar {
+  background-color: #ed9121 !important;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+@media(min-width: 767px) {
+  .cadform {
+    max-width: 50%;
+    margin: 0 auto;
+  }
+}
