@@ -55,6 +55,18 @@ router.get('/cadastro-prestador', function(req, res, next) {
   res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: true, style: 'cadastro-parceiro' });
 });
 
+router.get('/criar-conta', function(req, res, next) {
+  res.render('criar-conta', { title: 'Tipo de Conta', logged: true, style: 'cadastro-parceiro' });
+});
+
+router.get('/assinatura-de-plano', function(req, res, next) {
+  res.render('assinatura-plano', { title: 'Assinar Plano', logged: true, style: 'cadastro-parceiro' });
+});
+
+router.get('/escolha-de-plano', function(req, res, next) {
+  res.render('escolha-plano', { title: 'Escolher Plano', logged: true, style: 'cadastro-parceiro' });
+});
+
 // rotas adicionais para cada página deve ser criada aqui
 //router.get('/nome-da-pagina', function(req, res, next) {
 //  res.render('nome-da-view', { title: 'Titulo da pagina' });

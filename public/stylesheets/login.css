@@ -13,7 +13,7 @@ body {
 .nav_tabs{
     width: 404px;
     height: 500px;
-    margin: 50px auto;
+    margin: 50px auto 0px auto;
     border: 2px solid #ed9121;
     position: relative;
     border-radius: 10px;
@@ -154,52 +154,16 @@ text-align: center;
   margin: 0;
 }
 
-
-
-
-/* Rodapé */
-
-.footer {
-    min-height: 20px;
+.criar-conta {
+    display: flex;
+    justify-content: center;
     flex-direction: column;
-    padding-top: 5px;
-    padding-bottom: 0;
-    text-align: center;
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width:100%;
+    text-align: center
 }
-
-#footer h1{
-    font-size: 20px;
-}
-
-#footer h2 {
-    color: black;
-    font-size: 15px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-.social {
-    display: inline-flex;
-}
-
-ul.social-item li a{
-    text-align: center;
-}
-
-.social-item img {
-    list-style-type: none;
-    height: 30px;
-    width: 30px;
-    margin: 0 5px;
-    text-align: center;
-}
-
-ul.social-item li{
-    display: inline-block;
-    padding: 0 10px;
-    text-align: center;
+.criar-conta a {
+    padding: 5px;
+    border: #ed9121;
+    background: #ed9121;
+    border-radius: 30px;
+    color: #fff
 }

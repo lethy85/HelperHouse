@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container">
+      <div class="projeto">
+              <h1 class="section-title">Parceiro</h1>
+          <nav class="nav_pag">
+              <div class="info">
+                  <h3><strong>Parceiro</strong></h3>
+                  <p>Vamor lá, falta pouco para criar a sua conta!!</p>
+                  <p>Nos conte quais serviços serao oferecidos e como deseja aparecer?</p>
+              </div>
+              <div class="lbl_service" >
+                  <form action="" id="servicetype">
+                      <div id="form1">
+                      <label for="servicos">Frente de Serviço:</label><br>
+                      <select name="servico" id="servico">
+                          <option value="Marido de Aluguel">Marido de Aluguel</option>
+                          <option value="FazTudo">Faz Tudo</option>
+                          <option value="Especialista">Especialista</option>
+                          <option value="Outros">Outros</option>
+                      </select><br>
+                      </div>
+                      <div id="form2">
+                      <label for="tipodeservico">Tipo de Serviço:</label><br>
+                      <select name="servico" id="servico" multiple>
+                          <option value="Pintor">Pintor</option>
+                          <option value="Pedreiro">Pedreiro</option>
+                          <option value="Eletricista">Eletricista</option>
+                          <option value="Bombeiro Hidraulico">Bombeiro Hidráulico</option>
+                          <option value="Marceneiro">Marceneiro</option>
+                          <option value="Jardineiro">Jardineiro</option>
+                          <option value="Gesseiro">Gesseiro</option>
+                          <option value="Manutencao">Instalação e Manutenção de eletrodomésticos</option>
+                      </select>
+                      </div>
+                      <div>
+                          <button type="button" class="b-enviar" onclick="alert('Suas informaões foram salvas!')">Salvar</button>
+                      </div>
+                  </form><br>
+
+                  <div id="flex-container">
+                          <button type="button" class="b-plano" onclick="window.location='/assinatura-de-plano'"><div>Plano Simples</div></button>
+                          <button type="button" class="b-plano" onclick="window.location='/assinatura-de-plano'"><div>Plano Standard</div></button>
+                          <button type="button" class="b-plano" onclick="window.location='/assinatura-de-plano'"><div>Plano Premiun</div></button>
+                  </div>
+              </div>
+          </nav>
+</main>
+
+
+    <%- include('./partials/footer') %>
+  </body>
+</html>
