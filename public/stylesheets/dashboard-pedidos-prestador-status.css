@@ -29,7 +29,7 @@
 
 .display-pedidos lo .container {
   box-sizing: border-box;
-  width: 100vh;
+  width: 100%;
   border: solid 5px #feea00;
   border-radius: 20px;
   padding: 5px;
@@ -40,7 +40,7 @@
 
 .display-pedidos lo .container-secundario {
   box-sizing: border-box;
-  width: 100vh;
+  width: 100%;
   border: solid 5px #feea00;
   border-radius: 20px;
   padding: 5px;
@@ -55,7 +55,7 @@
 }
 
 .display-pedidos lo .button a {
-  border-radius: 20px ;  
+  border-radius: 20px;  
   width: 150px;
   background-color: #ed9121;
   color: #0D1321;
@@ -70,13 +70,12 @@
     flex-direction: row;
     padding: 5px;
   }
-  .display-pedidos lo .container-secundario {
-    min-width: 250px;
+  .display-pedidos lo .container {
+    min-width: 450px !important;
   }
   .display-pedidos lo .container-secundario h3 {
     line-height: 2;
   }
-
 }
 .display-pedidos lo .container {
   min-width: 250px;
@@ -84,5 +83,13 @@
 .display-pedidos lo .container h3 {
   line-height: 2;
 }
-  
+.approved {
+  background-color: blue;
+}
+.rejected {
+  background-color: red;
+}
+.pending {
+  background-color: #ccc;
+}
 

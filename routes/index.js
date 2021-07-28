@@ -23,7 +23,11 @@ router.get('/para-profissional', function(req, res, next) {
 });
 
 router.get('/dashboard-pedidos-prestador', function(req, res, next) {
-  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true, style: "dashboard-pedidos-prestador" });
+  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true, style: 'dashboard-pedidos-prestador' });
+});
+
+router.get('/dashboard-pedidos-prestador-status', function(req, res, next) {
+  res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged: true, style: "dashboard-pedidos-prestador-status" });
 });
 
 router.get('/solicitar-servico', function(req, res, next) {
@@ -47,10 +51,6 @@ router.get('/cadastro-tomador-servico', function(req, res, next) {
   res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: true, style: 'cadastro-solicitante' });
 });
 
-router.get('/dashboard-pedidos-tomador', function(req, res, next) {
-  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged: true, style: "dashboard-pedidos-tomador" });
-});
-
 router.get('/cadastro-prestador', function(req, res, next) {
   res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: true, style: 'cadastro-prestador' });
 });
@@ -67,9 +67,9 @@ router.get('/escolha-de-plano', function(req, res, next) {
   res.render('escolha-plano', { title: 'Escolher Plano', logged: true, style: 'cadastro-parceiro' });
 });
 
-// rotas adicionais para cada página deve ser criada aqui
-//router.get('/nome-da-pagina', function(req, res, next) {
-//  res.render('nome-da-view', { title: 'Titulo da pagina' });
-//});
+router.get('/dashboard-pedidos-tomador', function(req, res, next) {
+  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged: true, style: 'dashboard-pedidos-tomador' });
+});
+
 
 module.exports = router;
