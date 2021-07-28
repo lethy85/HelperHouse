@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container" id="dashboard-pedidos-tomador">
+      <section>
+        <div>
+          <h1 class="title-h1">TOMADOR DE SERVIÇO</h1>
+          <h2 class="title-h2">
+            Confira abaixo o andamento das suas solicitações:
+          </h2>
+        </div>
+      </section>
+      <section class="align-center">
+        <a href="/solicitar-servico">
+          <div class="button-novo">NOVO PEDIDO</div>
+        </a>
+      </section>
+      <section>
+        <div class="display-pedidos">
+          <ul>
+            <div>
+              <h3>Pedido 01</h3>
+            </div>
+            <div class="order-box selected">
+              <h4>STATUS: PROFISSIONAL ENCONTRADO</h4>
+              <a href="/dashboard-tomador-pedido">
+                <div class="button">Detalhes do Pedido</div>
+              </a>
+            </div>
+            <div>
+              <h3>Pedido 02</h3>
+            </div>
+            <div class="order-box">
+              <h4>STATUS: PENDENTE</h4>
+              <a href="/dashboard-tomador-pedido">
+                <div class="button">Detalhes do Pedido</div>
+              </a>
+            </div>
+            <div>
+              <h3>Pedido 03</h3>
+            </div>
+            <div class="order-box">
+              <h4>STATUS: PENDENTE</h4>
+              <a hhref="/dashboard-tomador-pedido">
+                <div class="button">Detalhes do Pedido</div>
+              </a>
+            </div>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <%- include('./partials/footer') %>
+  </body>
+</html>

@@ -71,5 +71,8 @@ router.get('/dashboard-pedidos-tomador', function(req, res, next) {
   res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged: true, style: 'dashboard-pedidos-tomador' });
 });
 
+router.get('/dashboard-tomador-pedido', function(req, res, next) {
+  res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged: true, style: 'dashboard-tomador-pedido' });
+});
 
 module.exports = router;

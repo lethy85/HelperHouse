@@ -1,0 +1,65 @@
+.container {
+  margin: 0 auto;
+}
+
+#title, #order-summary, #information {
+    margin-top: 3rem;
+}
+
+.action-order a {
+  padding: 10px;
+  min-width: 150px;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.action-order {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1.5rem;
+}
+
+.action-order .approved {
+  background-color: blue;
+}
+
+.action-order .rejected {
+  background-color: red;
+}
+
+
+#headingOne button {
+  width: 100%;
+}
+#headingOne {
+  background-color: #5bca58;
+}
+#headingOne span {
+  color: #fff
+}
+.numero-pedido {
+  text-transform: uppercase;
+}
+.info-pedido {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media(max-width: 480px) {
+  .professional {
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+.professional {
+  margin-bottom: 1.5rem;
+  display: flex;
+}
+@media(min-width: 767px) {
+  .professional .image {
+    margin-right: 2rem;
+  }
+}
