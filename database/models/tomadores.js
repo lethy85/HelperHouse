@@ -40,5 +40,11 @@ module.exports = function(sequelize, DataTypes) {
         },
     });
 
+    Tomadores.hasMany(models.Pedidos, {
+        foreignKey: 'pedidos_id',
+        as: 'pedidos'
+      });
+    
+
     return Tomadores;
 }

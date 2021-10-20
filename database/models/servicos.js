@@ -13,5 +13,11 @@ module.exports = function(sequelize, DataTypes) {
         
     });
 
+    Servicos.belongsTo(models.Pedidos, {
+        foreignKey: 'pedidos_id',
+        as: 'pedidos'
+      });
+
     return Servicos;
+    
 }

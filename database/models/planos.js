@@ -16,5 +16,15 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    return Planos;
+    Planos.associate = models => {
+    
+        Planos.hasMany(models.Prestadores, {
+          foreignKey: 'prestadores_id',
+          as: 'prestadores'
+        });
+ 
+      };
+    
+      return Planos;
+
 }

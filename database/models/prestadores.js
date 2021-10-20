@@ -44,6 +44,22 @@ module.exports = function(sequelize, DataTypes) {
             references: {model: pedidos, key: 'id'}
         },
     });
+
+    Prestadores.associate = models => {
+    
+        Prestadores.belongsTo(models.Planos, {
+          foreignKey: 'Planos_id',
+          as: 'planos'
+        });
+    
+        Prestadores.hasMany(models.Pedidos, {
+          foreignKey: 'Pedidos_id',
+          as: 'pedidos'
+        })
+    
+      };
+
+
     
     return Prestadores;
 }
