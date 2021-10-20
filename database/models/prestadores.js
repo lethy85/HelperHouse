@@ -35,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
             type:DataTypes.STRING(8), 
             allowNull: false
         },
+        senha: {
+            allowNull: false,
+            type: DataTypes.STRING(16)
+        },
         plano_id: {
             type:DataTypes.INTERGER.UNSIGNED,
             references: {model: planos, key: 'id'}
@@ -42,7 +46,11 @@ module.exports = function(sequelize, DataTypes) {
         pedido_id: {
             type:DataTypes.INTERGER.UNSIGNED, 
             references: {model: pedidos, key: 'id'}
-        },
+        }
+    },
+    {
+        tableName: 'prestadores',
+        timestamps: false
     });
     
     return Prestadores;

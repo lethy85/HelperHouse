@@ -11,7 +11,17 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         }
         
+    },{
+        tableName: 'status',
+        timestamps: false
     });
+
+    Status.associate = models => {
+        Status.belongsTo(models.Pedidos, {
+          as: 'orders',
+          foreignKey: 'status_id'
+        });
+    }
 
     return Status;
 }

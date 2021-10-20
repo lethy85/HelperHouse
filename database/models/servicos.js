@@ -11,7 +11,10 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
         }
         
-    });
+    },{
+        tableName: 'servicos',
+        timestamps: false
+      });
 
     return Servicos;
 }

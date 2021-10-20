@@ -1,5 +1,3 @@
-const status = require("./status");
-
 module.exports = function(sequelize, DataTypes) {
     const Pedidos = sequelize.define({
         id: {
@@ -19,11 +17,17 @@ module.exports = function(sequelize, DataTypes) {
         endereco: {
             type:DataTypes.STRING(45), 
             allowNull: false
-        },
-        status_id: {
-            type:DataTypes.INTERGER.UNSIGNED, 
-            references: {model: status, key: 'id'}
         }
+    },{
+        tableName: 'pedidos',
+        timestamps: false
     });
+
+    Pedidos.associate = models => {
+        Pedidos.belongsTo(models.Status, {
+          as: 'status',
+          foreignKey: 'status_id'
+        });
+    }
     return Pedidos;
 }
