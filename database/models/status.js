@@ -11,12 +11,24 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         }
         
+    },{
+        tableName: 'status',
+        timestamps: false
     });
 
+<<<<<<< HEAD
     Status.belongsTo(models.Pedidos, {
         foreignKey: 'pedidos_id',
         as: 'pedidos'
       });
+=======
+    Status.associate = models => {
+        Status.belongsTo(models.Pedidos, {
+          as: 'orders',
+          foreignKey: 'status_id'
+        });
+    }
+>>>>>>> 295d6e2d8f0c2e2621a9a9caf71a0465203b5248
 
     return Status;
     

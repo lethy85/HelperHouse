@@ -14,7 +14,10 @@ module.exports = function(sequelize, DataTypes) {
             type:DataTypes.DECIMAL(4,2), 
             allowNull: false,
         }
-    });
+    },{
+        tableName: 'planos',
+        timestamps: false
+      });
 
     Planos.associate = models => {
     

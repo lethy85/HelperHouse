@@ -34,11 +34,18 @@ module.exports = function(sequelize, DataTypes) {
             type:DataTypes.STRING(100), 
             unique: true
         },
+        senha: {
+            allowNull: false,
+            type: DataTypes.STRING(16)
+        },
         pedido_id: {
             type:DataTypes.INTERGER.UNSIGNED, 
             references: {model: pedidos, key: 'id'}
         },
-    });
+    },{
+        tableName: 'tomadores',
+        timestamps: false
+      });
 
     Tomadores.hasMany(models.Pedidos, {
         foreignKey: 'pedidos_id',
