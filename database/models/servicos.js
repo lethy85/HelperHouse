@@ -16,10 +16,13 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false
       });
 
-    Servicos.belongsTo(models.Pedidos, {
-        foreignKey: 'pedidos_id',
-        as: 'pedidos'
-      });
+    Servicos.associate = model => {
+
+        Servicos.hasMany(models.Pedidos, {
+            foreignKey: 'pedidos_id',
+            as: 'pedidos'
+        });
+    }
 
     return Servicos;
     

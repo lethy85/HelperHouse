@@ -26,8 +26,8 @@ module.exports = function(sequelize, DataTypes) {
           as: 'prestadores'
         });
  
-      };
+    };
     
-      return Planos;
+    return Planos;
 
 }

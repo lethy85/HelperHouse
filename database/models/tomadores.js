@@ -1,5 +1,3 @@
-const pedidos = require("./pedidos");
-
 module.exports = function(sequelize, DataTypes) {
     const Tomadores = sequelize.define({
         id: {
@@ -31,27 +29,24 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         imagem: {
-            type:DataTypes.STRING(100), 
+            type:DataTypes.STRING(150), 
             unique: true
         },
         senha: {
             allowNull: false,
             type: DataTypes.STRING(16)
-        },
-        pedido_id: {
-            type:DataTypes.INTERGER.UNSIGNED, 
-            references: {model: pedidos, key: 'id'}
-        },
+        }
     },{
         tableName: 'tomadores',
         timestamps: false
-      });
+    });
 
-    Tomadores.hasMany(models.Pedidos, {
-        foreignKey: 'pedidos_id',
-        as: 'pedidos'
-      });
+    Tomadores.associate = models => {
+        Tomadores.hasMany(models.Pedidos, {
+            foreignKey: 'pedidos_id',
+            as: 'pedidos'
+        });
+    }
     
-
     return Tomadores;
 }
