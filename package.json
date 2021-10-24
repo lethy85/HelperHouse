@@ -25,5 +25,17 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"
-  }
+  },
+  "description": "<h1>Projeto Integrador - Helper House</h1>",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lethy85/HelperHouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lethy85/HelperHouse/issues"
+  },
+  "homepage": "https://github.com/lethy85/HelperHouse#readme"
 }
