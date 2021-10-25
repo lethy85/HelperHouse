@@ -48,11 +48,12 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'planos_id',
           as: 'planos'
         });
-    
+
         Prestadores.hasMany(models.Pedidos, {
-          foreignKey: 'pedidos_id',
-          as: 'pedidos'
-        })
+            foreignKey: 'pedidos_id',
+            as: 'pedidos'
+          });
+    
     
     };
     
