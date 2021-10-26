@@ -18,8 +18,8 @@ module.exports = function(sequelize, DataTypes) {
 
     Status.associate = models => {
         Status.hasMany(models.Pedidos, {
-          as: 'pedidos',
-          foreignKey: 'pedidos_id'
+          foreignKey: 'status_id',
+          as: 'pedidos'
         });
     }
     return Status;

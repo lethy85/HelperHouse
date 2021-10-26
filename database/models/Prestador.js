@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Prestadores = sequelize.define({
+    const Prestador = sequelize.define({
         id: {
             primaryKey: true, 
             autoIncrement: true, 
@@ -32,9 +32,17 @@ module.exports = function(sequelize, DataTypes) {
             type:DataTypes.STRING(8), 
             allowNull: false
         },
+        imagem: {
+            type:DataTypes.STRING(150), 
+            allowNull: false
+        },
         senha: {
             allowNull: false,
             type: DataTypes.STRING(16)
+        },
+        plano_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
         }
     },
     {
@@ -42,20 +50,19 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false
     });
 
-    Prestadores.associate = models => {
+    Prestador.associate = models => {
     
-        Prestadores.belongsTo(models.Planos, {
-          foreignKey: 'planos_id',
+        Prestador.belongsTo(models.Planos, {
+          foreignKey: 'plano_id',
           as: 'planos'
         });
 
-        Prestadores.hasMany(models.Pedidos, {
-            foreignKey: 'pedidos_id',
+        Prestador.hasMany(models.Pedidos, {
+            foreignKey: 'prestador_id',
             as: 'pedidos'
-          });
-    
+        });
     
     };
     
-    return Prestadores;
+    return Prestador;
 }

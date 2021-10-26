@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Pedidos = sequelize.define({
+    const Pedido = sequelize.define({
         id: {
             primaryKey: true, 
             autoIncrement: true, 
@@ -17,6 +17,22 @@ module.exports = function(sequelize, DataTypes) {
         endereco: {
             type:DataTypes.STRING(45), 
             allowNull: false
+        },
+        status_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        prestador_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        servico_id : {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        tomador_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
         }
     },{
         tableName: 'pedidos',
@@ -25,23 +41,23 @@ module.exports = function(sequelize, DataTypes) {
 
     // Relações   
 
-    Pedidos.associate = models => {
-        Pedidos.belongsTo(models.Status, {
+    Pedido.associate = models => {
+        Pedido.belongsTo(models.Status, {
             foreignKey: 'status_id',
             as: 'status'
         });
-        Pedidos.belongsTo(models.Prestadores, {
-            foreignKey: 'prestadores_id',
+        Pedido.belongsTo(models.Prestadores, {
+            foreignKey: 'prestador_id',
             as: 'prestadores'
         });
-        Pedidos.belongsTo(models.Servicos, {
-            foreignKey: 'servicos_id',
+        Pedido.belongsTo(models.Servicos, {
+            foreignKey: 'servico_id',
             as: 'servicos'
         });
-        Pedidos.belongsTo(models.Tomadores, {
-            foreignKey: 'tomadores_id',
+        Pedido.belongsTo(models.Tomadores, {
+            foreignKey: 'tomador_id',
             as: 'tomadores'
         });
     }
-    return Pedidos;
+    return Pedido;
 }
