@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true, 
             autoIncrement: true, 
             allowNull: false, 
-            type: DataTypes.INTERGER.UNSIGNED
+            type: DataTypes.INTEGER.UNSIGNED
         },
         tipo_plano: {
             type:DataTypes.STRING(45), 
