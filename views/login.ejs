@@ -1,86 +1,106 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('./partials/head') %>
-  </head>
-  <body>
-    <%- include('./partials/header') %>
-    <main id="login">
-        <section id="projeto">
-            <div class="projeto cont">
-                <div class="projeto-header">
-                    <h1 class="section-title">Acesse sua conta!</h1>
-                </div>
-                <nav class="nav_tabs">
-        <ul>
-            <li>
-                <input type="radio" name="tabs" class="rd_tabs" id="Cliente" checked>
-                <label for="Cliente">Cliente</label>
-                <div class="content">
-                    <article>
-                        <form action="/criar-conta">
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" size="40" placeholder="E-mail" name="email">
-                            </div><p>
-                            <div class="form-group">
-                                <label for="senha">Senha:</label>
-                                <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha">
-                            </div>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" width="100px" name="lembrar">&nbsp;&nbsp;Lembrar-me</label>
-                                </div><p>
-                            
-                            <div>
-                            <section id="botao">
-                                <button class="b-login" type="submit" id="enviar">Enviar</button>
-                            </section>
-                            </div>
-                        </form>
-                    </article>
-                </div>
-            </li>
-            <li>
-                <input type="radio" name="tabs" class="rd_tabs" id="Parceiro">
-                <label for="Parceiro">Parceiro</label>
-                <div class="content">
-                    <article>
-                        <form action="/criar-conta">
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" size="40" placeholder="E-mail" name="email">
-                            </div><p>
-                            <div class="form-group">
-                                <label for="senha">Senha:</label>
-                                <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha">
-                                <div class="checkbox">
-                                    <input type="checkbox" width="100px" 
-                                    name="lembrar">&nbsp;&nbsp;Lembrar-me
-                                </div><p>
-                           
-                            <section id="botao">
-                                <button class="b-login" type="submit" id="enviar">Enviar</button>
-                            </section>
-                            </div>
-                        </form>
-                    </article>
-                </div>
-            </li>
-        </ul>
 
-    </nav>
-    <hr>
-    <div class="criar-conta">
-        <p>
-            <strong>Ainda não tem conta?</strong>
-        </p>
-        <a href="/criar-conta">
-            Criar Conta
-        </a>    
-    </div>        
+<head>
+    <%- include('./partials/head') %>
+</head>
+
+<body>
+    <%- include('./partials/header') %>
+        <main id="login">
+            <section id="projeto">
+                <div class="projeto cont">
+                    <div class="projeto-header">
+                        <h1 class="section-title">Acesse sua conta!</h1> 
+                    </div>
+                    <% if (typeof message !== "undefined" && message !== null) { %>
+                        <div class="alert alert-danger" role="alert">
+                          <ul> 
+                              <li><%= message %></li>
+                          </ul>
+                        </div>
+                        <% } %> 
+                    <nav class="nav_tabs">
+                        <ul>
+                            <li>
+                                <input type="radio" name="tabs" class="rd_tabs" id="Cliente" checked>
+                                <label for="Cliente">Cliente</label>
+                                <div class="content">
+                                    <article>
+                                        <form class="form-signin" method="POST" action="/login">
+                                            <input type="hidden" name="tipo" value="t">
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input required type="email" class="form-control" id="email" size="40"
+                                                    placeholder="E-mail" name="email">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="senha">Senha:</label>
+                                                <input required type="password" class="form-control" id="senha"
+                                                    placeholder="Senha" name="senha">
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" width="100px"
+                                                        name="lembrar">&nbsp;&nbsp;Lembrar-me</label>
+                                            </div>
+
+                                            <div>
+                                                <section id="botao">
+                                                    <button class="b-login" type="submit" id="enviar">Enviar</button>
+                                                </section>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="radio" name="tabs" class="rd_tabs" id="Parceiro">
+                                <label for="Parceiro">Parceiro</label>
+                                <div class="content">
+                                    <article>
+                                        <form class="form-signin" method="POST" action="/login">
+                                            <input type="hidden" name="tipo" value="p">
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input type="email" class="form-control" id="email" size="40"
+                                                    placeholder="E-mail" name="email">
+                                            </div>
     
-    </section>
-    </main>
-    <%- include('./partials/footer') %>
-  </body>
+                                            <div class="form-group">
+                                                <label for="senha">Senha:</label>
+                                                <input type="password" class="form-control" id="senha"
+                                                    placeholder="Senha" name="senha">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" width="100px"
+                                                        name="lembrar">&nbsp;&nbsp;Lembrar-me
+                                                </div>
+                                                
+
+                                                <section id="botao">
+                                                    <button class="b-login" type="submit" id="enviar">Enviar</button>
+                                                </section>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </nav>
+                    <hr>
+                    <div class="criar-conta">
+                        <p>
+                            <strong>Ainda não tem conta?</strong>
+                        </p>
+                        <a href="/criar-conta">
+                            Criar Conta
+                        </a>
+                    </div>
+
+            </section>
+        </main>
+        <%- include('./partials/footer') %>
+</body>
+
 </html>

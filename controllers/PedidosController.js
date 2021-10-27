@@ -1,29 +1,29 @@
 const { v4 } = require("uuid");
-const PedidosModel = require("../models/Pedidos");
+const PedidoModel = require("../models/Pedido");
 
-const PedidosController = {
-  buscarPedidosPeloId: (id) => {
+const PedidoController = {
+  buscarPedidoPeloId: (id) => {
     try {
-      const Pedidos = PedidosModel.findById(id);
+      const Pedido = PedidoModel.findById(id);
 
-      return Pedidos;
+      return Pedido;
     } catch (error) {
       return res.status(400).json({ error });
     }
   },
-  listarTodos: () => PedidosModel.findAll(),
+  listarTodos: () => PedidoModel.findAll(),
   criarUmTomador: (descricao_residencia, descricaLocalo_demanda, endereco) => {
     console.log(nome)
-    return PedidosModel.criarUmTomador({ descricao_residencia, descricaLocalo_demanda, endereco })
+    return PedidoModel.criarUmTomador({ descricao_residencia, descricaLocalo_demanda, endereco })
   },
   editarUmTomador: (descricao_residencia, descricaLocalo_demanda, endereco) => {
-    return PedidosModel.update(id, {
+    return PedidoModel.update(id, {
         descricao_residencia, 
         descricaLocalo_demanda, 
         endereco
     });
   },
-  deletarUmTomador: (id) => PedidosModel.destroy(id),
+  deletarUmTomador: (id) => PedidoModel.destroy(id),
 };
 
-module.exports = PedidosController;
+module.exports = PedidoController;

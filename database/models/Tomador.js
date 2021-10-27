@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Tomador = sequelize.define({
+    const Tomador = sequelize.define('Tomador', {
         id: {
             primaryKey: true, 
             autoIncrement: true, 
@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Tomador.associate = models => {
-        Tomador.hasMany(models.Pedidos, {
+        Tomador.hasMany(models.Pedido, {
             foreignKey: 'tomador_id',
             as: 'pedidos'
         });

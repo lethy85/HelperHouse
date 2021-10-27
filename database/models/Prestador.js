@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Prestador = sequelize.define({
+    const Prestador = sequelize.define('Prestador', {
         id: {
             primaryKey: true, 
             autoIncrement: true, 
@@ -52,12 +52,12 @@ module.exports = function(sequelize, DataTypes) {
 
     Prestador.associate = models => {
     
-        Prestador.belongsTo(models.Planos, {
+        Prestador.belongsTo(models.Plano, {
           foreignKey: 'plano_id',
           as: 'planos'
         });
 
-        Prestador.hasMany(models.Pedidos, {
+        Prestador.hasMany(models.Pedido, {
             foreignKey: 'prestador_id',
             as: 'pedidos'
         });

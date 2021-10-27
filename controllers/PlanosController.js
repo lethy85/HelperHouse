@@ -1,3 +1,3 @@
-const { findAll } = require('../models/planos');
+const { findAll } = require('../models/plano');
 
 exports.listarTodos = () => findAll();

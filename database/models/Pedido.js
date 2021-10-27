@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Pedido = sequelize.define({
+    const Pedido = sequelize.define('Pedido', {
         id: {
             primaryKey: true, 
             autoIncrement: true, 
@@ -46,15 +46,15 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: 'status_id',
             as: 'status'
         });
-        Pedido.belongsTo(models.Prestadores, {
+        Pedido.belongsTo(models.Prestador, {
             foreignKey: 'prestador_id',
             as: 'prestadores'
         });
-        Pedido.belongsTo(models.Servicos, {
+        Pedido.belongsTo(models.Servico, {
             foreignKey: 'servico_id',
             as: 'servicos'
         });
-        Pedido.belongsTo(models.Tomadores, {
+        Pedido.belongsTo(models.Tomador, {
             foreignKey: 'tomador_id',
             as: 'tomadores'
         });
