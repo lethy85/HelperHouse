@@ -29,14 +29,12 @@ module.exports = {
         prestador_id:3 , 
         servico_id : 3, 
         tomador_id: 3
-
       }
      
     ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('pedidos', null, {});
-     
+    await queryInterface.bulkDelete('pedidos', null, {}); 
   }
 };
