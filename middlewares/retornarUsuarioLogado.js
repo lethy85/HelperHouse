@@ -1,11 +1,11 @@
-exports.loggedInfo = () => {
-    let usuario
-    let logged
-    if (req.session && req.session.user) {
-      usuario = req.session.user
-      logged = true
+exports.loggedInfo = (sessionInfo) => {
+    let response = {}
+    if (sessionInfo) {
+      response.usuario = sessionInfo
+      response.logged = true 
     } else {
-        logged = false
-        usuario = false
+      response.usuario = false
+      response.logged = false 
     }
+    return response
 }

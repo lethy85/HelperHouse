@@ -23,13 +23,26 @@ body {
 
 
 .formulario-cadastro {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;  
     padding: 10px;
     max-width: 100%;
     justify-content: center;
     margin: 10px;
+}
+.formulario-cadastro form {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.formulario-cadastro .btn-enviar {
+    border: 1px solid #000;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .formulario-cadastro label, input {
@@ -41,13 +54,3 @@ body {
     border-radius: 10px;
     font-weight: bold;
 }   
-
-.button button{
-    margin: 20px 0 5px 5px;
-    width: 200px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    border-radius: 10px;
-    text-align: center;
-}
