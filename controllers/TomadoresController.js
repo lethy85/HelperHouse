@@ -23,11 +23,12 @@ const TomadorController = {
     }
   },
   listarTodos: () => TomadorModel.findAll(),
-  criarUmTomador: (nome, sobrenome, email, cpf, endereco, imagem, senha) => {
-    console.log(nome)
-    return TomadorModel.criarUmTomador({ nome, sobrenome, email, cpf, endereco, imagem, senha })
+  criarUmTomador: ({ nome, sobrenome, email, cpf, endereco, senha }) => {
+    console.log({ nome, sobrenome, email, cpf, endereco, senha })
+    senha = bcrypt.hashSync(senha)
+    return TomadorModel.criarUmTomador({ nome, sobrenome, email, cpf, endereco, senha })
   },
-  editarUmTomador: (nome, sobrenome, email, cpf, endereco, imagem, senha) => {
+  editarUmTomador: (nome, sobrenome, email, cpf, endereco, senha) => {
     return TomadorModel.update(id, {
         nome, 
         sobrenome, 

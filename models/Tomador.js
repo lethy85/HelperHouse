@@ -6,7 +6,9 @@ const TomadorModel = {
   },
   findById: (id) => Tomador.findByPk(id),
   findAll: () => Tomador.findAll(),
-  criarUmTomador: ({ nome, sobrenome, email, cpf, endereco, imagem, senha}) => Tomador.create({ nome, sobrenome, email, cpf, endereco, imagem, senha }),
+  criarUmTomador: async ({ nome, sobrenome, email, cpf, endereco, senha }) => {
+    return await Tomador.create({ nome, sobrenome, email, cpf, endereco, senha })
+  },
   update: (id, { nome, sobrenome, email, cpf, endereco, imagem, senha }) => {
     return Tomador.update({
       nome, 

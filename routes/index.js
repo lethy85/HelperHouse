@@ -4,30 +4,30 @@ const TomadoresController = require('../controllers/TomadoresController');
 const seUsuarioLogado = require('../middlewares/verificarSeUsuarioLogado');
 const usuarioLogado = require('../middlewares/retornarUsuarioLogado');
 const multer = require('multer');
-const multerConfig = require('../config/multer')
+const multerConfig = require('../config/multer');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   const { logged } = usuarioLogado.loggedInfo(req.session.user)
   res.render('index', { title: 'Home', logged, style: 'home' });
 });
 
-router.get('/como-funciona', function(req, res, next) {
+router.get('/como-funciona', (req, res, next) => {
   res.render('como-funciona', { title: 'Como Funciona', logged: false, style: 'como-funciona' });
 });
 
-router.get('/para-quem-contrata', function(req, res, next) {
+router.get('/para-quem-contrata', (req, res, next) => {
   res.render('para-quem-contrata', { title: 'Contratar Serviço', logged: false, style: 'para-quem-contrata' });
 });
 
-router.get('/para-profissional', function(req, res, next) {
+router.get('/para-profissional', (req, res, next) => {
   res.render('para-profissional', { title: 'Prestar Serviço', logged: false, style: 'para-profissional' });
 });
 
 
 /* Login */
-router.get('/login', function(req, res, next) {
+router.get('/login', (req, res, next) => {
   res.render('login', { title: 'Entrar', logged: false, style: 'login' });
 });
 
@@ -63,61 +63,72 @@ router.get('/logout', function(req, res) {
 })
 
 /* Cadastro tomador */
-router.get('/cadastro-tomador-servico', function(req, res, next) {
+router.get('/cadastro-tomador-servico', (req, res, next) => {
   res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: true, style: 'cadastro-solicitante' });
 });
 
+router.post('/cadastro-tomador-servico', async (req, res, next) => {
+  const { nome, sobrenome, email, cpf, telefone, endereco, senha, confsenha } = req.body;
+  console.log(req.body)
+  if (senha !== confsenha) {
+    throw new Error("Senhas não conferem!")
+  }
+  const usuario = await TomadoresController.criarUmTomador({ nome, sobrenome, email, cpf, telefone, endereco, senha })
+  usuario.senha = ''
+  req.session.user = usuario
+  res.status(201).redirect('/solicitar-servico')
+});
 
 
-router.get('/dashboard-pedidos-prestador', seUsuarioLogado, function(req, res, next) {
+router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => {
   res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true, style: 'dashboard-pedidos-prestador' });
 });
 
-router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, function(req, res, next) {
+router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, (req, res, next) => {
   res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged: true, style: "dashboard-pedidos-prestador-status" });
 });
 
-router.get('/solicitar-servico', function(req, res, next) {
+router.get('/solicitar-servico', (req, res, next) => {
   res.render('solicitar-servico', { title: 'Solicitar serviço', logged: true, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.get('/solicitar-servico-eletricista', function(req, res, next) {
+router.get('/solicitar-servico-eletricista', (req, res, next) => {
   res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged: true, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.get('/solicitar-servico-encanador', function(req, res, next) {
+router.get('/solicitar-servico-encanador', (req, res, next) => {
   res.render('solicitar-servico-encanador', { title: 'Solicitar Encanador', logged: true, style: 'novaSolicitaçãoTomadorServico' });
 });
 
 
-router.get('/solicitar-servico-pintor', function(req, res, next) {
+router.get('/solicitar-servico-pintor', (req, res, next) => {
   res.render('solicitar-servico-pintor', { title: 'Solicitar Pintor', logged: true, style: 'novaSolicitaçãoTomadorServico' });
 });
 
 
 
-router.get('/cadastro-prestador', function(req, res, next) {
+router.get('/cadastro-prestador', (req, res, next) => {
   res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: true, style: 'cadastro-prestador' });
 });
 
-router.get('/criar-conta', function(req, res, next) {
+router.get('/criar-conta', (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('criar-conta', { title: 'Tipo de Conta', logged, style: 'cadastro-parceiro', usuario });
 });
 
-router.get('/assinatura-de-plano', function(req, res, next) {
+router.get('/assinatura-de-plano', (req, res, next) => {
   res.render('assinatura-plano', { title: 'Assinar Plano', logged: true, style: 'cadastro-parceiro' });
 });
 
-router.get('/escolha-de-plano', function(req, res, next) {
+router.get('/escolha-de-plano', (req, res, next) => {
   res.render('escolha-plano', { title: 'Escolher Plano', logged: true, style: 'cadastro-parceiro' });
 });
 
-router.get('/dashboard-pedidos-tomador', function(req, res, next) {
+router.get('/dashboard-pedidos-tomador', (req, res, next) => {
   res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged: true, style: 'dashboard-pedidos-tomador' });
 });
 
-router.get('/dashboard-tomador-pedido', function(req, res, next) {
+router.get('/dashboard-tomador-pedido', (req, res, next) => {
   res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged: true, style: 'dashboard-tomador-pedido' });
 });
 
