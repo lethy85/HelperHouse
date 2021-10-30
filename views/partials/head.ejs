@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/style.css" />
-<% if(style || false) { %>
+<% if(style && typeof style !== 'undefined') { %>
 <link rel="stylesheet" href="/stylesheets/<%= style %>.css" />
 <% } %>
 <meta charset="UTF-8" />

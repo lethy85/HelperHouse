@@ -9,26 +9,37 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  const { logged } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('index', { title: 'Home', logged, style: 'home' });
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('index', { title: 'Home', logged, style: 'home', usuario });
 });
 
 router.get('/como-funciona', (req, res, next) => {
-  res.render('como-funciona', { title: 'Como Funciona', logged: false, style: 'como-funciona' });
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('como-funciona', { title: 'Como Funciona', logged, usuario, style: 'como-funciona' });
 });
 
 router.get('/para-quem-contrata', (req, res, next) => {
-  res.render('para-quem-contrata', { title: 'Contratar Serviço', logged: false, style: 'para-quem-contrata' });
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('para-quem-contrata', { title: 'Contratar Serviço', logged, usuario, style: 'para-quem-contrata' });
 });
 
 router.get('/para-profissional', (req, res, next) => {
-  res.render('para-profissional', { title: 'Prestar Serviço', logged: false, style: 'para-profissional' });
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('para-profissional', { title: 'Prestar Serviço', logged, usuario, style: 'para-profissional' });
 });
 
 
 /* Login */
 router.get('/login', (req, res, next) => {
-  res.render('login', { title: 'Entrar', logged: false, style: 'login' });
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  if (logged) {
+    if (usuario.hasOwnProperty('cpf_cnpj')) {
+      res.redirect('/dashboard-pedidos-prestador')
+    } else {
+      res.redirect('/solicitar-servico')
+    }
+  }
+  res.render('login', { title: 'Entrar', logged, usuario, style: 'login' });
 });
 
 router.post("/login", async (req, res, next) => {
@@ -64,7 +75,7 @@ router.get('/logout', function(req, res) {
 
 /* Cadastro tomador */
 router.get('/cadastro-tomador-servico', (req, res, next) => {
-  res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: true, style: 'cadastro-solicitante' });
+  res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' });
 });
 // lembrar de colocar validacao para campos e aproveitar pra colocar a confirmacao da senha por lá
 router.post('/cadastro-tomador-servico', async (req, res, next) => {
@@ -87,11 +98,6 @@ router.get('/cadastro-prestador', (req, res, next) => {
 
 router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), async (req, res, next) => {
   const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha } = req.body;
- 
-  //const imagem_perfil = { imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename }
-  //const imagem_ident = { imagem_ident: '/uploads/ident/' + req.files['ident'][0].filename }
-/*   req.body.imagem_perfil = '/uploads/foto/' + req.files['foto'][0].filename
-  req.body.imagem_ident = '/uploads/ident/' + req.files['ident'][0].filename */
   console.log(req.body)
   if (senha !== confsenha) {
     throw new Error("Senhas não conferem!")
@@ -103,55 +109,63 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
   usuario.imagem_identidade = ''
   req.session.user = usuario
   res.status(201).redirect('/assinatura-de-plano')
-
   res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
 });
 
 router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => {
-  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged: true, style: 'dashboard-pedidos-prestador' });
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged, usuario, style: 'dashboard-pedidos-prestador' });
 });
 
 router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, (req, res, next) => {
-  res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged: true, style: "dashboard-pedidos-prestador-status" });
-});
-
-router.get('/solicitar-servico', (req, res, next) => {
-  res.render('solicitar-servico', { title: 'Solicitar serviço', logged: true, style: 'novaSolicitaçãoTomadorServico' });
-});
-
-router.get('/solicitar-servico-eletricista', (req, res, next) => {
-  res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged: true, style: 'novaSolicitaçãoTomadorServico' });
-});
-
-router.get('/solicitar-servico-encanador', (req, res, next) => {
-  res.render('solicitar-servico-encanador', { title: 'Solicitar Encanador', logged: true, style: 'novaSolicitaçãoTomadorServico' });
-});
-
-
-router.get('/solicitar-servico-pintor', (req, res, next) => {
-  res.render('solicitar-servico-pintor', { title: 'Solicitar Pintor', logged: true, style: 'novaSolicitaçãoTomadorServico' });
-});
-
-
-router.get('/criar-conta', (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('criar-conta', { title: 'Tipo de Conta', logged, style: 'cadastro-parceiro', usuario });
+  res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged, usuario, style: "dashboard-pedidos-prestador-status" });
 });
 
-router.get('/assinatura-de-plano', (req, res, next) => {
-  res.render('assinatura-plano', { title: 'Assinar Plano', logged: true, style: 'cadastro-parceiro' });
+router.get('/solicitar-servico', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('solicitar-servico', { title: 'Solicitar serviço', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.get('/escolha-de-plano', (req, res, next) => {
-  res.render('escolha-plano', { title: 'Escolher Plano', logged: true, style: 'cadastro-parceiro' });
+router.get('/solicitar-servico-eletricista', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.get('/dashboard-pedidos-tomador', (req, res, next) => {
-  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged: true, style: 'dashboard-pedidos-tomador' });
+router.get('/solicitar-servico-encanador', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('solicitar-servico-encanador', { title: 'Solicitar Encanador', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.get('/dashboard-tomador-pedido', (req, res, next) => {
-  res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged: true, style: 'dashboard-tomador-pedido' });
+
+router.get('/solicitar-servico-pintor', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('solicitar-servico-pintor', { title: 'Solicitar Pintor', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+});
+
+
+router.get('/criar-conta', seUsuarioLogado, (req, res, next) => {
+  res.render('criar-conta', { title: 'Tipo de Conta', logged: false, style: 'cadastro-parceiro' });
+});
+
+router.get('/assinatura-de-plano', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('assinatura-plano', { title: 'Assinar Plano', logged, usuario, style: 'cadastro-parceiro' });
+});
+
+router.get('/escolha-de-plano', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('escolha-plano', { title: 'Escolher Plano', logged, usuario, style: 'cadastro-parceiro' });
+});
+
+router.get('/dashboard-pedidos-tomador', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged, usuario, style: 'dashboard-pedidos-tomador' });
+});
+
+router.get('/dashboard-tomador-pedido', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged, usuario, style: 'dashboard-tomador-pedido' });
 });
 
 module.exports = router;

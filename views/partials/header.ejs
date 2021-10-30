@@ -38,11 +38,16 @@
             <a class="nav-link active" href="/login">Login</a>
           </li>
           <% } else { %>
+            <% if (typeof usuario !== 'undefined') { %>
+              <li>
+                <span class="nav-link">Olá, <%= usuario.nome %> </span>
+              </li>
+            <% } %>
             <li>
-              <a class="nav-link active" href="/dashboard-pedidos-prestador">Solicitações</a>
+              <a class="nav-link" href="/dashboard-pedidos-prestador-status">Minha Conta</a>
             </li>
             <li>
-              <a class="nav-link active" href="/dashboard-pedidos-prestador-status">Minha Conta</a>
+              <a class="nav-link" href="/dashboard-pedidos-prestador">Solicitações</a>
             </li>
             <li>
               <a class="nav-link active" href="/logout">Sair</a>
