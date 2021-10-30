@@ -6,7 +6,10 @@ const PrestadorModel = {
   },
   findById: (id) => Prestador.findByPk(id),
   findAll: () => Prestador.findAll(),
-  criarUmPrestador: ({ nome, sobrenome, email, cpf_cnpj, endereco, imagem, senha}) => Prestador.create({ nome, sobrenome, email, cpf_cnpj, endereco, imagem, senha}),
+  criarUmPrestador: async ({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id }) => {
+    console.log({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id })
+    return await Prestador.create({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id })
+   },
   update: (id, { nome, sobrenome, email, cpf_cnpj, endereco, imagem, senha }) => {
     return Prestador.update({
       nome, 

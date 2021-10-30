@@ -12,7 +12,8 @@ module.exports = {
         email: 'jonascosta@gmail.com',
         cpf_cnpj: '68507091000118',
         cep: '20050010',
-        imagem: 'images/perfil-1.png',
+        imagem_perfil: 'images/perfil-1.png',
+        imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('1234567'),
         plano_id: 1
       },
@@ -23,7 +24,8 @@ module.exports = {
         email: 'wesleysnipesdias@gmail.com',
         cpf_cnpj: '68407091000118',
         cep: '20040010',
-        imagem: 'images/perfil-1.png',
+        imagem_perfil: 'images/perfil-1.png',
+        imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('123456'),
         plano_id: 2
       },
@@ -34,7 +36,8 @@ module.exports = {
         email: 'matheusnipestudor@gmail.com',
         cpf_cnpj: '78407091000118',
         cep: '30040010',
-        imagem: 'images/perfil-1.png',
+        imagem_perfil: 'images/perfil-1.png',
+        imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('123456*'),
         plano_id: 3
       }

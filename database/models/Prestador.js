@@ -32,7 +32,11 @@ module.exports = function(sequelize, DataTypes) {
             type:DataTypes.STRING(8), 
             allowNull: false
         },
-        imagem: {
+        imagem_perfil: {
+            type:DataTypes.STRING(150), 
+            allowNull: false
+        },
+        imagem_identidade: {
             type:DataTypes.STRING(150), 
             allowNull: false
         },

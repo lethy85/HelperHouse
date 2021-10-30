@@ -35,7 +35,11 @@ module.exports = {
         type: Sequelize.CHAR(8), 
         allowNull: false
       },
-      imagem: {
+      imagem_perfil: {
+        type: Sequelize.STRING(150), 
+        allowNull: false
+      },
+      imagem_identidade: {
         type: Sequelize.STRING(150), 
         allowNull: false
       },

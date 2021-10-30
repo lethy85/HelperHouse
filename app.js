@@ -24,7 +24,7 @@ app.use(session({
   saveUninitialized: true 
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'tmp', 'uploads')));
+app.use('/uploads/foto', express.static(path.join(__dirname, 'tmp', 'uploads', 'foto')));
 // /uploads/perfil.png
 // Navigator.geolocation.getCurrentPosition(success, failed)
 
