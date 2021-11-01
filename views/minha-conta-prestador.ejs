@@ -12,13 +12,13 @@
           </h2>
         </section>
         <section id="formulario">
-            <form class="cadform" action="/cadastro-prestador" method="POST" enctype="multipart/form-data">
+            <form class="cadform" action="/minha-conta-prestador" method="POST" enctype="multipart/form-data">
                 <div class="cadastro">
                     <div class="form-group">
-                        <input required class="form-control" type="text" id="nome" name="nome" placeholder="Nome"  required>
+                        <input required class="form-control" type="text" readonly id="nome" name="nome" placeholder="Nome"  required>
                     </div>
                     <div class="form-group">
-                        <input required class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome"  required>
+                        <input required class="form-control" type="text" readonly id="sobrenome" name="sobrenome" placeholder="Sobrenome"  required>
                     </div>
                     <div class="form-group">
                         <input required class="form-control" type="email" id="email" placeholder="E-mail" name="email"  required>
@@ -36,18 +36,14 @@
                         <input required class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required> 
                     </div>
                     <div class="form-group">
-                        <input required class="form-control" type="text" id="registro"  placeholder="CPF/CNPJ" name="cpf_cnpj" >
+                        <input required class="form-control" type="text" readonly id="registro"  placeholder="CPF/CNPJ" name="cpf_cnpj" >
                     </div>    
                 </div>
                 
                 <div class="arquivos">
                     <div class="form-group">
                         <label for="foto">Anexe uma foto para o seu perfil:</label> 
-                        <input required class="form-control-file" type="file" id="foto" name="foto" >
-                    </div>
-                    <div class="form-group">
-                        <label for="ident">Anexe uma foto com seu documento para comprovar a sua identidade:</label>
-                        <input required class="form-control-file" type="file" id="identidade" name="ident" >
+                        <input class="form-control-file" type="file" id="foto" name="foto" >
                     </div>
                 </div>        
             <button type="submit" class="btn btn-enviar">Enviar</button>

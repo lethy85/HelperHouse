@@ -110,7 +110,7 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
 });
 
 /* Minha Conta Prestador */
-router.get('/prestador-minha-conta', seUsuarioLogado, (req, res, next) => {
+router.get('/minha-conta-prestador', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('minha-conta-prestador', { title: 'Minha Conta - Prestador', logged, usuario, style: 'dashboard-pedidos-prestador' });
 });
@@ -123,6 +123,12 @@ router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => 
 router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged, usuario, style: "dashboard-pedidos-prestador-status" });
+});
+
+/* Minha Conta Tomador */
+router.get('/minha-conta-tomador', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('minha-conta-tomador', { title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante' });
 });
 
 router.get('/solicitar-servico', seUsuarioLogado, (req, res, next) => {
