@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container">
+        <section id="title">
+          <h2 class="section-title">
+            Minha Conta
+          </h2>
+        </section>
+        <section id="formulario">
+            <form class="cadform" action="/cadastro-prestador" method="POST" enctype="multipart/form-data">
+                <div class="cadastro">
+                    <div class="form-group">
+                        <input required class="form-control" type="text" id="nome" name="nome" placeholder="Nome"  required>
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome"  required>
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control" type="email" id="email" placeholder="E-mail" name="email"  required>
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control" type="password" id="senha" placeholder="Senha" name="senha"  required>
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control" type="password" id="confsenha" placeholder="Confirme sua senha" name="confsenha"  required>
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control" type="text" id="CEP"  placeholder="CEP" name="cep" >
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required> 
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control" type="text" id="registro"  placeholder="CPF/CNPJ" name="cpf_cnpj" >
+                    </div>    
+                </div>
+                
+                <div class="arquivos">
+                    <div class="form-group">
+                        <label for="foto">Anexe uma foto para o seu perfil:</label> 
+                        <input required class="form-control-file" type="file" id="foto" name="foto" >
+                    </div>
+                    <div class="form-group">
+                        <label for="ident">Anexe uma foto com seu documento para comprovar a sua identidade:</label>
+                        <input required class="form-control-file" type="file" id="identidade" name="ident" >
+                    </div>
+                </div>        
+            <button type="submit" class="btn btn-enviar">Enviar</button>
+        </form>
+
+        </section>
+    </main>
+  <%- include('./partials/footer') %>
+  </body>
+</html>

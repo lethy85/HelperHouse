@@ -98,18 +98,21 @@ router.get('/cadastro-prestador', (req, res, next) => {
 
 router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), async (req, res, next) => {
   const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha } = req.body;
-  console.log(req.body)
   if (senha !== confsenha) {
     throw new Error("Senhas não conferem!")
   }
-  console.log({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
   const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
   usuario.senha = ''
   usuario.cpf_cnpj = ''
   usuario.imagem_identidade = ''
   req.session.user = usuario
   res.status(201).redirect('/assinatura-de-plano')
-  res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
+});
+
+/* Minha Conta Prestador */
+router.get('/prestador-minha-conta', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('minha-conta-prestador', { title: 'Minha Conta - Prestador', logged, usuario, style: 'dashboard-pedidos-prestador' });
 });
 
 router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => {
@@ -144,7 +147,7 @@ router.get('/solicitar-servico-pintor', seUsuarioLogado, (req, res, next) => {
 });
 
 
-router.get('/criar-conta', seUsuarioLogado, (req, res, next) => {
+router.get('/criar-conta', (req, res, next) => {
   res.render('criar-conta', { title: 'Tipo de Conta', logged: false, style: 'cadastro-parceiro' });
 });
 
