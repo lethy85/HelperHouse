@@ -42,13 +42,22 @@
               <li>
                 <span class="nav-link">Olá, <%= usuario.nome %> </span>
               </li>
+              <% if (usuario.hasOwnProperty('cpf_cnpj')) { %>
+                <li>
+                  <a class="nav-link" href="/prestador-minha-conta">Minha Conta</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/dashboard-pedidos-prestador">Solicitações</a>
+                </li>
+              <% } else { %>
+                <li>
+                  <a class="nav-link" href="/tomador-minha-conta">Minha Conta</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/dashboard-tomador-pedido">Solicitações</a>
+                </li>
+             <% } %>
             <% } %>
-            <li>
-              <a class="nav-link" href="/dashboard-pedidos-prestador-status">Minha Conta</a>
-            </li>
-            <li>
-              <a class="nav-link" href="/dashboard-pedidos-prestador">Solicitações</a>
-            </li>
             <li>
               <a class="nav-link active" href="/logout">Sair</a>
             </li>
