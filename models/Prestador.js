@@ -10,14 +10,14 @@ const PrestadorModel = {
     console.log({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id })
     return await Prestador.create({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id })
    },
-  update: (id, { nome, sobrenome, email, cpf_cnpj, endereco, imagem, senha }) => {
-    return Prestador.update({
+  update: async (id, { nome, sobrenome, email, cep, cpf_cnpj, imagem_perfil, senha }) => {
+    return await Prestador.update({
       nome, 
       sobrenome, 
-      email, 
+      email,
+      cep, 
       cpf_cnpj, 
-      endereco, 
-      imagem,   
+      imagem_perfil,
       senha
     }, { where: { id } });
   },

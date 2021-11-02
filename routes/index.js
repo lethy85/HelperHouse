@@ -50,7 +50,6 @@ router.post("/login", async (req, res, next) => {
     try {
       usuario = await TomadoresController.logIn({ email, senha })
       req.session.user = usuario
-      console.log(req.session)
       res.redirect('/solicitar-servico')
     } catch (err) {
       res.render("login", { message: err.message, logged: false, style: 'login', title: 'Entrar' })
@@ -59,7 +58,6 @@ router.post("/login", async (req, res, next) => {
     try {
       usuario = await PrestadoresController.logIn({ email, senha })
       req.session.user = usuario
-      console.log(req.session)
       res.redirect('/dashboard-pedidos-prestador')
     } catch (err) {
       res.render("login", { message: err.message, logged: false, style: 'login', title: 'Entrar' })
@@ -80,7 +78,6 @@ router.get('/cadastro-tomador-servico', (req, res, next) => {
 // lembrar de colocar validacao para campos e aproveitar pra colocar a confirmacao da senha por lá
 router.post('/cadastro-tomador-servico', async (req, res, next) => {
   const { nome, sobrenome, email, cpf, telefone, endereco, senha, confsenha } = req.body;
-  console.log(req.body)
   if (senha !== confsenha) {
     throw new Error("Senhas não conferem!")
   }
@@ -98,21 +95,39 @@ router.get('/cadastro-prestador', (req, res, next) => {
 
 router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), async (req, res, next) => {
   const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha } = req.body;
-  if (senha !== confsenha) {
-    throw new Error("Senhas não conferem!")
+  try {
+    if (senha !== confsenha) {
+      throw new Error("Senhas não conferem!")
+    }
+    const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
+    usuario.senha = ''
+    usuario.cpf_cnpj = ''
+    usuario.imagem_identidade = ''
+    req.session.user = usuario
+    res.status(201).redirect('/assinatura-de-plano')
+  } catch (err) {
+    res.render("cadastro-prestador", { message: err.message, logged: false, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
   }
-  const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
-  usuario.senha = ''
-  usuario.cpf_cnpj = ''
-  usuario.imagem_identidade = ''
-  req.session.user = usuario
-  res.status(201).redirect('/assinatura-de-plano')
 });
 
 /* Minha Conta Prestador */
 router.get('/minha-conta-prestador', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('minha-conta-prestador', { title: 'Minha Conta - Prestador', logged, usuario, style: 'dashboard-pedidos-prestador' });
+});
+
+/* Editar Minha Conta Prestador */
+router.post('/minha-conta-prestador', async (req, res, next) => {
+  const { usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha } = req.body
+  try {
+    await PrestadoresController.editarUmPrestador({ id: usuario.id, nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: usuario.imagem_perfil, imagem_identidade: usuario.imagem_identidade })
+    req.session.user = { id: usuario.id, nome, sobrenome, email, cep, cpf_cnpj, telefone, imagem_perfil: usuario.imagem_perfil }
+    res.status(201).redirect('/dashboard-pedidos-prestador')
+  } catch (err) {
+    console.log(err)
+  }
+  
 });
 
 router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => {

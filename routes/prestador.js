@@ -1,5 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const seUsuarioLogado = require('../middlewares/verificarSeUsuarioLogado')
+const usuarioLogado = require('../middlewares/retornarUsuarioLogado')
+
+router.get('/', function(req, res, next) {
+    res.send('respond with a resource');
+});
 
 router.post('/', async (rec, res) => {
     const {nome, sobrenome, email, senha, confsenha, endereco, CEP, telefone, registro, foto, ident} = req.body;
@@ -8,5 +14,6 @@ router.post('/', async (rec, res) => {
     res.render('prestador', {prestador});
 }); 
 
-module.export = router;
 
+
+module.exports = router;
