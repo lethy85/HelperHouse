@@ -87,6 +87,28 @@ router.post('/cadastro-tomador-servico', async (req, res, next) => {
   res.status(201).redirect('/solicitar-servico')
 });
 
+/* Minha Conta Tomador */
+router.get('/minha-conta-tomador', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('minha-conta-tomador', { title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante' });
+});
+
+/* Editar Minha Conta Tomador */
+
+router.post('/minha-conta-tomador', async (req, res, next) => {
+  const { usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { nome, sobrenome, email, cpf, endereco, senha, confsenha } = req.body
+  console.log(req.body)
+  try {
+    await TomadoresController.editarUmTomador({ id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha })
+    req.session.user = { id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha }
+    res.status(201).redirect('/dashboard-tomador-pedido')
+  } catch (err) {
+    console.log(err)
+  }
+  
+});
+
 /* Cadastro Prestador */
 
 router.get('/cadastro-prestador', (req, res, next) => {
@@ -138,12 +160,6 @@ router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => 
 router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged, usuario, style: "dashboard-pedidos-prestador-status" });
-});
-
-/* Minha Conta Tomador */
-router.get('/minha-conta-tomador', seUsuarioLogado, (req, res, next) => {
-  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('minha-conta-tomador', { title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante' });
 });
 
 router.get('/solicitar-servico', seUsuarioLogado, (req, res, next) => {

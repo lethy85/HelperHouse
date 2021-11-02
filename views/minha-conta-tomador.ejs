@@ -13,28 +13,25 @@
         <div>
           <form method="POST" action="/minha-conta-tomador">
             <div class="form-group">
-              <input required class="form-control" type="text" id="nome" name="nome" placeholder="Nome"  required>
+              <input class="form-control" value="<%= usuario.nome %>" readonly type="text" id="nome" name="nome" placeholder="Nome"  required>
             </div>
             <div class="form-group">
-              <input required class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome"  required>
+              <input class="form-control" value="<%= usuario.sobrenome %>" readonly type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome"  required>
             </div>
             <div class="form-group">
-              <input required class="form-control" type="email" id="email" placeholder="E-mail" name="email"  required>
+              <input class="form-control" value="<%= usuario.email %>" type="email" id="email" placeholder="E-mail" name="email"  required>
             </div>
             <div class="form-group">
-              <input required class="form-control" type="text" id="cpf" placeholder="CPF" name="cpf"  required>
+              <input class="form-control" value="<%= usuario.cpf %>" readonly type="text" id="cpf" placeholder="CPF" name="cpf"  required>
             </div>
             <div class="form-group">
-              <input required class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required> 
+              <input class="form-control" value="<%= usuario.endereco %>" type="text" id="endereco" placeholder="Rua Santo, Bairro Fulano, n 38, apt 301, Belo Horizonte, MG, cep 30140072" name="endereco"  required> 
             </div>
             <div class="form-group">
-              <input required class="form-control" type="text" id="endereco" placeholder="Rua Santo, Bairro Fulano, n 38, apt 301, Belo Horizonte, MG, cep 30140072" name="endereco"  required> 
+              <input class="form-control" type="password" id="senha" placeholder="Senha" name="senha"  required>
             </div>
             <div class="form-group">
-              <input required class="form-control" type="password" id="senha" placeholder="Senha" name="senha"  required>
-            </div>
-            <div class="form-group">
-              <input required class="form-control" type="password" id="confsenha" placeholder="Confirme sua senha" name="confsenha"  required>
+              <input class="form-control" type="password" id="confsenha" placeholder="Confirme sua senha" name="confsenha"  required>
             </div>
 
             <button type="submit" class="btn btn-enviar">Enviar</button>

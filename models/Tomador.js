@@ -9,14 +9,13 @@ const TomadorModel = {
   criarUmTomador: async ({ nome, sobrenome, email, cpf, endereco, senha }) => {
     return await Tomador.create({ nome, sobrenome, email, cpf, endereco, senha })
   },
-  update: (id, { nome, sobrenome, email, cpf, endereco, imagem, senha }) => {
-    return Tomador.update({
+  update: async (id, { nome, sobrenome, email, cpf, endereco, senha }) => {
+    return await Tomador.update({
       nome, 
       sobrenome, 
       email, 
       cpf, 
-      endereco, 
-      imagem, 
+      endereco,  
       senha
     }, { where: { id } });
   },

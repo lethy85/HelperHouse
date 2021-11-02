@@ -28,14 +28,14 @@ const TomadorController = {
     senha = bcrypt.hashSync(senha)
     return TomadorModel.criarUmTomador({ nome, sobrenome, email, cpf, endereco, senha })
   },
-  editarUmTomador: (nome, sobrenome, email, cpf, endereco, senha) => {
-    return TomadorModel.update(id, {
+  editarUmTomador: async ({ id, nome, sobrenome, email, cpf, endereco, senha }) => {
+    console.log({ id, nome, sobrenome, email, cpf, endereco, senha })
+    return await TomadorModel.update(id, {
         nome, 
         sobrenome, 
         email, 
         cpf, 
-        endereco, 
-        imagem, 
+        endereco,  
         senha
     });
   },
