@@ -106,7 +106,6 @@ router.post('/minha-conta-tomador', async (req, res, next) => {
   } catch (err) {
     console.log(err)
   }
-  
 });
 
 /* Cadastro Prestador */
@@ -162,15 +161,21 @@ router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, (req, res, ne
   res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged, usuario, style: "dashboard-pedidos-prestador-status" });
 });
 
+/* Nova solicitação */
+
 router.get('/solicitar-servico', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('solicitar-servico', { title: 'Solicitar serviço', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
+/* Nova solicitação - Eletricista */
+
 router.get('/solicitar-servico-eletricista', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
+
+/* Nova solicitação - Encanador */
 
 router.get('/solicitar-servico-encanador', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
