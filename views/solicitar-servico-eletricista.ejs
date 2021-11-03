@@ -36,42 +36,44 @@
                         </ul>
                       </div> 
                     </div>
-                    
-                      <!-- <form  action="/solicitar-servico-eletricista" method="POST" enctype="multipart/form-data" > -->
-
                         <div class="formulario-solicitacao">
-                          <section>
-                            <div>
-                              <label for="">TIPO DE RESIDÊNCIA</label><br>
+                          <form action="/solicitar-servico-eletricista" method="POST">
+                            <section >
+                              <div>
+                                <label>TIPO DE RESIDÊNCIA</label><br>
                                 <div>
-                                  <select required name="residência" >
-                                    <option value="tipo" disabled selected>Selecione</option>
-                                    <option value="casa">Casa</option>
-                                    <option value="ap">Apartamento</option>
-                                  </select>                                  
-                                   <br>
+                                  <input type="radio" value="casa" name="descricao_residencia" id="casa">
+                                  <label for="casa">Casa</label><br>
+                                  <input type="radio" value="apartamento" name="descricao_residencia" id="apartamento">
+                                  <label for="apartamento">Apartamento</label> <br>
                                 </div>
-                                <label for="">TIPO DE DEMANDA</label>
+                                <label>TIPO DE DEMANDA</label>
                                 <div>
-                                  <select name="demanda" required>
-                                    <option value="tipo" disabled selected>Selecione</option>
-                                    <option value="manutencao">Menutenção</option>
-                                    <option value="reforma">Reforma</option>
-                                  </select>              
+                                  <input type="radio" value="manutencao" name="descricao_demanda" id="manutencao">
+                                  <label for="manutencao">Manutenção</label><br>
+                                  <input type="radio" value="reforma" name="descricao_demanda" id="reforma">
+                                  <label for="reforma">Reforma</label> <br>             
                                 </div>
+                              </div>
+                            </section>   
+                            <section id="endereco-form">
+                              <div class="form-group">
+                                <label for="endereco">Endereço do Serviço</label>
+                                <input style="width: 100% !important; height: auto !important;" class="form-control" value="<%= usuario.endereco %>" type="text" id="endereco" placeholder="Rua Santo, Bairro Fulano, n 38, apt 301, Belo Horizonte, MG, cep 30140072" name="endereco"  required> 
+                              </div>
+                              <input type="hidden" name="status_id" value="1">
+                              <input type="hidden" name="prestador_id" value="1">
+                              <input type="hidden" name="servico_id" value="1">
+                            </section>              
+                            <section class ="caixa-dialogo">
+                              <label for="caixa-dialogo">Descrição da Solicitação</label>
+                              <textarea id="caixa-dialogo" name="descricao_solicitacao" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui"></textarea> 
+                            </section >
+                            <div class="botaoServico">
+                              <button type="submit" class="btn btn-enviar">Enviar</button>
                             </div>
-                          </section>                 
-                          <section class ="caixa-dialogo">
-                            <label for="caixa-dialogo">Descrição da Solicitação</label>
-                            <textarea id="caixa-dialogo" name="caixa-dialogo" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui"></textarea> 
-                            <div >
-                              <a href="/dashboard-pedidos-tomador">
-                                <button class="botaoServico" type="submit" id="enviar">Prosseguir</button>
-                              </a>
-                            </div>
-                          </section > 
+                          </form> 
                         </div>
-                      <!-- </form> -->
                       </div>  
                   </ul>
               </h4>
