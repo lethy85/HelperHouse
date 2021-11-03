@@ -13,7 +13,11 @@ module.exports = {
         type:Sequelize.STRING(45), 
         allowNull: false
       },
-      descricaLocalo_demanda: {
+      descricao_demanda: {
+        type:Sequelize.STRING(45), 
+        allowNull: false
+      },
+      descricao_solicitacao: {
           type:Sequelize.STRING(240), 
           allowNull: false
       },

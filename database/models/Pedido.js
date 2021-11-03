@@ -10,7 +10,11 @@ module.exports = function(sequelize, DataTypes) {
             type:DataTypes.STRING(45), 
             allowNull: false
         },
-        descricaLocalo_demanda: {
+        descricao_demanda: {
+            type:DataTypes.STRING(45), 
+            allowNull: false
+        },
+        descricao_solicitacao: {
             type:DataTypes.STRING(240), 
             allowNull: false
         },

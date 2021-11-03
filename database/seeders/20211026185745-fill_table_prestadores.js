@@ -6,6 +6,18 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('prestadores', [
       {
+        nome: 'Sem tomador',
+        sobrenome: 'Sem Tomador',
+        telefone: '000000000',
+        email: '0@gmail.com',
+        cpf_cnpj: '000',
+        cep: '000',
+        imagem_perfil: 'images/perfil-1.png',
+        imagem_identidade: 'images/perfil-1.png',
+        senha: bcrypt.hashSync('123456'),
+        plano_id: 1
+      },
+      {
         nome: 'Jonas',
         sobrenome: 'Costa Alves',
         telefone: '31992823812',
@@ -15,7 +27,7 @@ module.exports = {
         imagem_perfil: 'images/perfil-1.png',
         imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('1234567'),
-        plano_id: 1
+        plano_id: 2
       },
       {
         nome: 'Wesley',
@@ -27,7 +39,7 @@ module.exports = {
         imagem_perfil: 'images/perfil-1.png',
         imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('123456'),
-        plano_id: 2
+        plano_id: 3
       },
       {
         nome: 'Matheus',
@@ -39,7 +51,7 @@ module.exports = {
         imagem_perfil: 'images/perfil-1.png',
         imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('123456*'),
-        plano_id: 3
+        plano_id: 4
       }
     ], {});
   },

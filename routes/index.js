@@ -1,6 +1,7 @@
 const express = require('express');
 const PrestadoresController = require('../controllers/PrestadoresController');
 const TomadoresController = require('../controllers/TomadoresController');
+const PedidosController = require('../controllers/PedidosController')
 const seUsuarioLogado = require('../middlewares/verificarSeUsuarioLogado');
 const usuarioLogado = require('../middlewares/retornarUsuarioLogado');
 const multer = require('multer');
@@ -148,7 +149,6 @@ router.post('/minha-conta-prestador', async (req, res, next) => {
   } catch (err) {
     console.log(err)
   }
-  
 });
 
 router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => {
@@ -173,6 +173,20 @@ router.get('/solicitar-servico', seUsuarioLogado, (req, res, next) => {
 router.get('/solicitar-servico-eletricista', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+});
+
+router.post('/solicitar-servico-eletricista', async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
+  try {
+    const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
+    console.log(pedidoCriado)
+    req.session.order = pedidoCriado
+    console.log(req.session.order)
+    res.status(201).redirect('/dashboard-pedidos-tomador')
+  } catch (err) {
+    console.log(err)
+  }
 });
 
 /* Nova solicitação - Encanador */

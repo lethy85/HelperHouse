@@ -5,7 +5,8 @@ module.exports = {
     await queryInterface.bulkInsert('pedidos', [
       {
         descricao_residencia: "Casa",
-        descricaLocalo_demanda: "Conserto de dois canos na na cozinha da residência",
+        descricao_demanda: "Manutenção",
+        descricao_solicitacao: "Conserto de dois canos na na cozinha da residência",
         endereco: "Rua Amália Prado, 75 Itapipoca, Belo Horizonte",
         status_id: 1,
         prestador_id:1 , 
@@ -14,7 +15,8 @@ module.exports = {
       },
       {
         descricao_residencia: "Casa",
-        descricaLocalo_demanda: "Pintura de 6 cômodos de residência, somando 210 m² de parede",
+        descricao_demanda: "Reforma",
+        descricao_solicitacao: "Pintura de 6 cômodos de residência, somando 210 m² de parede",
         endereco: "Rua da Rossinha, 25 Valinhos, Belo Horizonte",
         status_id: 2,
         prestador_id:2 , 
@@ -23,7 +25,8 @@ module.exports = {
       },
       {
         descricao_residencia: "Apartamento",
-        descricaLocalo_demanda: "Intalação de 8 tomadas em 2 cômodos d residência",
+        descricao_demanda: "Manutenção",
+        descricao_solicitacao: "Intalação de 8 tomadas em 2 cômodos d residência",
         endereco: "Rua da Salinha, 210 Cascavel, Belo Horizonte",
         status_id: 3,
         prestador_id:3 , 

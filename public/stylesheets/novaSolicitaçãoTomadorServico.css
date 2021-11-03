@@ -195,3 +195,7 @@ textarea {
     align-items: center;
 }
 
+#endereco-form .form-group {
+    width: 100%;
+    text-align: center;
+}

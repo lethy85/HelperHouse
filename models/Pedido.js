@@ -1,19 +1,15 @@
-const { Pedidos } = require('../database/models');
+const { Pedido } = require('../database/models');
 
-const PedidosModel = {
-  findById: (id) => Pedidos.findByPk(id),
-  findAll: () => Pedidos.findAll(),
-  criarUmPedido: ({ descricao_residencia, descricaLocalo_demanda, endereco}) => Pedidos.create({ descricao_residencia, descricaLocalo_demanda, endereco}),
-  update: (id, { descricao_residencia, descricaLocalo_demanda, endereco }) => {
-    return Pedidos.update({
-        
-        descricao_residencia,
-        descricaLocalo_demanda,
-        endereco
-
-    }, { where: { id } });
+const PedidoModel = {
+  findById: (id) => Pedido.findByPk(id),
+  findAll: () => Pedido.findAll(),
+  criarUmPedido: async ({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
+    return await Pedido.create({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id })
   },
-  destroy: (id) => Pedidos.destroy({ where: { id } })
+  update: async (id, { descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
+    return await Pedido.update({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }, { where: { id } });
+  },
+  destroy: (id) => Pedido.destroy({ where: { id } })
 };
 
-module.exports = PedidosModel;
+module.exports = PedidoModel;
