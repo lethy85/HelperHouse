@@ -38,30 +38,33 @@
                       </div>
                         <div class="formulario-solicitacao">
                           <section >
-                            <div>
+                            <div>                              
                               <label for="">TIPO DE RESIDÊNCIA</label><br>
-                                <div>
-                                  <input type="radio" name="tipo-residencia" id="casa">
-                                  <label for="casa">Casa</label><br>
-                                  <input type="radio" name="tipo-residencia" id="apartamento">
-                                  <label for="apartamento">Apartamento</label> <br>
-                                </div>
-                                <label for="">TIPO DE DEMANDA</label>
-                                <div>
-                                  <input type="radio" name="tipo-demanda" id="manutencao">
-                                  <label for="manutencao">Manutenção</label><br>
-                                  <input type="radio" name="tipo-demanda" id="reforma">
-                                  <label for="reforma">Reforma</label> <br>             
-                                </div>
+                              <div>
+                                <select required name="residência" >
+                                  <option value="tipo" disabled selected>Selecione</option>
+                                  <option value="casa">Casa</option>
+                                  <option value="ap">Apartamento</option>
+                                </select>                                  
+                                 <br>
+                              </div>
+                              <label for="">TIPO DE DEMANDA</label>
+                              <div>
+                                <select name="demanda" required>
+                                  <option value="tipo" disabled selected>Selecione</option>
+                                  <option value="manutencao">Menutenção</option>
+                                  <option value="reforma">Reforma</option>
+                                </select>              
+                              </div>
                             </div>
                           </section>                 
                           <section class ="caixa-dialogo">
                             <label for="caixa-dialogo">Descrição da Solicitação</label>
                             <textarea id="caixa-dialogo" name="caixa-dialogo" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui"></textarea> 
-                            <div class="botaoServico">
-                              <a href="/cadastro-tomador-servico">
-                                Prosseguir
-                                </a>
+                            <div >
+                              <a href="/dashboard-pedidos-tomador">
+                                <button class="botaoServico" type="submit" id="enviar">Prosseguir</button>
+                              </a>
                             </div>
                           </section > 
                         </div>
