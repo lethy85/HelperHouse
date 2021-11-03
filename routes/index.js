@@ -188,6 +188,48 @@ router.post('/solicitar-servico-eletricista', async (req, res, next) => {
     console.log(err)
   }
 });
+/* Nova solicitação - Eletricista */
+
+router.get('/solicitar-servico-eletricista', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+});
+
+router.post('/solicitar-servico-eletricista', async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
+  try {
+    const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
+    console.log(pedidoCriado)
+    req.session.order = pedidoCriado
+    console.log(req.session.order)
+    res.status(201).redirect('/dashboard-pedidos-tomador')
+  } catch (err) {
+    console.log(err)
+  }
+});
+/* Nova solicitação - Eletricista */
+
+router.get('/solicitar-servico-eletricista', seUsuarioLogado, (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+});
+
+router.post('/solicitar-servico-eletricista', async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
+  try {
+    const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
+    console.log(pedidoCriado)
+    req.session.order = pedidoCriado
+    console.log(req.session.order)
+    res.status(201).redirect('/dashboard-pedidos-tomador')
+  } catch (err) {
+    console.log(err)
+  }
+});
+
+
 
 /* Nova solicitação - Encanador */
 
@@ -196,12 +238,40 @@ router.get('/solicitar-servico-encanador', seUsuarioLogado, (req, res, next) => 
   res.render('solicitar-servico-encanador', { title: 'Solicitar Encanador', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
+router.post('/solicitar-servico-encanador', async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
+  try {
+    const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
+    console.log(pedidoCriado)
+    req.session.order = pedidoCriado
+    console.log(req.session.order)
+    res.status(201).redirect('/dashboard-pedidos-tomador')
+  } catch (err) {
+    console.log(err)
+  }
+});
 
+
+/* Nova solicitação - Pintor */
 router.get('/solicitar-servico-pintor', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('solicitar-servico-pintor', { title: 'Solicitar Pintor', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
+router.post('/solicitar-servico-pintor', async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
+  try {
+    const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
+    console.log(pedidoCriado)
+    req.session.order = pedidoCriado
+    console.log(req.session.order)
+    res.status(201).redirect('/dashboard-pedidos-tomador')
+  } catch (err) {
+    console.log(err)
+  }
+});
 
 router.get('/criar-conta', (req, res, next) => {
   res.render('criar-conta', { title: 'Tipo de Conta', logged: false, style: 'cadastro-parceiro' });
