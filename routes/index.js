@@ -158,7 +158,7 @@ router.post('/minha-conta-prestador', async (req, res, next) => {
 
 router.get('/dashboard-pedidos-prestador', seUsuarioLogado, async (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  const pedidos = await PedidosController.listarTodosPorTomadorEServico({ tomador_id: 1, servico_id: usuario.servico_id })
+  const pedidos = await PedidosController.listarTodosPorPrestadorEServico({ prestador_id: 1, servico_id: usuario.servico_id })
   const status = await StatusController.listarTodos()
   res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
 });
@@ -169,6 +169,20 @@ router.get('/dashboard-prestador-pedido/:id', seUsuarioLogado, async (req, res, 
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   const pedido = await PedidosController.buscarPedidoPeloId(id)
   res.render('dashboard-prestador-pedido', { title: 'Dashboard Prestador - Pedido', logged, usuario, pedido, style: 'dashboard-tomador-pedido' });
+});
+
+/* Aceitar Serviço */
+router.post('/dashboard-prestador-pedido/:id', seUsuarioLogado, async (req, res, next) => {
+  const { id } = req.params
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { prestador_id } = req.body
+  try {
+    const edit = await PedidosController.inserirPrestadorPedido({ id, prestador_id })
+    console.log(edit)
+    res.redirect('/dashboard-pedidos-prestador')
+  } catch (error) {
+    console.log(error) 
+  }
 });
 
 

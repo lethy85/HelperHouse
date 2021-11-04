@@ -47,9 +47,9 @@
             </div>
             <div class="info-personal">
               
-                <p><b>Nome Completo</b>: <%= pedido.nome + ' ' + pedido.sobrenome %> </p>
-                <i>Localização: <%= pedido.cep %></i>
-                <p>Na plataforma desde <%= pedido.data_inicio %>  </p>
+                <p><b>Nome Completo</b>: <%= prestador.nome + ' ' + prestador.sobrenome %></p>
+                <i>Localização: <%= prestador.cep %></i>
+                <p>Na plataforma desde <%= prestador.data_inicio.split('-')[0] %>  </p>
                 <p><b>Serviço Prestado</b></p>
                 <span><%= servico.descricao_servico %> </span>
             </div>

@@ -13,14 +13,17 @@ const PedidoController = {
   listarTodosPorTomador: async ({ tomador_id }) => {
     return await PedidoModel.buscarPedidosPorTomador({ tomador_id })
   },
-  listarTodosPorTomadorEServico: async ({ tomador_id, servico_id }) => {
-    return await PedidoModel.buscarPedidosPorTomadorEServico({ tomador_id, servico_id })
+  listarTodosPorPrestadorEServico: async ({ prestador_id, servico_id }) => {
+    return await PedidoModel.buscarPedidosPorPrestadorEServico({ prestador_id, servico_id })
   },
   criarUmPedido: async ({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
     return await PedidoModel.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id })
   },
   editarUmPedido: ({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
     return PedidoModel.update(id, { descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id });
+  },
+  inserirPrestadorPedido: async ({ id, prestador_id }) => {
+    return await PedidoModel.updatePrestador(id, { prestador_id })
   },
   deletarUmPedido: (id) => PedidoModel.destroy(id),
 };
