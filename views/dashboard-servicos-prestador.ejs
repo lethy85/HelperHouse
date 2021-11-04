@@ -21,7 +21,7 @@
               <% pedidos.forEach((pedido, i) => { %>
                 <li>
                   <div>
-                    <h3>Pedido <%= i + 1 %> - ID - <%= pedido.id %></h3>
+                    <h3>Pedido <%= i + 1 %> (ID: <%= pedido.id %>)</h3>
                   </div>
                   <div class="order-box selected" id="<%= pedido.status_id %> ">
                     <h4>STATUS: <%= status.filter(item => item.id === pedido.status_id)[0].tipo_status %> </h4>

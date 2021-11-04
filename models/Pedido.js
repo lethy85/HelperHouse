@@ -11,8 +11,8 @@ const PedidoModel = {
   criarUmPedido: async ({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
     return await Pedido.create({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id })
   },
-  update: async (id, { descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
-    return await Pedido.update({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }, { where: { id } });
+  updateStatus: async (id, { status_id }) => {
+    return await Pedido.update({ status_id }, { where: { id } });
   },
   updatePrestador: async (id, { prestador_id }) => {
     return await Pedido.update({

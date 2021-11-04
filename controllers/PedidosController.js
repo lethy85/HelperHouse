@@ -19,8 +19,8 @@ const PedidoController = {
   criarUmPedido: async ({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
     return await PedidoModel.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id })
   },
-  editarUmPedido: ({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
-    return PedidoModel.update(id, { descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id });
+  editarStatusPedido: ({ id, status_id }) => {
+    return PedidoModel.updateStatus(id, { status_id });
   },
   inserirPrestadorPedido: async ({ id, prestador_id }) => {
     return await PedidoModel.updatePrestador(id, { prestador_id })

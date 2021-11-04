@@ -285,6 +285,21 @@ router.get('/dashboard-tomador-pedido/:id', seUsuarioLogado, async (req, res, ne
   res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged, usuario, pedido, prestador, status, servico, style: 'dashboard-tomador-pedido' });
 });
 
+/* Ação no Pedido */
+router.post('/dashboard-tomador-pedido/:id', async (req, res, next) => {
+  const { id } = req.params
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const { status_id } = req.body
+  console.log(status_id)
+  try {
+    const editOrder = await PedidosController.editarStatusPedido({ id, status_id })
+    console.log(editOrder)
+    res.redirect('/dashboard-pedidos-tomador')
+  } catch (error) {
+    console.log(error) 
+  }
+});
+
 /* Criar Conta Por Tipo */
 
 router.get('/criar-conta', (req, res, next) => {

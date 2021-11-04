@@ -43,7 +43,7 @@
         <div class="row">
           <div class="professional col-12 col-lg-6">
             <div class="image">
-              <img src="images/worker.png" alt="Perfil Trabalhador">
+              <img src="<%= prestador.imagem_perfil %> " alt="Perfil Trabalhador">
             </div>
             <div class="info-personal">
               
@@ -56,8 +56,16 @@
           </div>
 
           <div class="action-order col-12 col-lg-6">
-            <a href="javascript;:" class="approved">Aprovar</a>
-            <a href="javascript;:" class="rejected">Recusar</a>
+            <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
+              <input type="hidden" name="status_id" value="2">
+              <button type="submit" class="approved">Aprovar</button>
+            </form>
+
+            <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
+              <input type="hidden" name="status_id" value="3">
+              <button type="submit" class="rejected">Recusar</button>
+            </form>
+            
           </div>
         </div>
       </section>

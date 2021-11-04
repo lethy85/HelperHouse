@@ -49,6 +49,14 @@ a {
   color: white;
 }
 
+#status-2 {
+  color: #34f52e !important
+}
+
+#status-3 {
+  color: #e20909 !important
+}
+
 .display-pedidos ul h3 {
   padding: 8px;
   margin-top: 16px;
