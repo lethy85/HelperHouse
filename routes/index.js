@@ -154,14 +154,7 @@ router.post('/minha-conta-prestador', async (req, res, next) => {
   }
 });
 
-/* Listar Pedidos Tomador */
-
-router.get('/dashboard-pedidos-tomador', seUsuarioLogado, async (req, res, next) => {
-  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  const pedidos = await PedidosController.listarTodosPorTomador({ tomador_id: usuario.id })
-  const status = await StatusController.listarTodos()
-  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
-});
+/* Listar Pedidos Prestador */
 
 router.get('/dashboard-pedidos-prestador', seUsuarioLogado, async (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
@@ -170,10 +163,14 @@ router.get('/dashboard-pedidos-prestador', seUsuarioLogado, async (req, res, nex
   res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
 });
 
-router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, (req, res, next) => {
+/* Mostrar Detalhes do Pedido Prestador */
+router.get('/dashboard-prestador-pedido/:id', seUsuarioLogado, async (req, res, next) => {
+  const { id } = req.params
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('dashboard-pedidos-prestador-status', { title: 'Dashboard Prestador - Status', logged, usuario, style: "dashboard-pedidos-prestador-status" });
+  const pedido = await PedidosController.buscarPedidoPeloId(id)
+  res.render('dashboard-prestador-pedido', { title: 'Dashboard Prestador - Pedido', logged, usuario, pedido, style: 'dashboard-tomador-pedido' });
 });
+
 
 /* Nova solicitação */
 
@@ -262,10 +259,6 @@ router.get('/dashboard-tomador-pedido/:id', seUsuarioLogado, async (req, res, ne
   const prestador = await PrestadoresController.buscarPrestadorPeloId(pedido.prestador_id)
   const status = await StatusController.buscarStatusPeloId(pedido.status_id)
   const servico = await ServicosController.buscarServicoPorId(pedido.servico_id)
-  console.log(pedido)
-  console.log(prestador)
-  console.log(status)
-  console.log(servico)
   res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged, usuario, pedido, prestador, status, servico, style: 'dashboard-tomador-pedido' });
 });
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container">
+      <section id="order-summary">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div class="info-pedido">
+                      <div class="numero-pedido"> <span>Pedido <%= pedido.id %> </span></div>
+                      <div class="detalhes-pedido"><span>Detalhes do Pedido</span></div>
+                    </div>
+                  </button>
+                </h5>
+              </div>
+          
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  <div class="row">
+                    <div id="detalhes" class="col-12 col-lg-4">
+                     <p>
+                      <strong>Tipo de residência</strong> : <%= pedido.descricao_residencia %> 
+                     </p>
+                     <p><strong>Tipo de demanda</strong> : <%= pedido.descricao_demanda %> </p>
+                     <p><strong>Tipo de serviço</strong> : <%= pedido.descricao_solicitacao %> </p>
+                     <p><strong>Local</strong> : <%= pedido.endereco %> </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </section>
+      <section id="information">
+        <div class="row">
+          <div class="action-order col-12">
+            <form action="/dashboard-prestador-pedido/<%= pedido.id %> " method="POST">
+              <input type="hidden" name="tomador_id" value="<%= usuario.id %>">
+              <button class="approved" type="submit">
+                Aceitar Serviço
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <%- include('./partials/footer') %>
+  </body>
+</html>
