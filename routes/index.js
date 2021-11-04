@@ -154,9 +154,20 @@ router.post('/minha-conta-prestador', async (req, res, next) => {
   }
 });
 
-router.get('/dashboard-pedidos-prestador', seUsuarioLogado, (req, res, next) => {
+/* Listar Pedidos Tomador */
+
+router.get('/dashboard-pedidos-tomador', seUsuarioLogado, async (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged, usuario, style: 'dashboard-pedidos-prestador' });
+  const pedidos = await PedidosController.listarTodosPorTomador({ tomador_id: usuario.id })
+  const status = await StatusController.listarTodos()
+  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
+});
+
+router.get('/dashboard-pedidos-prestador', seUsuarioLogado, async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const pedidos = await PedidosController.listarTodosPorTomadorEServico({ tomador_id: 1, servico_id: usuario.servico_id })
+  const status = await StatusController.listarTodos()
+  res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
 });
 
 router.get('/dashboard-pedidos-prestador-status', seUsuarioLogado, (req, res, next) => {

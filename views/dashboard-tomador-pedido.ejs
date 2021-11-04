@@ -38,6 +38,7 @@
           </div>
         
       </section>
+      <% if (prestador.id !== 1) { %>
       <section id="information">
         <div class="row">
           <div class="professional col-12 col-lg-6">
@@ -45,21 +46,26 @@
               <img src="images/worker.png" alt="Perfil Trabalhador">
             </div>
             <div class="info-personal">
-              <% if (prestador.id !== 1) { %>
+              
                 <p><b>Nome Completo</b>: <%= pedido.nome + ' ' + pedido.sobrenome %> </p>
-                <i>Localização: Santos</i>
-                <p>Na plataforma desde 2011</p>
-                <p><b>Serviços Prestados</b></p>
-                <span>Pintura Interna e Pintura Externa</span>
-              <% } %>
+                <i>Localização: <%= pedido.cep %></i>
+                <p>Na plataforma desde <%= pedido.data_inicio %>  </p>
+                <p><b>Serviço Prestado</b></p>
+                <span><%= servico.descricao_servico %> </span>
             </div>
           </div>
+
           <div class="action-order col-12 col-lg-6">
             <a href="javascript;:" class="approved">Aprovar</a>
             <a href="javascript;:" class="rejected">Recusar</a>
           </div>
         </div>
       </section>
+      <% } else { %>
+        <p>
+          Serviço ainda não foi aceito por um prestador
+        </p>
+     <% } %>
     </main>
     <%- include('./partials/footer') %>
   </body>

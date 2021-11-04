@@ -5,45 +5,34 @@
   </head>
   <body>
     <%- include('./partials/header') %>
-    <main class="container" id="dashboard-pedidos-prestador">
-      <section id="title">
+    <main class="container" id="dashboard-pedidos-tomador">
+      <section>
         <div>
-            <h2 class="section-title">
-                Confira abaixo seus pedidos:
-            </h2>
-        </div>
-        </section>
-        <section class="subtitle">
-        <div>
-            <h5>Pedidos próximos ao CEP:  22795090 </h5>
+          <h1 class="title-h1">PRESTADOR DE SERVIÇO</h1>
+          <h2 class="title-h2">
+            Confira abaixo o andamento das suas solicitações:
+          </h2>
         </div>
       </section>
-      <section id= "display">
-        </div>
+      <section>
         <div class="display-pedidos">
-        <ul>
-          <lo>
-            <div class="container-secundario">
-              <h3>
-                Pedido 1
-              </h3>
-              <div class ="button">
-                <a href="javascript:void(0)">Detalhes Pedido</a>
-              </div>
-            </div>
-            </lo>
-          <lo>
-            <div class="container-secundario">
-              <h3>
-                Pedido 2
-              </h3>
-              <div class ="button">
-                <a href="javascript:void(0)">Detalhes Pedido</a>
-              </div>
-            </div>
-            </lo>
-                 
-        </ul>
+          <ul>
+            <% if (pedidos.length && typeof pedidos !== 'undefined') { %>
+              <% pedidos.forEach((pedido, i) => { %>
+                <li>
+                  <div>
+                    <h3>Pedido <%= i + 1 %> </h3>
+                  </div>
+                  <div class="order-box selected" id="<%= pedido.status_id %> ">
+                    <h4>STATUS: <%= status.filter(item => item.id === pedido.status_id)[0].tipo_status %> </h4>
+                    <a href="/dashboard-tomador-pedido/<%= pedido.id %> ">
+                      <div class="button">Detalhes do Pedido</div>
+                    </a>
+                  </div>
+                </li>
+             <% }) %> 
+            <% } %>
+          </ul>
         </div>
       </section>
     </main>
