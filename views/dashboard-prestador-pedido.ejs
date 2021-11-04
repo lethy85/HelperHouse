@@ -43,9 +43,13 @@
           <div class="action-order col-12">
             <form action="/dashboard-prestador-pedido/<%= pedido.id %> " method="POST">
               <input type="hidden" name="prestador_id" value="<%= usuario.id %>">
-              <button class="approved" type="submit">
-                Aceitar Serviço
-              </button>
+              <% if (pedido.prestador_id === 1) { %>
+                <button class="approved" type="submit">
+                  Aceitar Serviço
+                </button>
+              <% } else { %>
+                <p>Pedido aceito pelo prestador</p>
+             <% } %>
             </form>
           </div>
         </div>

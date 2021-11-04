@@ -163,6 +163,15 @@ router.get('/dashboard-pedidos-prestador', seUsuarioLogado, async (req, res, nex
   res.render('dashboard-pedidos-prestador', { title: 'Dashboard Prestador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
 });
 
+/* Listar Servicos Prestador */
+
+router.get('/dashboard-servicos-prestador', seUsuarioLogado, async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const pedidos = await PedidosController.listarTodosPorPrestadorEServico({ prestador_id: usuario.id, servico_id: usuario.servico_id })
+  const status = await StatusController.listarTodos()
+  res.render('dashboard-servicos-prestador', { title: 'Dashboard Prestador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
+});
+
 /* Mostrar Detalhes do Pedido Prestador */
 router.get('/dashboard-prestador-pedido/:id', seUsuarioLogado, async (req, res, next) => {
   const { id } = req.params
