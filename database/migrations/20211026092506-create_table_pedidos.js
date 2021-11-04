@@ -13,6 +13,10 @@ module.exports = {
         type:Sequelize.STRING(45), 
         allowNull: false
       },
+      price: {
+        type:Sequelize.DECIMAL(4,2), 
+        allowNull: true
+      },
       descricao_demanda: {
         type:Sequelize.STRING(45), 
         allowNull: false

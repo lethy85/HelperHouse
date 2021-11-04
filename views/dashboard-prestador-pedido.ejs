@@ -44,6 +44,8 @@
             <form action="/dashboard-prestador-pedido/<%= pedido.id %> " method="POST">
               <input type="hidden" name="prestador_id" value="<%= usuario.id %>">
               <% if (pedido.prestador_id === 1) { %>
+                <label for="price">Valor do orçamento</label>
+                <input type="text" id="price" name="price">
                 <button class="approved" type="submit">
                   Aceitar Serviço
                 </button>

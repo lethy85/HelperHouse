@@ -126,10 +126,9 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
     const dateInit = new Date().toLocaleDateString().replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, "$3-$2-$1")
     const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, data_inicio: dateInit, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
     usuario.senha = ''
-    usuario.cpf_cnpj = ''
     usuario.imagem_identidade = ''
     req.session.user = usuario
-    res.status(201).redirect('/assinatura-de-plano')
+    res.status(201).redirect('/plano')
   } catch (err) {
     res.render("cadastro-prestador", { message: err.message, logged: false, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
   }
@@ -184,11 +183,11 @@ router.get('/dashboard-prestador-pedido/:id', seUsuarioLogado, async (req, res, 
 router.post('/dashboard-prestador-pedido/:id', seUsuarioLogado, async (req, res, next) => {
   const { id } = req.params
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  const { prestador_id } = req.body
+  const { prestador_id, price } = req.body
   try {
-    const edit = await PedidosController.inserirPrestadorPedido({ id, prestador_id })
+    const edit = await PedidosController.inserirPrestadorPedido({ id, prestador_id, price: Number(price) })
     console.log(edit)
-    res.redirect('/dashboard-pedidos-prestador')
+    res.redirect('/dashboard-servicos-prestador')
   } catch (error) {
     console.log(error) 
   }

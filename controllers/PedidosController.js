@@ -22,8 +22,8 @@ const PedidoController = {
   editarStatusPedido: ({ id, status_id }) => {
     return PedidoModel.updateStatus(id, { status_id });
   },
-  inserirPrestadorPedido: async ({ id, prestador_id }) => {
-    return await PedidoModel.updatePrestador(id, { prestador_id })
+  inserirPrestadorPedido: async ({ id, prestador_id, price }) => {
+    return await PedidoModel.updatePrestador(id, { prestador_id, price })
   },
   deletarUmPedido: (id) => PedidoModel.destroy(id),
 };

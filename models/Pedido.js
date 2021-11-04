@@ -14,9 +14,10 @@ const PedidoModel = {
   updateStatus: async (id, { status_id }) => {
     return await Pedido.update({ status_id }, { where: { id } });
   },
-  updatePrestador: async (id, { prestador_id }) => {
+  updatePrestador: async (id, { prestador_id, price }) => {
     return await Pedido.update({
-      prestador_id
+      prestador_id,
+      price
     }, { where: { id } })
   },
   destroy: (id) => Pedido.destroy({ where: { id } })
