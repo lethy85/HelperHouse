@@ -13,7 +13,7 @@
                 <h5 class="mb-0">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <div class="info-pedido">
-                      <div class="numero-pedido"> <span>Pedido 01 - Profissional Encontrado</span></div>
+                      <div class="numero-pedido"> <span>Pedido <%= pedido.id %> </span></div>
                       <div class="detalhes-pedido"><span>Detalhes do Pedido</span></div>
                     </div>
                   </button>
@@ -25,15 +25,11 @@
                   <div class="row">
                     <div id="detalhes" class="col-12 col-lg-4">
                      <p>
-                      <strong>Tipo de residência</strong> : Casa
+                      <strong>Tipo de residência</strong> : <%= pedido.descricao_residencia %> 
                      </p>
-                     <p><strong>Tipo de demanda</strong> : Manutenção/ Pintura</p>
-                     <p><strong>Tipo de serviço</strong> : Externa</p>
-                     <p><strong>Local</strong> : Santos</p>
-                    </div>
-                    <div class="col-12 col-lg-8">
-                      <p>xxxxxx</p>
-                      <p>xxxxxxxxxx</p>
+                     <p><strong>Tipo de demanda</strong> : <%= pedido.descricao_demanda %> </p>
+                     <p><strong>Tipo de serviço</strong> : <%= pedido.descricao_solicitacao %> </p>
+                     <p><strong>Local</strong> : <%= pedido.endereco %> </p>
                     </div>
                   </div>
                 </div>
@@ -49,11 +45,13 @@
               <img src="images/worker.png" alt="Perfil Trabalhador">
             </div>
             <div class="info-personal">
-              <p><b>Nome Completo</b>: Joaquim Fernando Da Silva</p>
-              <i>Localização: Santos</i>
-              <p>Na plataforma desde 2011</p>
-              <p><b>Serviços Prestados</b></p>
-              <span>Pintura Interna e Pintura Externa</span>
+              <% if (prestador.id !== 1) { %>
+                <p><b>Nome Completo</b>: <%= pedido.nome + ' ' + pedido.sobrenome %> </p>
+                <i>Localização: Santos</i>
+                <p>Na plataforma desde 2011</p>
+                <p><b>Serviços Prestados</b></p>
+                <span>Pintura Interna e Pintura Externa</span>
+              <% } %>
             </div>
           </div>
           <div class="action-order col-12 col-lg-6">

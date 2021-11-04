@@ -21,6 +21,10 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: 'servico_id',
             as: 'pedidos'
         });
+        Servico.hasMany(models.Prestador, {
+            foreignKey: 'servico_id',
+            as: 'prestadores'
+        });
     }
 
     return Servico;

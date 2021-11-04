@@ -242,6 +242,21 @@ router.get('/dashboard-pedidos-tomador', seUsuarioLogado, async (req, res, next)
   res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
 });
 
+/* Mostrar Detalhes do Pedido */
+router.get('/dashboard-tomador-pedido/:id', seUsuarioLogado, async (req, res, next) => {
+  const { id } = req.params
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const pedido = await PedidosController.buscarPedidoPeloId(id)
+  const prestador = await PrestadoresController.buscarPrestadorPeloId(pedido.prestador_id)
+  const status = await StatusController.buscarStatusPeloId(pedido.status_id)
+  const servico = await ServicosController.buscarServicoPorId(pedido.servico_id)
+  console.log(pedido)
+  console.log(prestador)
+  console.log(status)
+  console.log(servico)
+  res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged, usuario, pedido, prestador, status, servico, style: 'dashboard-tomador-pedido' });
+});
+
 /* Criar Conta Por Tipo */
 
 router.get('/criar-conta', (req, res, next) => {
@@ -256,13 +271,6 @@ router.get('/assinatura-de-plano', seUsuarioLogado, (req, res, next) => {
 router.get('/escolha-de-plano', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   res.render('escolha-plano', { title: 'Escolher Plano', logged, usuario, style: 'cadastro-parceiro' });
-});
-
-
-
-router.get('/dashboard-tomador-pedido', seUsuarioLogado, (req, res, next) => {
-  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('dashboard-tomador-pedido', { title: 'Dashboard Tomador - Pedido', logged, usuario, style: 'dashboard-tomador-pedido' });
 });
 
 module.exports = router;
