@@ -1,9 +1,9 @@
-const { Servicos } = require('../database/models');
+const { Servico } = require('../database/models');
 
-const ServicosModel = {
+const ServicoModel = {
 
-  findAll: () => Servicos.findAll()
+  findAll: () => Servico.findAll().then((rows) => rows.map((row) => row.dataValues))
   
 };
 
-module.exports = ServicosModel;
+module.exports = ServicoModel;

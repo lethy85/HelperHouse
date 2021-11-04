@@ -1,3 +1,3 @@
-const { findAll } = require('../models/servico');
+const { findAll } = require('../models/Servico');
 
 exports.listarTodos = () => findAll();

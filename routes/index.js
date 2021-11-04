@@ -1,7 +1,9 @@
 const express = require('express');
 const PrestadoresController = require('../controllers/PrestadoresController');
 const TomadoresController = require('../controllers/TomadoresController');
-const PedidosController = require('../controllers/PedidosController')
+const PedidosController = require('../controllers/PedidosController');
+const StatusController = require('../controllers/StatusController');
+const ServicosController = require('../controllers/ServicosController');
 const seUsuarioLogado = require('../middlewares/verificarSeUsuarioLogado');
 const usuarioLogado = require('../middlewares/retornarUsuarioLogado');
 const multer = require('multer');
@@ -231,6 +233,17 @@ router.post('/solicitar-servico-pintor', async (req, res, next) => {
   }
 });
 
+/* Listar Pedidos Tomador */
+
+router.get('/dashboard-pedidos-tomador', seUsuarioLogado, async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  const pedidos = await PedidosController.listarTodosPorTomador({ tomador_id: usuario.id })
+  const status = await StatusController.listarTodos()
+  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged, usuario, pedidos, status, style: 'dashboard-pedidos-tomador' });
+});
+
+/* Criar Conta Por Tipo */
+
 router.get('/criar-conta', (req, res, next) => {
   res.render('criar-conta', { title: 'Tipo de Conta', logged: false, style: 'cadastro-parceiro' });
 });
@@ -245,10 +258,7 @@ router.get('/escolha-de-plano', seUsuarioLogado, (req, res, next) => {
   res.render('escolha-plano', { title: 'Escolher Plano', logged, usuario, style: 'cadastro-parceiro' });
 });
 
-router.get('/dashboard-pedidos-tomador', seUsuarioLogado, (req, res, next) => {
-  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('dashboard-pedidos-tomador', { title: 'Dashboard Tomador', logged, usuario, style: 'dashboard-pedidos-tomador' });
-});
+
 
 router.get('/dashboard-tomador-pedido', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)

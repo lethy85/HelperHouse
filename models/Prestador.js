@@ -5,7 +5,7 @@ const PrestadorModel = {
     return await Prestador.findOne({ where:{ email }})
   },
   findById: (id) => Prestador.findByPk(id),
-  findAll: () => Prestador.findAll(),
+  findAll: () => Prestador.findAll().then((rows) => rows.map((row) => row.dataValues)),
   criarUmPrestador: async ({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id }) => {
     console.log({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id })
     return await Prestador.create({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id })

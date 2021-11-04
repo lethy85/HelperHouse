@@ -1,9 +1,9 @@
-const { Planos } = require('../database/models');
+const { Plano } = require('../database/models');
 
-const PlanosModel = {
+const PlanoModel = {
 
-  findAll: () => Planos.findAll()
+  findAll: () => Plano.findAll().then((rows) => rows.map((row) => row.dataValues))
   
 };
 
-module.exports = PlanosModel;
+module.exports = PlanoModel;

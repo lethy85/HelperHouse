@@ -10,7 +10,9 @@ const PedidoController = {
       return res.status(400).json({ error });
     }
   },
-  listarTodos: () => PedidoModel.findAll(),
+  listarTodosPorTomador: async ({ tomador_id }) => {
+   return await PedidoModel.buscarPedidosPorTomador({ tomador_id })
+  },
   criarUmPedido: async ({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id }) => {
     return await PedidoModel.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id })
   },
