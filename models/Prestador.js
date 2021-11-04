@@ -7,7 +7,6 @@ const PrestadorModel = {
   findById: (id) => Prestador.findByPk(id),
   findAll: () => Prestador.findAll().then((rows) => rows.map((row) => row.dataValues)),
   criarUmPrestador: async ({ nome, sobrenome, email, data_inicio, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id, servico_id }) => {
-    console.log({ nome, sobrenome, email, cep, cpf_cnpj, data_inicio, telefone, senha, imagem_perfil, imagem_identidade, plano_id, servico_id })
     return await Prestador.create({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id, servico_id, data_inicio })
    },
   update: async (id, { nome, sobrenome, email, cep, cpf_cnpj, imagem_perfil, senha }) => {

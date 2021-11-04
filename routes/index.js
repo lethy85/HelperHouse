@@ -118,13 +118,13 @@ router.get('/cadastro-prestador', (req, res, next) => {
 });
 
 router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), async (req, res, next) => {
-  const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha } = req.body;
+  const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha, servico_id } = req.body;
   try {
     if (senha !== confsenha) {
       throw new Error("Senhas não conferem!")
     }
     const dateInit = new Date().toLocaleDateString().replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, "$3-$2-$1")
-    const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, data_inicio: dateInit, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
+    const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, servico_id, email, cep, cpf_cnpj, telefone, data_inicio: dateInit, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
     usuario.senha = ''
     usuario.imagem_identidade = ''
     req.session.user = usuario
@@ -185,8 +185,7 @@ router.post('/dashboard-prestador-pedido/:id', seUsuarioLogado, async (req, res,
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   const { prestador_id, price } = req.body
   try {
-    const edit = await PedidosController.inserirPrestadorPedido({ id, prestador_id, price: Number(price) })
-    console.log(edit)
+    await PedidosController.inserirPrestadorPedido({ id, prestador_id, price: Number(price) })
     res.redirect('/dashboard-servicos-prestador')
   } catch (error) {
     console.log(error) 

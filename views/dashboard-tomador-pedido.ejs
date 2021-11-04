@@ -30,6 +30,9 @@
                      <p><strong>Tipo de demanda</strong> : <%= pedido.descricao_demanda %> </p>
                      <p><strong>Tipo de serviço</strong> : <%= pedido.descricao_solicitacao %> </p>
                      <p><strong>Local</strong> : <%= pedido.endereco %> </p>
+                     <% if (pedido.price !== null) { %>
+                      <p><strong>Orçamento</strong> : <%= pedido.price %> </p>
+                     <% } %>
                     </div>
                   </div>
                 </div>

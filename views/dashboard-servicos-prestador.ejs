@@ -31,7 +31,11 @@
                   </div>
                 </li>
              <% }) %> 
-            <% } %>
+            <% }  else { %>
+              <li>
+                <b style="color: red">Nenhum serviço disponível</b>
+              </li>
+          <% } %> %>
           </ul>
         </div>
       </section>
