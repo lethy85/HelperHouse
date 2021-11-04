@@ -306,14 +306,10 @@ router.get('/criar-conta', (req, res, next) => {
   res.render('criar-conta', { title: 'Tipo de Conta', logged: false, style: 'cadastro-parceiro' });
 });
 
-router.get('/assinatura-de-plano', seUsuarioLogado, (req, res, next) => {
+router.get('/plano', seUsuarioLogado, async (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('assinatura-plano', { title: 'Assinar Plano', logged, usuario, style: 'cadastro-parceiro' });
-});
-
-router.get('/escolha-de-plano', seUsuarioLogado, (req, res, next) => {
-  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('escolha-plano', { title: 'Escolher Plano', logged, usuario, style: 'cadastro-parceiro' });
+  const pedidos = await PedidosController.listarTodosPorPrestadorEServico({ prestador_id: usuario.id, servico_id: usuario.servico_id })
+  res.render('plano', { title: 'Plano', logged, usuario, pedidos, style: 'cadastro-parceiro' });
 });
 
 module.exports = router;

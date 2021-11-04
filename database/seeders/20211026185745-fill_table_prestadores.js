@@ -43,7 +43,7 @@ module.exports = {
         imagem_perfil: 'images/perfil-1.png',
         imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('123456'),
-        plano_id: 3,
+        plano_id: 1,
         servico_id: 2
       },
       {
@@ -57,7 +57,7 @@ module.exports = {
         imagem_perfil: 'images/perfil-1.png',
         imagem_identidade: 'images/perfil-1.png',
         senha: bcrypt.hashSync('123456*'),
-        plano_id: 4,
+        plano_id: 1,
         servico_id: 3
       }
     ], {});

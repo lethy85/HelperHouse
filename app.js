@@ -30,6 +30,7 @@ app.use('/uploads/foto', express.static(path.join(__dirname, 'tmp', 'uploads', '
 
 app.use('/', indexRouter);
 app.use('/prestador', prestadorRouter);
+app.use(express.static('public'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

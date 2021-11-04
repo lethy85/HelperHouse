@@ -4,20 +4,12 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('planos', [
       {
-        tipo_plano: 'Plano Indefinido',
+        tipo_plano: 'Assinatura Grátis',
         valor: 0
       },
       {
         tipo_plano: 'Assinatura Basic',
-        valor: 50.00
-      },
-      {
-        tipo_plano: 'Assinatura Intermediate',
-        valor: 70.00
-      },
-      {
-        tipo_plano: 'Assinatura PRO',
-        valor: 90.00
+        valor: 2.00
       }
     ], {});
     

@@ -14,13 +14,63 @@ module.exports = {
         tomador_id: 1
       },
       {
+        descricao_residencia: "Apartamento",
+        descricao_demanda: "Reforma",
+        descricao_solicitacao: "Pintura de 6 cômodos de residência, somando 210 m² de parede",
+        endereco: "Rua Serra, 25 Serra, Belo Horizonte",
+        status_id: 2,
+        prestador_id:2 , 
+        servico_id : 1, 
+        tomador_id: 2
+      },
+      {
         descricao_residencia: "Casa",
+        descricao_demanda: "Reforma",
+        descricao_solicitacao: "Troca de piso",
+        endereco: "Rua da Rossinha, 25 Valinhos, Belo Horizonte",
+        status_id: 2,
+        prestador_id:2 , 
+        servico_id : 1, 
+        tomador_id: 2
+      },
+      {
+        descricao_residencia: "Casa",
+        descricao_demanda: "Manutenção",
+        descricao_solicitacao: "Troca de piso 6m2",
+        endereco: "Rua da Rossinha, 25 Valinhos, Belo Horizonte",
+        status_id: 2,
+        prestador_id:2 , 
+        servico_id : 1, 
+        tomador_id: 2
+      },
+      {
+        descricao_residencia: "Casa",
+        descricao_demanda: "Reforma",
+        descricao_solicitacao: "Pintura de 6 cômodos de residência, somando 210 m² de parede",
+        endereco: "Rua da Albita, 25 Valinhos, Belo Horizonte",
+        status_id: 2,
+        prestador_id:2 , 
+        servico_id : 1, 
+        tomador_id: 2
+      },
+      {
+        descricao_residencia: "Apartamento",
         descricao_demanda: "Reforma",
         descricao_solicitacao: "Pintura de 6 cômodos de residência, somando 210 m² de parede",
         endereco: "Rua da Rossinha, 25 Valinhos, Belo Horizonte",
         status_id: 2,
         prestador_id:2 , 
-        servico_id : 2, 
+        servico_id : 1, 
+        tomador_id: 2
+      },
+      {
+        descricao_residencia: "Casa",
+        descricao_demanda: "Manutenção",
+        descricao_solicitacao: "Pintura de 6 cômodos de residência, somando 210 m² de parede",
+        endereco: "Rua da Rossinha, 25 Valinhos, Belo Horizonte",
+        status_id: 2,
+        prestador_id:2 , 
+        servico_id : 1, 
         tomador_id: 2
       },
       {
