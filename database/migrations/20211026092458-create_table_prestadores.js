@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.STRING(11),
         allowNull: false
       },
+      data_inicio: {
+        type: Sequelize.DATEONLY,
+        allowNull: true
+      },
       email: {
         type: Sequelize.STRING(120),
         allowNull: false,

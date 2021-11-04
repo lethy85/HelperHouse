@@ -28,6 +28,10 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             unique: true
         },
+        data_inicio: {
+            type: DataTypes.DATEONLY,
+            allowNull: true
+        },
         cep: {
             type:DataTypes.STRING(8), 
             allowNull: false

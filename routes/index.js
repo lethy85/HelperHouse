@@ -123,7 +123,8 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
     if (senha !== confsenha) {
       throw new Error("Senhas não conferem!")
     }
-    const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
+    const dateInit = new Date().toLocaleDateString().replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, "$3-$2-$1")
+    const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, data_inicio: dateInit, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
     usuario.senha = ''
     usuario.cpf_cnpj = ''
     usuario.imagem_identidade = ''
@@ -145,8 +146,8 @@ router.post('/minha-conta-prestador', async (req, res, next) => {
   const { usuario } = usuarioLogado.loggedInfo(req.session.user)
   const { nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha } = req.body
   try {
-    await PrestadoresController.editarUmPrestador({ id: usuario.id, nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: usuario.imagem_perfil, imagem_identidade: usuario.imagem_identidade })
-    req.session.user = { id: usuario.id, nome, sobrenome, email, cep, cpf_cnpj, telefone, imagem_perfil: usuario.imagem_perfil }
+    await PrestadoresController.editarUmPrestador({ id: usuario.id, nome, sobrenome, email, data_inicio: usuario.data_inicio, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil: usuario.imagem_perfil, imagem_identidade: usuario.imagem_identidade })
+    req.session.user = { id: usuario.id, nome, sobrenome, email, cep, cpf_cnpj, data_inicio: usuario.data_inicio, telefone, imagem_perfil: usuario.imagem_perfil }
     res.status(201).redirect('/dashboard-pedidos-prestador')
   } catch (err) {
     console.log(err)

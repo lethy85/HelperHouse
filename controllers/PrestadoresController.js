@@ -23,16 +23,14 @@ const PrestadorController = {
     }
   },
   listarTodos: () => PrestadorModel.findAll(),
-  criarUmPrestador: async ({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil, imagem_identidade }) => {
+  criarUmPrestador: async ({ nome, sobrenome, email, cep, cpf_cnpj, data_inicio, telefone, senha, confsenha, imagem_perfil, imagem_identidade }) => {
     if (senha !== confsenha) {
       throw new Error("As senhas não conferem");
     }
     senha = bcrypt.hashSync(senha)
-    console.log({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil, imagem_identidade })
-    console.log({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil, imagem_identidade })
-    return await PrestadorModel.criarUmPrestador({ nome, sobrenome, email, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id: 1 })
+    return await PrestadorModel.criarUmPrestador({ nome, sobrenome, email, data_inicio, cep, cpf_cnpj, telefone, senha, imagem_perfil, imagem_identidade, plano_id: 1, servico_id: 1 })
   },
-  editarUmPrestador: async ({ id, nome, sobrenome, email, cpf_cnpj, cep, imagem_perfil, senha, confsenha }) => {
+  editarUmPrestador: async ({ id, nome, sobrenome, data_inicio, email, cpf_cnpj, cep, imagem_perfil, senha, confsenha }) => {
     if (senha !== confsenha) {
       throw new Error("As senhas não conferem");
     }
@@ -42,6 +40,7 @@ const PrestadorController = {
         sobrenome, 
         email,
         cep, 
+        data_inicio,
         cpf_cnpj,
         imagem_perfil, 
         senha
