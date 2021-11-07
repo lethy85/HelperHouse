@@ -42,16 +42,16 @@
                             <div>
                               <label>TIPO DE RESIDÊNCIA</label><br>
                               <div>
-                                <input type="radio" value="Casa" name="descricao_residencia" id="casa">
+                                <input type="radio" value="Casa" name="descricao_residencia" id="casa" required>
                                 <label for="casa">Casa</label><br>
-                                <input type="radio" value="Apartamento" name="descricao_residencia" id="apartamento">
+                                <input type="radio" value="Apartamento" name="descricao_residencia" id="apartamento" required>
                                 <label for="apartamento">Apartamento</label> <br>
                               </div>
                               <label>TIPO DE DEMANDA</label>
                               <div>
-                                <input type="radio" value="Manutencao" name="descricao_demanda" id="manutencao">
+                                <input type="radio" value="Manutencao" name="descricao_demanda" id="manutencao" required>
                                 <label for="manutencao">Manutenção</label><br>
-                                <input type="radio" value="Reforma" name="descricao_demanda" id="reforma">
+                                <input type="radio" value="Reforma" name="descricao_demanda" id="reforma" required>
                                 <label for="reforma">Reforma</label> <br>             
                               </div>
                             </div>
@@ -67,7 +67,8 @@
                           </section>              
                           <section class ="caixa-dialogo">
                             <label for="caixa-dialogo">Descrição da Solicitação</label>
-                            <textarea id="caixa-dialogo" name="descricao_solicitacao" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui"></textarea> 
+                            <textarea id="caixa-dialogo" name="descricao_solicitacao" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui" minlength="50" maxlength="240" required = "required" oninvalid="this.setCustomValidity('Descrição deve conter entre 50 e 240 caractéres')" 
+                            onchange="try{setCustomValidity('')}catch(e){}" ></textarea> 
                           </section >
                           <div class="botaoServico">
                             <button type="submit" class="btn btn-enviar">Enviar</button>

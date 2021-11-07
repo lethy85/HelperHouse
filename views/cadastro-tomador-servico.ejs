@@ -13,28 +13,35 @@
         <div>
           <form method="POST" action="/cadastro-tomador-servico">
             <div class="form-group">
-              <input required class="form-control" type="text" id="nome" name="nome" placeholder="Nome"  required>
+              <input required class="form-control" type="text" id="nome" name="nome" placeholder="Nome"  maxlength="100" required oninvalid="this.setCustomValidity('Preencha o campo nome somente com letras')" 
+              onchange="try{setCustomValidity('')}catch(e){}" pattern="([a-zA-Z\s])+$"  />
             </div>
             <div class="form-group">
-              <input required class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome"  required>
+              <input required class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome"  maxlength="100" required oninvalid="this.setCustomValidity('Preencha o campo sobrenome somente com letras')" 
+              onchange="try{setCustomValidity('')}catch(e){}" pattern="([a-zA-Z\s])+$"  />
             </div>
             <div class="form-group">
-              <input required class="form-control" type="email" id="email" placeholder="E-mail" name="email"  required>
+              <input required class="form-control" type="email" id="email" placeholder="E-mail" name="email"  maxlength="120" required = required oninvalid="this.setCustomValidity('Formato de email inválido')" 
+              onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
             </div>
             <div class="form-group">
-              <input required class="form-control" type="text" id="cpf" placeholder="CPF" name="cpf"  required>
+              <input required class="form-control" type="text" id="cpf" placeholder="CPF" name="cpf"  minlength="11" maxlength="11" required = required oninvalid="this.setCustomValidity('O campo cpf deve conter somente números com 11 dígitos.')" 
+              onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" />
             </div>
             <div class="form-group">
-              <input required class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required> 
+              <input required class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required="required" minlength="10" maxlength="11" required = required oninvalid="this.setCustomValidity('O campo telefone deve conter somente numeros, com o DDD incluso')" 
+              onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$"/> 
             </div>
             <div class="form-group">
               <input required class="form-control" type="text" id="endereco" placeholder="Rua Santo, Bairro Fulano, n 38, apt 301, Belo Horizonte, MG, cep 30140072" name="endereco"  required> 
             </div>
             <div class="form-group">
-              <input required class="form-control" type="password" id="senha" placeholder="Senha" name="senha"  required>
+              <input required class="form-control" type="password" id="senha" placeholder="Senha" name="senha"  minlength="6" maxlength="16" required = required oninvalid="this.setCustomValidity('A senha deve conter no mínimo 6 e no máximo 16 dígitos')" 
+              onchange="try{setCustomValidity('')}catch(e){}" />
             </div>
             <div class="form-group">
-              <input required class="form-control" type="password" id="confsenha" placeholder="Confirme sua senha" name="confsenha"  required>
+              <input required class="form-control" type="password" id="confsenha" placeholder="Confirme sua senha" name="confsenha"  minlength="6" maxlength="16" required = required oninvalid="this.setCustomValidity('A senha deve conter no mínimo 6 e no máximo 16 dígitos')" 
+              onchange="try{setCustomValidity('')}catch(e){}" />
             </div>
 
             <button type="submit" class="btn btn-enviar">Enviar</button>
