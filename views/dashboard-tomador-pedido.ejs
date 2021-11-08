@@ -51,7 +51,23 @@
             <div class="info-personal">
               
                 <p><b>Nome Completo</b>: <%= prestador.nome + ' ' + prestador.sobrenome %></p>
-                <i>Localização: <%= prestador.cep %></i>
+                <i id="endereco">Localização: <%= prestador.cep %></i>
+                <script>
+                  const getInfoAddress = (cep) => {
+                      axios.get(`https://brasilapi.com.br/api/cep/v1/${cep}`).then((result) => {
+                        const { data } = result
+                        document.getElementById('endereco').innerHTML += `<br><em>${data.neighborhood}, ${data.city}</em>`
+                      }).catch((err) => {
+                        console.log(err)
+                        document.getElementById('endereco').innerHTML += `<br><em>Não foi encontrado nenhum resultado para esse CEP</em>`
+                      });
+                      
+                  }
+                  window.addEventListener('load', () => {
+                    getInfoAddress(<%= prestador.cep %>)
+                  });
+                  
+                </script>
                 <p>Na plataforma desde <%= prestador.data_inicio.split('-')[0] %>  </p>
                 <p><b>Serviço Prestado</b></p>
                 <span><%= servico.descricao_servico %> </span>
