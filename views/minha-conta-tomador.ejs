@@ -9,6 +9,15 @@
       <h3>
         Minha Conta 
       </h3>
+      <% if (typeof message !== "undefined" && message !== null) { %>
+        <div style="text-align: center;" class="alert alert-danger" role="alert">            
+          <span><%= message %></span>              
+        </div>
+    <% } else { %>
+      <div style="text-align: center;" class="alert alert-success" role="alert">
+        Salvo com sucesso!
+      </div>
+   <% } %> 
       <div class="formulario-cadastro">
         <div>
           <form method="POST" action="/minha-conta-tomador">

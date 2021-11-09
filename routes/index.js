@@ -7,9 +7,9 @@ const ServicosController = require('../controllers/ServicosController');
 const seUsuarioLogado = require('../middlewares/verificarSeUsuarioLogado');
 const usuarioLogado = require('../middlewares/retornarUsuarioLogado');
 const validadorCadastro = require('../middlewares/validador/cadastro')
-const { nomeValidador, sobrenomeValidador, emailValidador, cpfValidador, cpfcnpjValidador, cepValidador, telefoneValidador, enderecoValidador, senhaValidador, descricaoResidenciaValidador, descricaoDemandaValidador, descricaoSolicitacaoValidador } = validadorCadastro
+const { nomeValidador, sobrenomeValidador, emailValidador, cpfValidador, cpfcnpjValidador, cepValidador, telefoneValidador, enderecoValidador, senhaValidador, descricaoResidenciaValidador, descricaoDemandaValidador, descricaoSolicitacaoValidador, servicoValidador } = validadorCadastro
 const validadorCadastroTomador = [nomeValidador, sobrenomeValidador, emailValidador, cpfValidador, enderecoValidador, senhaValidador]
-const validadorCadastroPrestador = [nomeValidador, sobrenomeValidador, emailValidador, cpfcnpjValidador, cepValidador, telefoneValidador, senhaValidador]
+const validadorCadastroPrestador = [nomeValidador, sobrenomeValidador, emailValidador, cpfcnpjValidador, cepValidador, telefoneValidador, senhaValidador, servicoValidador]
 const validadorCadastroPedido = [enderecoValidador, descricaoSolicitacaoValidador, descricaoDemandaValidador, descricaoResidenciaValidador]
 const multer = require('multer');
 const multerConfig = require('../config/multer');
@@ -87,17 +87,20 @@ router.get('/cadastro-tomador-servico', (req, res, next) => {
 // lembrar de colocar validacao para campos e aproveitar pra colocar a confirmacao da senha por lá
 router.post('/cadastro-tomador-servico', validadorCadastroTomador, async (req, res, next) => {
   const errors = validationResult(req);
+  console.log(errors)
   if (!errors.isEmpty()) {
-    return res.render("cadastro-tomador-servico", { errors , cadastro: req.body, title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' });
+    return res.render("cadastro-tomador-servico", { errors, title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' });
   }
   const { nome, sobrenome, email, cpf, telefone, endereco, senha, confsenha } = req.body;
-  if (senha !== confsenha) {
-    throw new Error("Senhas não conferem!")
+
+  try {
+    const usuario = await TomadoresController.criarUmTomador({ nome, sobrenome, email, cpf, telefone, endereco, senha, confsenha })
+    usuario.senha = ''
+    req.session.user = usuario
+    res.status(201).redirect('/solicitar-servico')
+  } catch (err) {
+    res.render("cadastro-tomador-servico", { message: err.message, errors: false , title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' })
   }
-  const usuario = await TomadoresController.criarUmTomador({ nome, sobrenome, email, cpf, telefone, endereco, senha })
-  usuario.senha = ''
-  req.session.user = usuario
-  res.status(201).redirect('/solicitar-servico')
 });
 
 /* Minha Conta Tomador */
@@ -108,16 +111,16 @@ router.get('/minha-conta-tomador', seUsuarioLogado, (req, res, next) => {
 
 /* Editar Minha Conta Tomador */
 
-router.post('/minha-conta-tomador', async (req, res, next) => {
-  const { usuario } = usuarioLogado.loggedInfo(req.session.user)
+router.post('/minha-conta-tomador', seUsuarioLogado, async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   const { nome, sobrenome, email, cpf, endereco, senha, confsenha } = req.body
   console.log(req.body)
   try {
     await TomadoresController.editarUmTomador({ id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha })
     req.session.user = { id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha }
-    res.status(201).redirect('/dashboard-tomador-pedido')
+    res.status(201).redirect('/minha-conta-tomador')
   } catch (err) {
-    console.log(err)
+    res.render("minha-conta-tomador", { message: err.message, title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante'  })
   }
 });
 
@@ -129,15 +132,13 @@ router.get('/cadastro-prestador', (req, res, next) => {
 
 router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), validadorCadastroPrestador, async (req, res, next) => {
   const errors = validationResult(req);
+  console.log(req)
   console.log(errors)
   if (!errors.isEmpty()) {
     return res.render("cadastro-prestador", { errors , usuario: req.body, title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
   }
   const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha, servico_id } = req.body;
   try {
-    if (senha !== confsenha) {
-      throw new Error("Senhas não conferem!")
-    }
     const dateInit = new Date().toLocaleDateString().replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, "$3-$2-$1")
     const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, servico_id, email, cep, cpf_cnpj, telefone, data_inicio: dateInit, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
     usuario.senha = ''
@@ -145,7 +146,7 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
     req.session.user = usuario
     res.status(201).redirect('/plano')
   } catch (err) {
-    res.render("cadastro-prestador", { message: err.message, logged: false, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
+    res.render("cadastro-prestador", { message: err.message, errors: false, logged: false, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
   }
 });
 

@@ -46,7 +46,7 @@ exports.cepValidador = check("cep")
   .notEmpty()
   .withMessage("Cep é requerido")
   .isLength({ min: 8, max: 8 })
-  .withMessage("Endereço é requerido e com máximo de 150 caracteres");
+  .withMessage("Cep é requerido e com máximo de 8 caracteres");
 exports.senhaValidador = check("senha")
   .notEmpty()
   .withMessage("Senha é requerido")
@@ -57,6 +57,9 @@ exports.telefoneValidador = check("telefone")
   .withMessage("Telefone é requerido")
   .isLength({ max: 11 })
   .withMessage("Telefone é requerido");
+exports.servicoValidador = check("servico_id")
+  .notEmpty()
+  .withMessage("Precisa selecionar um serviço");
 // validacao no cadastro do pedido
 exports.descricaoResidenciaValidador = check("descricao_residencia")
   .notEmpty()

@@ -23,13 +23,17 @@ const TomadorController = {
     }
   },
   listarTodos: () => TomadorModel.findAll(),
-  criarUmTomador: ({ nome, sobrenome, email, cpf, endereco, senha }) => {
-    console.log({ nome, sobrenome, email, cpf, endereco, senha })
+  criarUmTomador: ({ nome, sobrenome, email, cpf, endereco, senha, confsenha }) => {
+    if (senha !== confsenha) {
+      throw new Error("As senhas não conferem");
+    }
     senha = bcrypt.hashSync(senha)
     return TomadorModel.criarUmTomador({ nome, sobrenome, email, cpf, endereco, senha })
   },
-  editarUmTomador: async ({ id, nome, sobrenome, email, cpf, endereco, senha }) => {
-    console.log({ id, nome, sobrenome, email, cpf, endereco, senha })
+  editarUmTomador: async ({ id, nome, sobrenome, email, cpf, endereco, senha, confsenha }) => {
+    if (senha !== confsenha) {
+      throw new Error("As senhas não conferem");
+    }
     return await TomadorModel.update(id, {
         nome, 
         sobrenome, 
