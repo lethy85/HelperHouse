@@ -11,6 +11,15 @@
           Serviços de eletricista
         </h2>
       </section>
+      <% if (errors && typeof errors !== 'undefined') { %>
+        <div class="alert alert-danger" role="alert">
+          <div style="text-align: center; ">
+            <% errors.errors.forEach(error => { %>
+              <strong><%= error.msg %></strong><br>
+            <% }); %>
+          </div>
+        </div>
+      <% } %>
             <div class="flex-container">
               <h4>
                 <ul>                      
@@ -67,8 +76,7 @@
                             </section>              
                             <section class ="caixa-dialogo">
                               <label for="caixa-dialogo">Descrição da Solicitação</label>
-                              <textarea id="caixa-dialogo" name="descricao_solicitacao" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui" minlength="50" maxlength="240" 
-                              required = "required" oninvalid="this.setCustomValidity('Descrição deve conter entre 50 e 240 caractéres')" 
+                              <textarea id="caixa-dialogo" name="descricao_solicitacao" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui"  minlength="50" maxlength="240" required = "required" oninvalid="this.setCustomValidity('Descrição deve conter entre 50 e 240 caractéres')" 
                               onchange="try{setCustomValidity('')}catch(e){}"></textarea> 
                             </section >
                             <div class="botaoServico">

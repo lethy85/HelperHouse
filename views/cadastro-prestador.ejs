@@ -20,6 +20,15 @@
               </div>
             </div>
         </section>
+        <% if (errors && typeof errors !== 'undefined') { %>
+            <div class="alert alert-danger" role="alert">
+              <div style="text-align: center; ">
+                <% errors.errors.forEach(error => { %>
+                  <strong><%= error.msg %></strong><br>
+                <% }); %>
+              </div>
+            </div>
+          <% } %>
         <section id="formulario">
             <form class="cadform" action="/cadastro-prestador" method="POST" enctype="multipart/form-data">
                 <div class="cadastro">

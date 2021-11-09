@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       price: {
-        type:Sequelize.DECIMAL(4,2), 
+        type:Sequelize.DECIMAL(7,2), 
         allowNull: true
       },
       descricao_demanda: {
@@ -26,7 +26,7 @@ module.exports = {
           allowNull: false
       },
       endereco: {
-          type:Sequelize.STRING(45), 
+          type:Sequelize.STRING(150), 
           allowNull: false
       },
       status_id: {
