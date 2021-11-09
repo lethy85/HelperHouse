@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         price: {
-            type:DataTypes.DECIMAL(4,2), 
+            type:DataTypes.DECIMAL(7,2), 
             allowNull: true
         },
         descricao_demanda: {
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         endereco: {
-            type:DataTypes.STRING(45), 
+            type:DataTypes.STRING(150), 
             allowNull: false
         },
         status_id: {

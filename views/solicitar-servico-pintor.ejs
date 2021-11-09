@@ -11,6 +11,15 @@
           Serviços de pintor
         </h2>
       </section>
+      <% if (errors && typeof errors !== 'undefined') { %>
+        <div class="alert alert-danger" role="alert">
+          <div style="text-align: center; ">
+            <% errors.errors.forEach(error => { %>
+              <strong><%= error.msg %></strong><br>
+            <% }); %>
+          </div>
+        </div>
+      <% } %>
             <div class="flex-container">
               <h4>
                 <ul>                      

@@ -71,22 +71,59 @@
                 <p>Na plataforma desde <%= prestador.data_inicio.split('-')[0] %>  </p>
                 <p><b>Serviço Prestado</b></p>
                 <span><%= servico.descricao_servico %> </span>
-                <p>
-                  Telefone: <b><%= prestador.telefone %> </b>
-                </p>      
+                <% if (pedido.status_id === 2) { %>
+                  <p>
+                    Chame no Whatsapp agora mesmo: <b><a href="https://api.whatsapp.com/send?phone=55<%= prestador.telefone %>"><%= prestador.telefone %></a> </b>
+                  </p>
+                <% } %>      
             </div>
           </div>
 
           <div class="action-order col-12 col-lg-6">
+            <% if (pedido.status_id === 1) { %>
+              <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
+                <input type="hidden" name="status_id" value="2">
+                <input type="hidden" name="prestador_id" value="<%= pedido.prestador_id %>">
+                <input type="hidden" name="price" value="<%= pedido.price %>">
+                <button type="submit" class="approved">Aprovar</button>
+              </form>
+  
+              <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
+                <input type="hidden" name="status_id" value="3">
+                <input type="hidden" name="prestador_id" value="<%= pedido.prestador_id %>">
+                <input type="hidden" name="price" value="<%= pedido.price %>">
+                <button type="submit" class="rejected">Recusar</button>
+              </form>
+            <% } else if (pedido.status_id === 2) { %>
+              <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
+                <input type="hidden" name="status_id" value="1">
+                <input type="hidden" name="price" value="null">
+                <input type="hidden" name="prestador_id" value="1">
+                <button type="submit" class="pending">Pendente</button>
+              </form>
+
+              <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
+                <input type="hidden" name="status_id" value="3">
+                <input type="hidden" name="prestador_id" value="<%= pedido.prestador_id %>">
+                <input type="hidden" name="price" value="<%= pedido.price %>">
+                <button type="submit" class="rejected">Recusar</button>
+              </form>
+              
+           <% } else { %>
             <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
-              <input type="hidden" name="status_id" value="2">
-              <button type="submit" class="approved">Aprovar</button>
+              <input type="hidden" name="status_id" value="1">
+              <input type="hidden" name="prestador_id" value="1">
+              <input type="hidden" name="price" value="null">
+              <button type="submit" class="pending">Pendente</button>
             </form>
 
             <form action="/dashboard-tomador-pedido/<%= pedido.id %> " method="POST">
-              <input type="hidden" name="status_id" value="3">
-              <button type="submit" class="rejected">Recusar</button>
+              <input type="hidden" name="status_id" value="2">
+              <input type="hidden" name="prestador_id" value="<%= pedido.prestador_id %>">
+              <input type="hidden" name="price" value="<%= pedido.price %>">
+              <button type="submit" class="approved">Aprovar</button>
             </form>
+          <% } %>
             
           </div>
         </div>

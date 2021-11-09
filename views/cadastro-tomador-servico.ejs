@@ -9,6 +9,22 @@
       <h3>
         Agora que você nos contou o que precisa, confirme seus dados para te conectarmos aos melhores profissionais 
       </h3>
+    <% if (typeof message !== "undefined" && message !== null) { %>
+        <div style="text-align: center;" class="alert alert-danger" role="alert">
+                         
+              <span><%= message %></span>
+                        
+        </div>
+    <% } %> 
+      <% if (errors && typeof errors !== 'undefined') { %>
+        <div class="alert alert-danger" role="alert">
+          <div style="text-align: center; ">
+            <% errors.errors.forEach(error => { %>
+              <strong><%= error.msg %></strong><br>
+            <% }); %>
+          </div>
+        </div>
+      <% } %>
       <div class="formulario-cadastro">
         <div>
           <form class="cadform" method="POST" action="/cadastro-tomador-servico">
@@ -23,9 +39,6 @@
             </div>
             <div class="form-group">
               <input class="form-control" type="text" id="cpf" placeholder="CPF" name="cpf" maxlength="11" >
-            </div>
-            <div class="form-group">
-              <input class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"   maxlength="11" > 
             </div>
             <div class="form-group">
               <input class="form-control" type="text" id="endereco" placeholder="Rua Santo, Bairro Fulano, n 38, apt 301, Belo Horizonte, MG, cep 30140072" name="endereco" > 

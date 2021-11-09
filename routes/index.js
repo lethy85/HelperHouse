@@ -6,9 +6,15 @@ const StatusController = require('../controllers/StatusController');
 const ServicosController = require('../controllers/ServicosController');
 const seUsuarioLogado = require('../middlewares/verificarSeUsuarioLogado');
 const usuarioLogado = require('../middlewares/retornarUsuarioLogado');
+const validadorCadastro = require('../middlewares/validador/cadastro')
+const { nomeValidador, sobrenomeValidador, emailValidador, cpfValidador, cpfcnpjValidador, cepValidador, telefoneValidador, enderecoValidador, senhaValidador, descricaoResidenciaValidador, descricaoDemandaValidador, descricaoSolicitacaoValidador, servicoValidador } = validadorCadastro
+const validadorCadastroTomador = [nomeValidador, sobrenomeValidador, emailValidador, cpfValidador, enderecoValidador, senhaValidador]
+const validadorCadastroPrestador = [nomeValidador, sobrenomeValidador, emailValidador, cpfcnpjValidador, cepValidador, telefoneValidador, senhaValidador, servicoValidador]
+const validadorCadastroPedido = [enderecoValidador, descricaoSolicitacaoValidador, descricaoDemandaValidador, descricaoResidenciaValidador]
 const multer = require('multer');
 const multerConfig = require('../config/multer');
 const router = express.Router();
+const { validationResult } = require("express-validator");
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -76,18 +82,25 @@ router.get('/logout', function(req, res) {
 
 /* Cadastro tomador */
 router.get('/cadastro-tomador-servico', (req, res, next) => {
-  res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' });
+  res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: false, errors: false, style: 'cadastro-solicitante' });
 });
 // lembrar de colocar validacao para campos e aproveitar pra colocar a confirmacao da senha por lá
-router.post('/cadastro-tomador-servico', async (req, res, next) => {
-  const { nome, sobrenome, email, cpf, telefone, endereco, senha, confsenha } = req.body;
-  if (senha !== confsenha) {
-    throw new Error("Senhas não conferem!")
+router.post('/cadastro-tomador-servico', validadorCadastroTomador, async (req, res, next) => {
+  const errors = validationResult(req);
+  console.log(errors)
+  if (!errors.isEmpty()) {
+    return res.render("cadastro-tomador-servico", { errors, title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' });
   }
-  const usuario = await TomadoresController.criarUmTomador({ nome, sobrenome, email, cpf, telefone, endereco, senha })
-  usuario.senha = ''
-  req.session.user = usuario
-  res.status(201).redirect('/solicitar-servico')
+  const { nome, sobrenome, email, cpf, telefone, endereco, senha, confsenha } = req.body;
+
+  try {
+    const usuario = await TomadoresController.criarUmTomador({ nome, sobrenome, email, cpf, telefone, endereco, senha, confsenha })
+    usuario.senha = ''
+    req.session.user = usuario
+    res.status(201).redirect('/solicitar-servico')
+  } catch (err) {
+    res.render("cadastro-tomador-servico", { message: err.message, errors: false , title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' })
+  }
 });
 
 /* Minha Conta Tomador */
@@ -98,31 +111,34 @@ router.get('/minha-conta-tomador', seUsuarioLogado, (req, res, next) => {
 
 /* Editar Minha Conta Tomador */
 
-router.post('/minha-conta-tomador', async (req, res, next) => {
-  const { usuario } = usuarioLogado.loggedInfo(req.session.user)
+router.post('/minha-conta-tomador', seUsuarioLogado, async (req, res, next) => {
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   const { nome, sobrenome, email, cpf, endereco, senha, confsenha } = req.body
   console.log(req.body)
   try {
     await TomadoresController.editarUmTomador({ id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha })
     req.session.user = { id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha }
-    res.status(201).redirect('/dashboard-tomador-pedido')
+    res.status(201).redirect('/minha-conta-tomador')
   } catch (err) {
-    console.log(err)
+    res.render("minha-conta-tomador", { message: err.message, title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante'  })
   }
 });
 
 /* Cadastro Prestador */
 
 router.get('/cadastro-prestador', (req, res, next) => {
-  res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
+  res.render('cadastro-prestador', { title: 'Cadastro Prestador', errors:false, logged: false, style: 'cadastro-prestador' });
 });
 
-router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), async (req, res, next) => {
+router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), validadorCadastroPrestador, async (req, res, next) => {
+  const errors = validationResult(req);
+  console.log(req)
+  console.log(errors)
+  if (!errors.isEmpty()) {
+    return res.render("cadastro-prestador", { errors , usuario: req.body, title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
+  }
   const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha, servico_id } = req.body;
   try {
-    if (senha !== confsenha) {
-      throw new Error("Senhas não conferem!")
-    }
     const dateInit = new Date().toLocaleDateString().replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, "$3-$2-$1")
     const usuario = await PrestadoresController.criarUmPrestador({ nome, sobrenome, servico_id, email, cep, cpf_cnpj, telefone, data_inicio: dateInit, senha, confsenha, imagem_perfil: '/uploads/foto/' + req.files['foto'][0].filename, imagem_identidade: '/uploads/ident/' + req.files['ident'][0].filename })
     usuario.senha = ''
@@ -130,7 +146,7 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
     req.session.user = usuario
     res.status(201).redirect('/plano')
   } catch (err) {
-    res.render("cadastro-prestador", { message: err.message, logged: false, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
+    res.render("cadastro-prestador", { message: err.message, errors: false, logged: false, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
   }
 });
 
@@ -204,11 +220,18 @@ router.get('/solicitar-servico', seUsuarioLogado, (req, res, next) => {
 
 router.get('/solicitar-servico-eletricista', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+  res.render('solicitar-servico-eletricista', { title: 'Solicitar Eletricista', logged, errors: false, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.post('/solicitar-servico-eletricista', async (req, res, next) => {
+router.post('/solicitar-servico-eletricista', validadorCadastroPedido, async (req, res, next) => {
+  const errors = validationResult(req);
+  console.log(errors)
+  console.log(!errors.isEmpty())
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  if (!errors.isEmpty()) {
+    return res.render("solicitar-servico-eletricista", { errors , cadastro: req.body, title: 'Solicitar Eletricista', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+  }
+  
   const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
   try {
     const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
@@ -225,11 +248,15 @@ router.post('/solicitar-servico-eletricista', async (req, res, next) => {
 
 router.get('/solicitar-servico-encanador', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('solicitar-servico-encanador', { title: 'Solicitar Encanador', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+  res.render('solicitar-servico-encanador', { title: 'Solicitar Encanador', logged, errors: false, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.post('/solicitar-servico-encanador', async (req, res, next) => {
+router.post('/solicitar-servico-encanador', validadorCadastroPedido, async (req, res, next) => {
+  const errors = validationResult(req);
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  if (!errors.isEmpty()) {
+    return res.render("solicitar-servico-encanador", { errors , cadastro: req.body, title: 'Solicitar Encanador', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+  }
   const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
   try {
     const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
@@ -246,11 +273,15 @@ router.post('/solicitar-servico-encanador', async (req, res, next) => {
 /* Nova solicitação - Pintor */
 router.get('/solicitar-servico-pintor', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('solicitar-servico-pintor', { title: 'Solicitar Pintor', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+  res.render('solicitar-servico-pintor', { title: 'Solicitar Pintor', logged, errors: false, usuario, style: 'novaSolicitaçãoTomadorServico' });
 });
 
-router.post('/solicitar-servico-pintor', async (req, res, next) => {
+router.post('/solicitar-servico-pintor', validadorCadastroPedido, async (req, res, next) => {
+  const errors = validationResult(req);
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
+  if (!errors.isEmpty()) {
+    return res.render("solicitar-servico-pintor", { errors , cadastro: req.body, title: 'Solicitar pintor', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
+  }
   const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
   try {
     const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
@@ -287,10 +318,10 @@ router.get('/dashboard-tomador-pedido/:id', seUsuarioLogado, async (req, res, ne
 router.post('/dashboard-tomador-pedido/:id', async (req, res, next) => {
   const { id } = req.params
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  const { status_id } = req.body
+  const { status_id, prestador_id, price } = req.body
   console.log(status_id)
   try {
-    const editOrder = await PedidosController.editarStatusPedido({ id, status_id })
+    const editOrder = await PedidosController.editarStatusPedido({ id, status_id, prestador_id, price })
     console.log(editOrder)
     res.redirect('/dashboard-pedidos-tomador')
   } catch (error) {
