@@ -2,7 +2,7 @@
 const form = document.querySelector('.cadform');
 
 const {nome: nameImput, sobrenome, email, cep, cpf_cnpj, telefone, senha, confsenha, imagem_perfil, imagem_identidade} = form.elements;
-const {nome, sobrenome: sobrenomeImput, cpf, endereco} = form.elements;
+const {nome, cpf, endereco} = form.elements;
 
 const {descricao_solicitacao} = form.elements;
 
@@ -15,7 +15,7 @@ form.addEventListener('submit', function(event) {
 });
 
 form.addEventListener('submit', function(event) {
-    if(!sobrenomeImput.value.length) {
+    if(!sobrenome.value.length) {
         alert('Preencha o campo sobrenome!')
         event.preventDefault();
     };
