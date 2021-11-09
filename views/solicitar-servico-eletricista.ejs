@@ -51,16 +51,16 @@
                               <div>
                                 <label>TIPO DE RESIDÊNCIA</label><br>
                                 <div>
-                                  <input type="radio" value="Casa" name="descricao_residencia" id="casa" required>
+                                  <input type="radio" value="Casa" name="descricao_residencia" id="casa" >
                                   <label for="casa">Casa</label><br>
-                                  <input type="radio" value="Apartamento" name="descricao_residencia" id="apartamento" required>
+                                  <input type="radio" value="Apartamento" name="descricao_residencia" id="apartamento" >
                                   <label for="apartamento">Apartamento</label> <br>
                                 </div>
                                 <label>TIPO DE DEMANDA</label>
                                 <div>
-                                  <input type="radio" value="Manutencao" name="descricao_demanda" id="manutencao" required>
+                                  <input type="radio" value="Manutencao" name="descricao_demanda" id="manutencao" >
                                   <label for="manutencao">Manutenção</label><br>
-                                  <input type="radio" value="Reforma" name="descricao_demanda" id="reforma" required>
+                                  <input type="radio" value="Reforma" name="descricao_demanda" id="reforma" >
                                   <label for="reforma">Reforma</label> <br>             
                                 </div>
                               </div>
@@ -68,7 +68,7 @@
                             <section id="endereco-form">
                               <div class="form-group">
                                 <label for="endereco">Endereço do Serviço</label>
-                                <input style="width: 100% !important; height: auto !important;" class="form-control" value="<%= usuario.endereco %>" type="text" id="endereco" placeholder="Rua Santo, Bairro Fulano, n 38, apt 301, Belo Horizonte, MG, cep 30140072" name="endereco"  required> 
+                                <input style="width: 100% !important; height: auto !important;" class="form-control" value="<%= usuario.endereco %>" type="text" id="endereco" placeholder="Rua Santo, Bairro Fulano, n 38, apt 301, Belo Horizonte, MG, cep 30140072" name="endereco"  > 
                               </div>
                               <input type="hidden" name="status_id" value="1">
                               <input type="hidden" name="prestador_id" value="1">
@@ -76,7 +76,7 @@
                             </section>              
                             <section class ="caixa-dialogo">
                               <label for="caixa-dialogo">Descrição da Solicitação</label>
-                              <textarea id="caixa-dialogo" name="descricao_solicitacao" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui"  minlength="50" maxlength="240" required = "required" oninvalid="this.setCustomValidity('Descrição deve conter entre 50 e 240 caractéres')" 
+                              <textarea id="caixa-dialogo" name="descricao_solicitacao" rows="10" cols="100%" placeholder="Detalhe sua solicitação aqui"  minlength="50" maxlength="240" oninvalid="this.setCustomValidity('Descrição deve conter entre 50 e 240 caractéres')" 
                               onchange="try{setCustomValidity('')}catch(e){}"></textarea> 
                             </section >
                             <div class="botaoServico">

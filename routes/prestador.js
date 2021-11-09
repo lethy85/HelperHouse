@@ -7,9 +7,6 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
-router.get('/cadastro', (req, res, next) => {
-    res.render('cadastro-prestador', { title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
-});
 
 
 

@@ -16,27 +16,35 @@
                 <div class="cadastro">
                     <div class="form-group">
                         <input required class="form-control" value="<%= usuario.nome %>" type="text" readonly id="nome" name="nome" placeholder="Nome"  required>
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input required class="form-control" value="<%= usuario.sobrenome %>" type="text" readonly id="sobrenome" name="sobrenome" placeholder="Sobrenome"  required>
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input required class="form-control" value="<%= usuario.email %>" type="email" id="email" placeholder="E-mail" name="email"  required>
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="password" id="senha" placeholder="Senha" name="senha">
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="password" id="confsenha" placeholder="Confirme sua senha" name="confsenha">
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input required class="form-control" value="<%= usuario.cep %>" type="text" id="CEP"  placeholder="CEP" name="cep" >
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input required class="form-control" value="<%= usuario.telefone %>" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required> 
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input required class="form-control" value="<%= usuario.cpf_cnpj %>" type="text" readonly id="registro"  placeholder="CPF/CNPJ" name="cpf_cnpj" >
+                        <span class="error-message"></span>
                     </div>    
                 </div>        
             <button type="submit" class="btn btn-enviar">Enviar</button>

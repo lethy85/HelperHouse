@@ -1,5 +1,6 @@
-const bcrypt = require('bcryptjs')
 const TomadorModel = require("../models/Tomador");
+const bcrypt = require("bcryptjs");
+
 
 const TomadorController = {
   logIn: async ({ email, senha }) => {
@@ -16,7 +17,6 @@ const TomadorController = {
   buscarTomadorPeloId: (id) => {
     try {
       const Tomador = TomadorModel.findById(id);
-
       return Tomador;
     } catch (error) {
       return res.status(400).json({ error });
@@ -34,6 +34,7 @@ const TomadorController = {
     if (senha !== confsenha) {
       throw new Error("As senhas não conferem");
     }
+    senha = bcrypt.hashSync(senha)
     return await TomadorModel.update(id, {
         nome, 
         sobrenome, 

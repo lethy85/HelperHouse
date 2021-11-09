@@ -82,7 +82,7 @@ router.get('/logout', function(req, res) {
 
 /* Cadastro tomador */
 router.get('/cadastro-tomador-servico', (req, res, next) => {
-  res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: false, errors: false, style: 'cadastro-solicitante' });
+  res.render('cadastro-tomador-servico', { title: 'Cadastro Tomador de Serviço', logged: false, script: true, errors: false, style: 'cadastro-solicitante' });
 });
 // lembrar de colocar validacao para campos e aproveitar pra colocar a confirmacao da senha por lá
 router.post('/cadastro-tomador-servico', validadorCadastroTomador, async (req, res, next) => {
@@ -99,14 +99,14 @@ router.post('/cadastro-tomador-servico', validadorCadastroTomador, async (req, r
     req.session.user = usuario
     res.status(201).redirect('/solicitar-servico')
   } catch (err) {
-    res.render("cadastro-tomador-servico", { message: err.message, errors: false , title: 'Cadastro Tomador de Serviço', logged: false, style: 'cadastro-solicitante' })
+    res.render("cadastro-tomador-servico", { message: err.message, errors: false , title: 'Cadastro Tomador de Serviço', logged: false, script: true, style: 'cadastro-solicitante' })
   }
 });
 
 /* Minha Conta Tomador */
 router.get('/minha-conta-tomador', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('minha-conta-tomador', { title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante' });
+  res.render('minha-conta-tomador', { title: 'Minha Conta - Tomador', logged, usuario, script: true, style: 'cadastro-solicitante' });
 });
 
 /* Editar Minha Conta Tomador */
@@ -118,16 +118,16 @@ router.post('/minha-conta-tomador', seUsuarioLogado, async (req, res, next) => {
   try {
     await TomadoresController.editarUmTomador({ id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha })
     req.session.user = { id: usuario.id, nome, sobrenome, email, endereco, cpf, senha, confsenha }
-    res.status(201).redirect('/minha-conta-tomador')
+    res.status(201).render("minha-conta-tomador", { success: 'Salvo com Sucesso!', title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante'  })
   } catch (err) {
-    res.render("minha-conta-tomador", { message: err.message, title: 'Minha Conta - Tomador', logged, usuario, style: 'cadastro-solicitante'  })
+    res.render("minha-conta-tomador", { message: err.message, title: 'Minha Conta - Tomador', logged, usuario, script: true, style: 'cadastro-solicitante'  })
   }
 });
 
 /* Cadastro Prestador */
 
 router.get('/cadastro-prestador', (req, res, next) => {
-  res.render('cadastro-prestador', { title: 'Cadastro Prestador', errors:false, logged: false, style: 'cadastro-prestador' });
+  res.render('cadastro-prestador', { title: 'Cadastro Prestador', errors:false, logged: false, script: true, style: 'cadastro-prestador' });
 });
 
 router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), validadorCadastroPrestador, async (req, res, next) => {
@@ -135,7 +135,7 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
   console.log(req)
   console.log(errors)
   if (!errors.isEmpty()) {
-    return res.render("cadastro-prestador", { errors , usuario: req.body, title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
+    return res.render("cadastro-prestador", { errors , usuario: req.body, title: 'Cadastro Prestador', logged: false, script: true, style: 'cadastro-prestador' });
   }
   const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha, servico_id } = req.body;
   try {
@@ -146,14 +146,14 @@ router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', 
     req.session.user = usuario
     res.status(201).redirect('/plano')
   } catch (err) {
-    res.render("cadastro-prestador", { message: err.message, errors: false, logged: false, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
+    res.render("cadastro-prestador", { message: err.message, errors: false, logged: false, script: true, style: 'cadastro-prestador', title: 'Cadastro Prestador' })
   }
 });
 
 /* Minha Conta Prestador */
 router.get('/minha-conta-prestador', seUsuarioLogado, (req, res, next) => {
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  res.render('minha-conta-prestador', { title: 'Minha Conta - Prestador', logged, usuario, style: 'dashboard-pedidos-prestador' });
+  res.render('minha-conta-prestador', { title: 'Minha Conta - Prestador', logged, script: true, usuario, style: 'dashboard-pedidos-prestador' });
 });
 
 /* Editar Minha Conta Prestador */

@@ -39,30 +39,38 @@
                 <div class="cadastro">
                     <div class="form-group">
                         <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome" maxlength="100" >
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" maxlength="100" >
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="email" id="email" placeholder="E-mail" name="email" maxlength="120">
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="password" minlength="6" maxlength="16" id="senha" placeholder="Senha" name="senha" >
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="password" minlength="6" maxlength="16" id="confsenha" placeholder="Confirme sua senha" name="confsenha" >
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <input  class="form-control" type="text" id="CEP"  placeholder="CEP" name="cep" maxlength="8" >
+                        <span class="error-message"></span>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone" maxlength="11"> 
+                        <input class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone" maxlength="11">
+                        <span class="error-message"></span> 
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" id="registro"  placeholder="CPF/CNPJ" name="cpf_cnpj"  maxlength="14">
+                        <span class="error-message"></span>
                     </div>
-                    <label for="">Selecione o serviço</label>
-                    <select name="servico_id" class="form-select" aria-label="Selecionar Servicos" required>
+                    <label for="servico">Selecione o serviço</label>
+                    <select name="servico_id" id="servico" class="form-select" aria-label="Selecionar Servicos" required>
                         <option selected value="1">Eletricista</option>
                         <option value="2">Encanador</option>
                         <option value="3">Pintor</option>
@@ -72,11 +80,11 @@
                 <div class="arquivos">
                     <div class="form-group">
                         <label for="foto">Anexe uma foto para o seu perfil:</label> 
-                        <input required class="form-control-file" type="file" id="foto" name="foto" >
+                        <input class="form-control-file" type="file" id="foto" name="foto" >
                     </div>
                     <div class="form-group">
                         <label for="ident">Anexe uma foto com seu documento para comprovar a sua identidade:</label>
-                        <input required class="form-control-file" type="file" id="identidade" name="ident" >
+                        <input class="form-control-file" type="file" id="identidade" name="ident" >
                     </div>
                 </div>        
             <button type="submit" class="btn btn-enviar">Enviar</button>

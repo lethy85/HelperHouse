@@ -1,5 +1,5 @@
-const bcrypt =  require('bcryptjs')
 const PrestadorModel = require("../models/Prestador");
+const bcrypt = require("bcryptjs");
 
 const PrestadorController = {
   logIn: async ({ email, senha }) => {

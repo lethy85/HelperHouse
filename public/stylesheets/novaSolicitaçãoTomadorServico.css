@@ -41,6 +41,12 @@ body {
 
 }
 
+.botaoServico button {
+    border: 1px solid green;
+    background-color: green;
+    color: #fff
+}
+
 
 .Imagens-servicos a{
     padding: 10px;
