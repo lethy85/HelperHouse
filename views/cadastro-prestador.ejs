@@ -24,38 +24,30 @@
             <form class="cadform" action="/cadastro-prestador" method="POST" enctype="multipart/form-data">
                 <div class="cadastro">
                     <div class="form-group">
-                        <input required class="form-control" type="text" id="nome" name="nome" placeholder="Nome" maxlength="100" required oninvalid="this.setCustomValidity('Preencha o campo nome somente com letras')" 
-                        onchange="try{setCustomValidity('')}catch(e){}" pattern="([a-zA-Záãâéêíîóôõú\s])+$"  />
+                        <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome" maxlength="100" >
                     </div>
                     <div class="form-group">
-                        <input required class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" maxlength="100" required oninvalid="this.setCustomValidity('Preencha o campo sobrenome somente com letras')" 
-                        onchange="try{setCustomValidity('')}catch(e){}" pattern="([a-zA-Záãâéêíîóôõú\s])+$"  />
+                        <input class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" maxlength="100" >
                     </div>
                     <div class="form-group">
-                        <input required class="form-control" type="email" id="email" placeholder="E-mail" name="email" maxlength="120" required = required oninvalid="this.setCustomValidity('Formato de email inválido')" 
-                        onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                        <input class="form-control" type="email" id="email" placeholder="E-mail" name="email" maxlength="120">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="password" minlength="6" maxlength="16" id="senha" placeholder="Senha" name="senha" required = required oninvalid="this.setCustomValidity('A senha deve conter no mínimo 6 e no máximo 16 dígitos')" 
-                        onchange="try{setCustomValidity('')}catch(e){}" >
+                        <input class="form-control" type="password" minlength="6" maxlength="16" id="senha" placeholder="Senha" name="senha" >
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="password" minlength="6" maxlength="16" id="confsenha" placeholder="Confirme sua senha" name="confsenha" required = required oninvalid="this.setCustomValidity('A senha deve conter no mínimo 6 e no máximo 16 dígitos')" 
-                        onchange="try{setCustomValidity('')}catch(e){}">
+                        <input class="form-control" type="password" minlength="6" maxlength="16" id="confsenha" placeholder="Confirme sua senha" name="confsenha" >
                     </div>
                     <div class="form-group">
-                        <input  class="form-control" type="text" id="CEP"  placeholder="CEP" name="cep" minlength="8" maxlength="8" required="required" pattern="[0-9]+$" required = required oninvalid="this.setCustomValidity('O cep deve conter somente números com 8 digitos. Exemplo 03654025')" 
-                        onchange="try{setCustomValidity('')}catch(e){}"/>
+                        <input  class="form-control" type="text" id="CEP"  placeholder="CEP" name="cep" maxlength="8" >
                     </div>
                     <div class="form-group">
-                        <input required class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone"  required="required" minlength="10" maxlength="11" required = required oninvalid="this.setCustomValidity('O campo telefone deve conter somente numeros, com o DDD incluso')" 
-                        onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" /> 
+                        <input class="form-control" type="tel" id="telefone" placeholder="Telefone/Whatsapp com DDD" name="telefone" maxlength="11"> 
                     </div>
                     <div class="form-group">
-                        <input required class="form-control" type="text" id="registro"  placeholder="CPF/CNPJ" name="cpf_cnpj" minlength="11" maxlength="14" required = required oninvalid="this.setCustomValidity('O campo cpf/cnpj pode conter somente números, com no mínimo 11, e no máximo 14 dígitos.')" 
-                        onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" />
+                        <input class="form-control" type="text" id="registro"  placeholder="CPF/CNPJ" name="cpf_cnpj"  maxlength="14">
                     </div>
-                    <select name="servico_id" class="form-select" aria-label="Selecionar Servicos" required = "required">
+                    <select name="servico_id" class="form-select" aria-label="Selecionar Servicos" required>
                         <option selected>Selecione um serviço</option>
                         <option value="1">Eletricista</option>
                         <option value="2">Encanador</option>
