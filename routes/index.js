@@ -127,10 +127,11 @@ router.get('/cadastro-prestador', (req, res, next) => {
   res.render('cadastro-prestador', { title: 'Cadastro Prestador', errors:false, logged: false, style: 'cadastro-prestador' });
 });
 
-router.post('/cadastro-prestador', validadorCadastroPrestador, multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), async (req, res, next) => {
+router.post('/cadastro-prestador', multer(multerConfig).fields([{ name: 'foto', maxCount: 1 }, { name: 'ident', maxCount: 1 }]), validadorCadastroPrestador, async (req, res, next) => {
   const errors = validationResult(req);
+  console.log(errors)
   if (!errors.isEmpty()) {
-    return res.render("cadastro-prestador", { errors , cadastro: req.body, title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
+    return res.render("cadastro-prestador", { errors , usuario: req.body, title: 'Cadastro Prestador', logged: false, style: 'cadastro-prestador' });
   }
   const { nome, sobrenome, cep, email, cpf_cnpj, telefone, senha, confsenha, servico_id } = req.body;
   try {
@@ -251,10 +252,10 @@ router.get('/solicitar-servico-encanador', seUsuarioLogado, (req, res, next) => 
 
 router.post('/solicitar-servico-encanador', validadorCadastroPedido, async (req, res, next) => {
   const errors = validationResult(req);
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   if (!errors.isEmpty()) {
     return res.render("solicitar-servico-encanador", { errors , cadastro: req.body, title: 'Solicitar Encanador', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
   }
-  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
   try {
     const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
@@ -276,10 +277,10 @@ router.get('/solicitar-servico-pintor', seUsuarioLogado, (req, res, next) => {
 
 router.post('/solicitar-servico-pintor', validadorCadastroPedido, async (req, res, next) => {
   const errors = validationResult(req);
+  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   if (!errors.isEmpty()) {
     return res.render("solicitar-servico-pintor", { errors , cadastro: req.body, title: 'Solicitar pintor', logged, usuario, style: 'novaSolicitaçãoTomadorServico' });
   }
-  const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
   const { descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, descricao_solicitacao } = req.body
   try {
     const pedidoCriado = await PedidosController.criarUmPedido({ descricao_solicitacao, descricao_residencia, descricao_demanda, endereco, status_id, prestador_id, servico_id, tomador_id: usuario.id })
@@ -316,10 +317,10 @@ router.get('/dashboard-tomador-pedido/:id', seUsuarioLogado, async (req, res, ne
 router.post('/dashboard-tomador-pedido/:id', async (req, res, next) => {
   const { id } = req.params
   const { logged, usuario } = usuarioLogado.loggedInfo(req.session.user)
-  const { status_id } = req.body
+  const { status_id, prestador_id, price } = req.body
   console.log(status_id)
   try {
-    const editOrder = await PedidosController.editarStatusPedido({ id, status_id })
+    const editOrder = await PedidosController.editarStatusPedido({ id, status_id, prestador_id, price })
     console.log(editOrder)
     res.redirect('/dashboard-pedidos-tomador')
   } catch (error) {
